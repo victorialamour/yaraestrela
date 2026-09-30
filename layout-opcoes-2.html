@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yara Estrela — Opções de layout: A proposta</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root{--marfim:#F7F3EE;--linho:#EDE5DB;--nude:#D9C3B5;--taupe:#7A695E;--espresso:#2B2522;--champagne:#B89B72;
+        --serif:'Cormorant Garamond',Georgia,serif;--sans:'Jost',system-ui,sans-serif}
+  body.bw{--marfim:#FFFFFF;--linho:#F6F6F5;--nude:#DDDDDB;--taupe:#6F6F6F;--espresso:#111111;--champagne:#111111}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#e9e6e1;font:300 15px/1.6 var(--sans);color:#2B2522;padding:0 0 80px}
+  .top{max-width:1100px;margin:0 auto;padding:36px 20px 10px}
+  .top h1{font:400 2rem/1.1 var(--serif)}
+  .top p{margin:8px 0 14px;color:#6b625b}
+  .tog{display:inline-flex;border:1px solid #2B2522;border-radius:99px;overflow:hidden}
+  .tog button{border:0;background:none;padding:8px 16px;font:400 12px var(--sans);letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
+  .tog button.on{background:#2B2522;color:#fff}
+  .opt{max-width:1100px;margin:44px auto 0;padding:0 20px}
+  .opt h2{font:400 1.5rem var(--serif);margin-bottom:4px}
+  .opt h2 b{display:inline-block;background:#2B2522;color:#fff;width:32px;height:32px;line-height:32px;text-align:center;border-radius:50%;font:400 14px/32px var(--sans);margin-right:10px}
+  .opt .why{color:#6b625b;margin:0 0 12px;font-size:14px}
+  .mock{container-type:inline-size;width:100%;position:relative;overflow:hidden;background:var(--marfim);color:var(--espresso);box-shadow:0 10px 40px rgba(0,0,0,.18)}
+  .mock *{font-family:var(--sans)}
+  .lbl{font:400 .9cqw var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--taupe);display:block}
+  .q{font:italic 300 5.4cqw/1.02 var(--serif);letter-spacing:-.01em}
+  .q em{font-style:normal}
+  .tx{font-size:1.2cqw;line-height:1.8;max-width:38cqw}
+  .cta{display:inline-block;padding:1.2cqw 2.4cqw;background:var(--espresso);color:var(--marfim);font:400 .9cqw var(--sans);letter-spacing:.22em;text-transform:uppercase;border:1px solid var(--espresso)}
+  .cta.line{background:none;color:var(--espresso)}
+  .lk{font:400 .9cqw var(--sans);letter-spacing:.22em;text-transform:uppercase;border-bottom:1px solid var(--champagne);padding-bottom:.3cqw;margin-left:2cqw}
+  .ph{position:relative;overflow:hidden;background:linear-gradient(160deg,var(--nude),var(--linho))}
+  .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+  .star{display:inline-block;width:1.1cqw;height:1.1cqw;stroke:var(--champagne);fill:none;stroke-width:1;vertical-align:middle}
+  .p1 img{object-position:50% 30%}.p2 img{object-position:50% 53%}.p3 img{object-position:50% 30%}
+  /* A: citação gigante + fileira de 3 */
+  .A{background:var(--linho);padding:7cqw 6cqw 6cqw;text-align:center}
+  .A .q{font-size:7.4cqw;max-width:80cqw;margin:1.6cqw auto 2.4cqw}
+  .A .tx{margin:0 auto 2.4cqw;max-width:52cqw}
+  .A .row{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6cqw;margin-top:5cqw}
+  .A .row .ph{aspect-ratio:4/5}
+  .A .row .ph:nth-child(2){margin-top:-3cqw}
+  /* B: foto grande + texto */
+  .B{display:grid;grid-template-columns:1fr 1.15fr;min-height:46cqw}
+  .B .big{position:relative;min-height:46cqw}
+  .B .big .ph{position:absolute;inset:0}
+  .B .tc{padding:6cqw 6cqw 6cqw 5cqw;display:flex;flex-direction:column;justify-content:center;position:relative}
+  .B .q{font-size:4.6cqw;margin:1.6cqw 0 2cqw}
+  .B .acts{margin-top:2.4cqw;display:flex;align-items:center}
+  .B .sm{position:absolute;right:5cqw;bottom:-1cqw;width:13cqw;aspect-ratio:4/5;border:.6cqw solid var(--marfim);z-index:2}
+  .B .sm2{position:absolute;left:-5cqw;top:2cqw;width:11cqw;aspect-ratio:1;border:.6cqw solid var(--marfim);z-index:3;display:none}
+  /* C: três faixas verticais escalonadas */
+  .C{padding:6cqw 6cqw 6cqw}
+  .C .bands{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.4cqw;align-items:start;margin-bottom:5cqw}
+  .C .bands .ph{aspect-ratio:3/5}
+  .C .bands .ph:nth-child(1){margin-top:5cqw}
+  .C .bands .ph:nth-child(3){margin-top:10cqw}
+  .C .ctr{text-align:center}
+  .C .q{font-size:5cqw;margin:1.4cqw auto 2cqw;max-width:70cqw}
+  .C .tx{margin:0 auto 2.2cqw;max-width:46cqw}
+  .C .cap{font:italic 300 1.1cqw var(--serif);color:var(--taupe);margin-top:.6cqw;display:block;text-align:center}
+  /* D: seção escura com arco */
+  .D{background:var(--espresso);color:var(--marfim);display:grid;grid-template-columns:1.1fr 1fr;align-items:center;padding:6cqw 6cqw 0 6cqw;gap:5cqw}
+  .D .lbl{color:var(--nude)}
+  .D .q{font-size:5.2cqw;margin:1.8cqw 0 2cqw;color:var(--marfim)}
+  .D .tx{color:#d8cfc6}
+  .D .acts{margin-top:2.4cqw;display:flex;align-items:center;padding-bottom:6cqw}
+  .D .cta{background:var(--marfim);color:var(--espresso);border-color:var(--marfim)}
+  .D .lk{color:var(--marfim)}
+  .D .arc{position:relative;align-self:end;width:100%;aspect-ratio:4/5.4;border-radius:50cqw 50cqw 0 0;overflow:hidden}
+  .D .arc .ph{position:absolute;inset:0}
+  .D .stars{margin:2cqw 0 0;display:flex;gap:.8cqw}
+  /* E: espelho oval */
+  .E{padding:6cqw 4cqw;text-align:center;background:var(--linho)}
+  .E .row3{display:grid;grid-template-columns:1fr 27cqw 1fr;gap:3.4cqw;align-items:center;margin:3cqw 0 3.4cqw}
+  .E .lq{text-align:right}.E .rq{text-align:left}
+  .E .q{font-size:4.6cqw}
+  .E .oval{position:relative;width:27cqw;aspect-ratio:3/4}
+  .E .oval .ph{position:absolute;inset:0;border-radius:50%}
+  .E .oval::after{content:"";position:absolute;inset:-1.1cqw;border:1px solid var(--champagne);border-radius:50%}
+  .E .rq .tx{font-size:1.05cqw;margin-top:1.8cqw;max-width:26cqw}
+  .E .lq .tx{font-size:1.05cqw;margin:1.8cqw 0 0 auto;max-width:24cqw;text-align:right}
+  /* F: fileira que sangra para fora */
+  .F{padding:6cqw 0 6cqw 6cqw}
+  .F .head{display:grid;grid-template-columns:1.25fr 1fr;gap:5cqw;align-items:end;padding-right:6cqw}
+  .F .q{font-size:5cqw;margin-top:1.6cqw}
+  .F .tx{font-size:1.1cqw;max-width:none}
+  .F .acts{margin-top:2cqw}
+  .F .strip{display:flex;gap:1.4cqw;margin-top:4.4cqw}
+  .F .strip .ph{flex:0 0 21cqw;aspect-ratio:4/5}
+  .F .strip .ph:nth-child(even){margin-top:3cqw}
+  /* G: antes e depois */
+  .G{min-height:46cqw;display:grid;grid-template-columns:1fr 1fr;background:var(--espresso)}
+  .G .half{position:relative;overflow:hidden;min-height:46cqw}
+  .G .half video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 20%}
+  .G .tag{position:absolute;top:2.4cqw;z-index:3;color:#fff;font:400 .9cqw var(--sans);letter-spacing:.26em;text-transform:uppercase;background:rgba(20,14,12,.4);padding:.6cqw 1.2cqw}
+  .G .half:first-child .tag{left:2.4cqw}.G .half:last-child .tag{right:2.4cqw}
+  .G .card{position:absolute;left:50%;bottom:4cqw;transform:translateX(-50%);z-index:4;width:44cqw;background:var(--marfim);padding:3cqw 3.4cqw;text-align:center}
+  .G .card .q{font-size:3.4cqw;margin:1.2cqw 0 1.2cqw}
+  .G .card .tx{font-size:1cqw;max-width:none;margin:0 auto 1.6cqw}
+  /* H: tipográfica */
+  .H{padding:6cqw;display:grid;grid-template-columns:1.2fr 1fr;gap:6cqw;align-items:center}
+  .H .num{font:italic 300 11cqw/1 var(--serif);color:var(--champagne);margin-bottom:.4cqw}
+  .H .q{font-size:5.4cqw;margin:1.4cqw 0 2cqw}
+  .H .left{border-right:1px solid var(--nude);padding-right:5cqw}
+  .H .acts{margin-top:2.2cqw;display:flex;align-items:center}
+  .H .stack{position:relative;height:40cqw}
+  .H .stack .ph{position:absolute}
+  .H .stack .s1{right:0;top:0;width:68%;aspect-ratio:4/5}
+  .H .stack .s2{left:0;bottom:0;width:52%;aspect-ratio:4/5;border:.7cqw solid var(--marfim)}
+  .pick{max-width:1100px;margin:54px auto 0;padding:0 20px;font-size:15px;color:#6b625b}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><symbol id="s" viewBox="0 0 20 20"><path d="M10 1C10.6 7 13 9.4 19 10 13 10.6 10.6 13 10 19 9.4 13 7 10.6 1 10 7 9.4 9.4 7 10 1Z"/></symbol></svg>
+
+<div class="top">
+  <h1>Seção 2 · A proposta ("Quero me reconhecer no espelho")</h1>
+  <p>Quatro jeitos de apresentar a frase, o texto e as três fotos. O hero fica como está. Me diga a letra que mais gostou (ou misture).</p>
+  <div class="tog" role="group" aria-label="Paleta">
+    <button class="on" data-p="warm">Paleta quente (marfim e champagne)</button>
+    <button data-p="bw">Preto e branco (atual)</button>
+  </div>
+</div>
+
+<!-- A -->
+<section class="opt"><h2><b>A</b>Citação gigante</h2><p class="why">A frase ocupa a tela toda, bem grande, e as três fotos vêm em fileira embaixo, com a do meio um pouco mais alta. Muito editorial, a foto é coadjuvante.</p>
+<div class="mock A">
+  <span class="lbl">01 — A proposta</span>
+  <div class="q">“Quero me reconhecer no espelho.”</div>
+  <p class="tx">É o que as noivas me dizem antes de tudo. E é por isso que eu não sigo tendência: construo a imagem de cada mulher. A maquiagem do casamento vai ser vista por muitos anos, então cada escolha é feita com critério, coerência e visão de longo prazo. A intensidade pode ser leve ou marcante. A elegância e a harmonia ficam sempre.</p>
+  <span class="cta">Consultar disponibilidade da minha data</span>
+  <div class="row"><div class="ph p1"><img src="fotos/manifesto-01.jpg" alt=""></div><div class="ph p2"><img src="fotos/manifesto-02.jpg" alt=""></div><div class="ph p3"><img src="fotos/manifesto-03.jpg" alt=""></div></div>
+</div></section>
+
+<!-- B -->
+<section class="opt"><h2><b>B</b>Foto grande + texto</h2><p class="why">Uma foto alta ocupa a metade esquerda; à direita, a frase, o texto e o botão, com uma segunda foto pequena sobreposta. Clássico de revista e muito seguro.</p>
+<div class="mock B">
+  <div class="big"><div class="ph p1"><img src="fotos/manifesto-01.jpg" alt=""></div></div>
+  <div class="tc">
+    <span class="lbl">01 — A proposta</span>
+    <div class="q">“Quero me reconhecer no espelho.”</div>
+    <p class="tx">É o que as noivas me dizem antes de tudo. E é por isso que eu não sigo tendência: construo a imagem de cada mulher. A maquiagem do casamento vai ser vista por muitos anos, então cada escolha é feita com critério, coerência e visão de longo prazo. A intensidade pode ser leve ou marcante. A elegância e a harmonia ficam sempre.</p>
+    <div class="acts"><span class="cta">Consultar disponibilidade</span><span class="lk">Conhecer o método</span></div>
+    <div class="ph sm p2"><img src="fotos/manifesto-02.jpg" alt=""></div>
+  </div>
+</div></section>
+
+<!-- C -->
+<section class="opt"><h2><b>C</b>Três faixas escalonadas</h2><p class="why">As três fotos no topo, em alturas diferentes (efeito de escada), e a frase centralizada embaixo. Mostra as três noivas de uma vez e dá movimento.</p>
+<div class="mock C">
+  <div class="bands">
+    <div><div class="ph p1"><img src="fotos/manifesto-01.jpg" alt=""></div><span class="cap">Pele luminosa</span></div>
+    <div><div class="ph p2"><img src="fotos/manifesto-02.jpg" alt=""></div><span class="cap">Olhar em destaque</span></div>
+    <div><div class="ph p3"><img src="fotos/manifesto-03.jpg" alt=""></div><span class="cap">Batom nude</span></div>
+  </div>
+  <div class="ctr">
+    <span class="lbl">01 — A proposta</span>
+    <div class="q">“Quero me reconhecer no espelho.”</div>
+    <p class="tx">É o que as noivas me dizem antes de tudo. E é por isso que eu não sigo tendência: construo a imagem de cada mulher. A maquiagem do casamento vai ser vista por muitos anos, então cada escolha é feita com critério, coerência e visão de longo prazo. A intensidade pode ser leve ou marcante. A elegância e a harmonia ficam sempre.</p>
+    <span class="cta line">Consultar disponibilidade da minha data</span>
+  </div>
+</div></section>
+
+<!-- D -->
+<section class="opt"><h2><b>D</b>Escura, com foto em arco</h2><p class="why">Seção em marrom escuro (um respiro em contraste na página), com a frase em marfim e uma foto em arco à direita. Dá peso de "assinatura" à proposta.</p>
+<div class="mock D">
+  <div>
+    <span class="lbl">01 — A proposta</span>
+    <div class="q">“Quero me reconhecer no espelho.”</div>
+    <p class="tx">É o que as noivas me dizem antes de tudo. E é por isso que eu não sigo tendência: construo a imagem de cada mulher. A maquiagem do casamento vai ser vista por muitos anos, então cada escolha é feita com critério, coerência e visão de longo prazo. A intensidade pode ser leve ou marcante. A elegância e a harmonia ficam sempre.</p>
+    <div class="acts"><span class="cta">Consultar disponibilidade</span><span class="lk">Conhecer o método</span></div>
+  </div>
+  <div class="arc"><div class="ph p2"><img src="fotos/manifesto-02.jpg" alt=""></div></div>
+</div></section>
+
+<!-- E -->
+<section class="opt"><h2><b>E</b>Espelho oval</h2><p class="why">A foto fica dentro de um oval, como um espelho (combina com a frase), e a frase se divide nos dois lados. Bem diferente do layout da Nina.</p>
+<div class="mock E">
+  <span class="lbl" style="text-align:center">01 — A proposta</span>
+  <div class="row3">
+    <div class="lq"><div class="q">“Quero me<br>reconhecer</div><p class="tx">É o que as noivas me dizem antes de tudo. E é por isso que eu não sigo tendência: construo a imagem de cada mulher.</p></div>
+    <div class="oval"><div class="ph p1"><img src="fotos/manifesto-01.jpg" alt=""></div></div>
+    <div class="rq"><div class="q">no<br>espelho.”</div><p class="tx">A maquiagem do casamento vai ser vista por muitos anos, então cada escolha é feita com critério, coerência e visão de longo prazo. A intensidade pode ser leve ou marcante. A elegância e a harmonia ficam sempre.</p></div>
+  </div>
+  <span class="cta line">Consultar disponibilidade da minha data</span>
+</div></section>
+
+<!-- F -->
+<section class="opt"><h2><b>F</b>Fileira que sai da tela</h2><p class="why">Título e texto lado a lado em cima, e uma fileira de retratos que passa da borda direita (dá ideia de "tem mais", e dá para rolar no celular). Usa cinco fotos.</p>
+<div class="mock F">
+  <div class="head">
+    <div><span class="lbl">01 — A proposta</span><div class="q">“Quero me reconhecer no espelho.”</div></div>
+    <div><p class="tx">É o que as noivas me dizem antes de tudo. E é por isso que eu não sigo tendência: construo a imagem de cada mulher. A maquiagem do casamento vai ser vista por muitos anos, então cada escolha é feita com critério, coerência e visão de longo prazo. A intensidade pode ser leve ou marcante. A elegância e a harmonia ficam sempre.</p><div class="acts"><span class="cta">Consultar minha data</span></div></div>
+  </div>
+  <div class="strip">
+    <div class="ph p1"><img src="fotos/manifesto-01.jpg" alt=""></div>
+    <div class="ph p2"><img src="fotos/manifesto-02.jpg" alt=""></div>
+    <div class="ph p3"><img src="fotos/manifesto-03.jpg" alt=""></div>
+    <div class="ph"><img src="fotos/noiva-04.jpg" alt="" style="object-position:50% 30%"></div>
+    <div class="ph"><img src="fotos/noiva-02.jpg" alt="" style="object-position:50% 30%"></div>
+  </div>
+</div></section>
+
+<!-- G -->
+<section class="opt"><h2><b>G</b>Antes e depois (a mesma noiva)</h2><p class="why">Duas metades do seu vídeo: sem maquiagem à esquerda, com maquiagem à direita, e a frase num cartão no centro. Ilustra exatamente "se reconhecer no espelho". Precisa da autorização da noiva para mostrar ela sem make.</p>
+<div class="mock G">
+  <div class="half"><span class="tag">Sem maquiagem</span><video muted playsinline preload="auto" data-t="1.0"><source src="video/clip-01.mp4" type="video/mp4"></video></div>
+  <div class="half"><span class="tag">Com maquiagem</span><video muted playsinline preload="auto" data-t="5.0"><source src="video/clip-01.mp4" type="video/mp4"></video></div>
+  <div class="card"><span class="lbl">01 — A proposta</span><div class="q">“Quero me reconhecer no espelho.”</div><p class="tx">É o que as noivas me dizem antes de tudo. Por isso não sigo tendência: construo a imagem de cada mulher, com critério e visão de longo prazo.</p><span class="cta">Consultar minha data</span></div>
+</div></section>
+
+<!-- H -->
+<section class="opt"><h2><b>H</b>Tipográfica</h2><p class="why">Um "01" grande em itálico champagne, a frase bem grande à esquerda separada por uma linha fina, e duas fotos sobrepostas à direita. Mais "design editorial", menos foto.</p>
+<div class="mock H">
+  <div class="left">
+    <div class="num">01</div><span class="lbl">A proposta</span>
+    <div class="q">“Quero me reconhecer no espelho.”</div>
+    <p class="tx">É o que as noivas me dizem antes de tudo. E é por isso que eu não sigo tendência: construo a imagem de cada mulher. A maquiagem do casamento vai ser vista por muitos anos, então cada escolha é feita com critério, coerência e visão de longo prazo. A intensidade pode ser leve ou marcante. A elegância e a harmonia ficam sempre.</p>
+    <div class="acts"><span class="cta">Consultar disponibilidade</span><span class="lk">Conhecer o método</span></div>
+  </div>
+  <div class="stack"><div class="ph s1 p2"><img src="fotos/manifesto-02.jpg" alt=""></div><div class="ph s2 p1"><img src="fotos/manifesto-01.jpg" alt=""></div></div>
+</div></section>
+
+<p class="pick">Mostrei as fotos que já estão no site (a morena de olhos fechados, a de cabelo em ondas e a loira). Em A e C as três aparecem; em B e D, uma ou duas. Se escolher uma opção com menos fotos, posso usar as outras na galeria.</p>
+
+<script>
+// opção G: congela o vídeo em dois instantes (sem maquiagem / com maquiagem)
+document.querySelectorAll('video[data-t]').forEach(v=>v.addEventListener('loadedmetadata',()=>{v.currentTime=+v.dataset.t}));
+document.querySelectorAll('.tog button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('.tog button').forEach(x=>x.classList.toggle('on',x===b));
+  document.body.classList.toggle('bw',b.dataset.p==='bw');
+});
+</script>
+</body>
+</html>

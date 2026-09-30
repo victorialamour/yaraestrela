@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yara Estrela — Galeria de noivas em movimento</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root{--marfim:#F7F3EE;--linho:#EDE5DB;--nude:#D9C3B5;--taupe:#7A695E;--espresso:#2B2522;--champagne:#B89B72;
+        --serif:'Cormorant Garamond',Georgia,serif;--sans:'Jost',system-ui,sans-serif}
+  body.bw{--marfim:#FFFFFF;--linho:#F6F6F5;--nude:#DDDDDB;--taupe:#6F6F6F;--espresso:#111111;--champagne:#111111}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#e9e6e1;font:300 15px/1.6 var(--sans);color:#2B2522;padding:0 0 80px}
+  .top{max-width:1100px;margin:0 auto;padding:36px 20px 10px}
+  .top h1{font:400 2rem/1.1 var(--serif)}
+  .top p{margin:8px 0 14px;color:#6b625b}
+  .tog{display:inline-flex;border:1px solid #2B2522;border-radius:99px;overflow:hidden}
+  .tog button{border:0;background:none;padding:8px 16px;font:400 12px var(--sans);letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
+  .tog button.on{background:#2B2522;color:#fff}
+  .opt{max-width:1100px;margin:44px auto 0;padding:0 20px}
+  .opt h2{font:400 1.5rem var(--serif);margin-bottom:4px}
+  .opt h2 b{display:inline-block;background:#2B2522;color:#fff;width:32px;height:32px;line-height:32px;text-align:center;border-radius:50%;font:400 14px/32px var(--sans);margin-right:10px}
+  .opt .why{color:#6b625b;margin:0 0 12px;font-size:14px}
+  .mock{container-type:inline-size;width:100%;position:relative;overflow:hidden;background:var(--marfim);color:var(--espresso);box-shadow:0 10px 40px rgba(0,0,0,.18);padding:4.5cqw 0 3.5cqw}
+  .mock *{font-family:var(--sans)}
+  .hd{text-align:center;margin-bottom:2.6cqw;padding:0 5cqw}
+  .lbl{font:400 .85cqw var(--sans);letter-spacing:.26em;text-transform:uppercase;color:var(--taupe);display:block;margin-bottom:1cqw}
+  .ttl{font:italic 300 3.4cqw/1.1 var(--serif)}
+  .ph{position:relative;overflow:hidden;background:linear-gradient(160deg,var(--nude),var(--linho));flex:none}
+  .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+  .more{text-align:center;margin-top:2.6cqw}
+  .lk{display:inline-block;font:400 .85cqw var(--sans);letter-spacing:.22em;text-transform:uppercase;border-bottom:1px solid var(--espresso);padding-bottom:.3cqw}
+  /* 1 marquee */
+  .M1 .row{overflow:hidden;margin-bottom:1.4cqw}
+  .M1 .tk{display:flex;gap:1.4cqw;width:max-content;animation:mq 46s linear infinite}
+  .M1 .row.rev .tk{animation-direction:reverse;animation-duration:54s}
+  .M1 .tk .ph{width:17cqw;aspect-ratio:4/5}
+  @keyframes mq{to{transform:translateX(calc(-50% - .7cqw))}}
+  /* 2 colunas verticais */
+  .M2 .cols{display:grid;grid-template-columns:repeat(5,1fr);gap:1.4cqw;height:40cqw;overflow:hidden;padding:0 5cqw;
+    -webkit-mask-image:linear-gradient(transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(transparent,#000 12%,#000 88%,transparent)}
+  .M2 .c{display:flex;flex-direction:column;gap:1.4cqw;animation:up 50s linear infinite}
+  .M2 .c:nth-child(even){animation-direction:reverse;animation-duration:62s}
+  .M2 .c:nth-child(3){animation-duration:44s}
+  .M2 .c .ph{width:100%;aspect-ratio:3/4}
+  @keyframes up{to{transform:translateY(calc(-50% - .7cqw))}}
+  /* 3 aparecem em sequência */
+  .M3 .g{display:grid;grid-template-columns:repeat(4,1fr);gap:1.6cqw;padding:0 8cqw}
+  .M3 .g .ph{aspect-ratio:4/5;opacity:0;animation:fu 9s ease infinite}
+  @keyframes fu{0%{opacity:0;transform:translateY(3cqw) scale(.97)}10%,78%{opacity:1;transform:none}92%,100%{opacity:0;transform:translateY(-1cqw)}}
+  /* 4 pilha de cartas */
+  .M4 .stage{position:relative;width:26cqw;aspect-ratio:4/5;margin:0 auto 1cqw}
+  .M4 .stage .ph{position:absolute;inset:0;transition:transform .7s cubic-bezier(.22,.61,.36,1),opacity .7s;box-shadow:0 1.2cqw 3cqw rgba(0,0,0,.18)}
+  /* 5 ken burns */
+  .M5 .wrap5{display:grid;grid-template-columns:1fr 1fr;gap:5cqw;align-items:center;padding:0 7cqw}
+  .M5 .fr{position:relative;aspect-ratio:4/5;overflow:hidden;background:var(--linho)}
+  .M5 .fr img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1);transition:opacity 1.2s}
+  .M5 .fr img.on{opacity:1;animation:kb 6s ease-out forwards}
+  @keyframes kb{from{transform:scale(1)}to{transform:scale(1.1)}}
+  .M5 .bars{display:flex;gap:.6cqw;margin-top:2cqw}
+  .M5 .bars i{flex:1;height:2px;background:var(--nude);position:relative;overflow:hidden}
+  .M5 .bars i.on::after{content:"";position:absolute;inset:0;background:var(--espresso);transform-origin:left;animation:fill 3.6s linear forwards}
+  .M5 .bars i.done::after{content:"";position:absolute;inset:0;background:var(--espresso)}
+  @keyframes fill{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+  .M5 .tx .ttl{font-size:3.6cqw;margin:1cqw 0 1.8cqw}
+  .M5 .tx p{font-size:1.05cqw;line-height:1.8;color:#5b514b;max-width:28cqw}
+  /* 6 coverflow */
+  .M6 .stage6{position:relative;height:36cqw;perspective:90cqw}
+  .M6 .stage6 .ph{position:absolute;left:50%;top:0;width:19cqw;aspect-ratio:4/5;margin-left:-9.5cqw;transition:transform .9s cubic-bezier(.22,.61,.36,1),opacity .9s,filter .9s}
+  /* 7 troca de fotos no mosaico */
+  .M7 .g{display:grid;grid-template-columns:repeat(4,1fr);gap:1.4cqw;padding:0 8cqw}
+  .M7 .cell{position:relative;aspect-ratio:4/5;overflow:hidden;background:var(--linho)}
+  .M7 .cell img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.4s}
+  .M7 .cell img.on{opacity:1}
+  @media (prefers-reduced-motion:reduce){.M1 .tk,.M2 .c,.M3 .g .ph,.M5 .fr img.on{animation:none!important}.M3 .g .ph{opacity:1}}
+  .pick{max-width:1100px;margin:54px auto 0;padding:0 20px;color:#6b625b}
+</style>
+</head>
+<body>
+<div class="top">
+  <h1>Noivas em movimento</h1>
+  <p>Sete jeitos de animar a galeria, funcionando ao vivo com as 8 fotos da Yara. Me diga o número (ou misture). Todas respeitam quem tem "reduzir movimento" ligado no aparelho: nesse caso ficam paradas.</p>
+  <div class="tog" role="group" aria-label="Paleta">
+    <button class="on" data-p="warm">Paleta quente</button>
+    <button data-p="bw">Preto e branco (atual)</button>
+  </div>
+</div>
+<div id="root"></div>
+<p class="pick">Em todas, clicar numa foto abriria ela em tamanho grande, e o link para o Instagram @yaraestrelamakeup ficaria logo abaixo.</p>
+
+<script>
+const F=['noiva-01','noiva-02','noiva-03','noiva-04','noiva-05','noiva-06','noiva-07','noiva-08'];
+const pos=['50% 40%','50% 30%','50% 30%','50% 25%','50% 30%','50% 40%','50% 30%','50% 40%'];
+const im=i=>`<img src="fotos/${F[i]}.jpg" alt="" style="object-position:${pos[i]}" loading="lazy">`;
+const ph=(i,c='')=>`<div class="ph ${c}">${im(i)}</div>`;
+const hd=`<div class="hd"><span class="lbl">06 — Noivas</span><div class="ttl">Cada uma, do seu jeito</div></div>`;
+const more=`<div class="more"><span class="lk">Ver mais no Instagram @yaraestrelamakeup</span></div>`;
+const all=[0,1,2,3,4,5,6,7];
+const dbl=a=>a.concat(a);
+const O=[
+ ['1','Faixas deslizando (marquee)','Duas fileiras de fotos correndo devagar em sentidos opostos, sem parar. Simples, elegante e mostra tudo. Para ao passar o mouse.',
+  `<div class="mock M1">${hd}
+   <div class="row"><div class="tk">${dbl(all).map(i=>ph(i)).join('')}</div></div>
+   <div class="row rev"><div class="tk">${dbl([4,5,6,7,0,1,2,3]).map(i=>ph(i)).join('')}</div></div>${more}</div>`],
+ ['2','Colunas que sobem e descem','Cinco colunas verticais rolando lentamente, uma para cima e a seguinte para baixo, com as pontas esmaecidas. Parece um mosaico vivo.',
+  `<div class="mock M2">${hd}<div class="cols">
+    ${[0,1,2,3,4].map(c=>`<div class="c">${dbl([0,1,2,3,4,5,6,7].map(i=>(i+c*2)%8)).map(i=>ph(i)).join('')}</div>`).join('')}</div>${more}</div>`],
+ ['3','Aparecem em sequência','As fotos surgem uma a uma, subindo suavemente, ficam um tempo e somem para recomeçar. Delicado, como cortinas abrindo.',
+  `<div class="mock M3">${hd}<div class="g">${all.map((i,k)=>`<div class="ph" style="animation-delay:${k*0.45}s">${im(i)}</div>`).join('')}</div>${more}</div>`],
+ ['4','Pilha de fotos','Uma pilha de fotos: a de cima desliza para o lado e vai para o fundo, revelando a próxima. Parece um álbum sendo folheado.',
+  `<div class="mock M4">${hd}<div class="stage" id="stack">${all.slice(0,6).map(i=>ph(i)).join('')}</div>${more}</div>`],
+ ['5','Uma foto por vez, com zoom lento','Uma moldura grande troca de foto suavemente e cada uma "respira" com um zoom bem lento. Barras de progresso mostram quantas faltam.',
+  `<div class="mock M5"><div class="wrap5"><div><div class="fr" id="kb">${all.map((i,k)=>im(i).replace('<img','<img class="'+(k?'':'on')+'"')).join('')}</div><div class="bars" id="bars">${all.map(()=>'<i></i>').join('')}</div></div>
+   <div class="tx"><span class="lbl">06 — Noivas</span><div class="ttl">Cada uma, do seu jeito</div><p>Maquiagem e penteado pensados para cada mulher: luminosos, elegantes e fiéis a quem você é.</p><span class="lk" style="margin-top:2cqw">Ver mais no Instagram</span></div></div></div>`],
+ ['6','Carrossel em leque (3D)','A foto do centro em destaque e as laterais inclinadas, girando sozinho como um leque. Luxuoso; boa opção para poucas fotos bem escolhidas.',
+  `<div class="mock M6">${hd}<div class="stage6" id="cf">${all.map(i=>ph(i)).join('')}</div>${more}</div>`],
+ ['7','Fotos que trocam no lugar','Uma grade fixa em que, de tempos em tempos, uma foto se dissolve e vira outra (em lugares aleatórios). Discreto e contínuo.',
+  `<div class="mock M7">${hd}<div class="g" id="sw">${[0,1,2,3,4,5,6,7].map(k=>`<div class="cell">${all.map(i=>im(i).replace('<img','<img class="'+(i===k?'on':'')+'"')).join('')}</div>`).join('')}</div>${more}</div>`]
+];
+const root=document.getElementById('root');
+O.forEach(([n,t,w,h])=>root.insertAdjacentHTML('beforeend',`<section class="opt"><h2><b>${n}</b>${t}</h2><p class="why">${w}</p>${h}</section>`));
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// 4 pilha
+(function(){
+  const st=document.getElementById('stack');let cards=[...st.children];
+  const lay=()=>cards.forEach((c,k)=>{
+    c.style.zIndex=cards.length-k;
+    c.style.opacity=k>3?0:1;
+    c.style.transform=`translateY(${k*1.3}cqw) scale(${1-k*.05})`;
+  });
+  lay();
+  if(reduce)return;
+  setInterval(()=>{
+    const top=cards[0];
+    top.style.transform='translateX(-120%) rotate(-9deg)';top.style.opacity=0;
+    setTimeout(()=>{
+      top.style.transition='none';cards.push(cards.shift());
+      top.style.transform=`translateY(${(cards.length-1)*1.3}cqw) scale(${1-(cards.length-1)*.05})`;
+      top.style.opacity=0;
+      requestAnimationFrame(()=>requestAnimationFrame(()=>{top.style.transition='';lay()}));
+    },720);
+  },2800);
+})();
+
+// 5 ken burns
+(function(){
+  const imgs=[...document.querySelectorAll('#kb img')],bars=[...document.querySelectorAll('#bars i')];let k=0;
+  const show=n=>{k=n;imgs.forEach((x,j)=>{x.classList.remove('on');if(j===k){void x.offsetWidth;x.classList.add('on')}});
+    bars.forEach((b,j)=>{b.className=j<k?'done':(j===k?'on':'')})};
+  show(0);if(reduce)return;
+  setInterval(()=>show((k+1)%imgs.length),3600);
+})();
+
+// 6 leque
+(function(){
+  const cs=[...document.querySelectorAll('#cf .ph')],n=cs.length;let cur=0;
+  const lay=()=>cs.forEach((c,i)=>{
+    let d=((i-cur)%n+n)%n;if(d>n/2)d-=n;
+    const a=Math.abs(d),vis=a<=2;
+    c.style.transform=`translateX(${d*11.5}cqw) translateZ(${-a*8}cqw) rotateY(${d*-28}deg) scale(${1-a*.06})`;
+    c.style.zIndex=10-a;c.style.opacity=vis?1:0;c.style.filter=a?'brightness(.82)':'none';
+  });
+  lay();if(reduce)return;
+  setInterval(()=>{cur=(cur+1)%n;lay()},2600);
+})();
+
+// 7 trocas
+(function(){
+  const cells=[...document.querySelectorAll('#sw .cell')];if(reduce)return;
+  setInterval(()=>{
+    const c=cells[Math.floor(Math.random()*cells.length)],ims=[...c.children];
+    const shown=cells.map(x=>ims.indexOf([...x.children].find(i=>i.classList.contains('on'))));
+    const cur=ims.findIndex(i=>i.classList.contains('on'));
+    const used=new Set(cells.map(x=>[...x.children].findIndex(i=>i.classList.contains('on'))));
+    const free=ims.map((_,i)=>i).filter(i=>!used.has(i));
+    const nx=free.length?free[Math.floor(Math.random()*free.length)]:(cur+1)%ims.length;
+    ims[cur].classList.remove('on');ims[nx].classList.add('on');
+  },1700);
+})();
+
+document.querySelectorAll('.tog button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('.tog button').forEach(x=>x.classList.toggle('on',x===b));
+  document.body.classList.toggle('bw',b.dataset.p==='bw');
+});
+</script>
+</body>
+</html>

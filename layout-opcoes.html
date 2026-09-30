@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yara Estrela — Opções de layout: Hero</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root{--marfim:#F7F3EE;--linho:#EDE5DB;--nude:#D9C3B5;--taupe:#7A695E;--espresso:#2B2522;--champagne:#B89B72;
+        --serif:'Cormorant Garamond',Georgia,serif;--sans:'Jost',system-ui,sans-serif}
+  body.bw{--marfim:#FFFFFF;--linho:#F6F6F5;--nude:#DDDDDB;--taupe:#6F6F6F;--espresso:#111111;--champagne:#111111}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#e9e6e1;font:300 15px/1.6 var(--sans);color:#2B2522;padding:0 0 80px}
+  .top{max-width:1100px;margin:0 auto;padding:36px 20px 10px}
+  .top h1{font:400 2rem/1.1 var(--serif)}
+  .top p{margin:8px 0 14px;color:#6b625b}
+  .tog{display:inline-flex;border:1px solid #2B2522;border-radius:99px;overflow:hidden}
+  .tog button{border:0;background:none;padding:8px 16px;font:400 12px var(--sans);letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
+  .tog button.on{background:#2B2522;color:#fff}
+  .opt{max-width:1100px;margin:44px auto 0;padding:0 20px}
+  .opt h2{font:400 1.5rem var(--serif);margin-bottom:4px}
+  .opt h2 b{display:inline-block;background:#2B2522;color:#fff;width:32px;height:32px;line-height:32px;text-align:center;border-radius:50%;font:400 14px/32px var(--sans);margin-right:10px}
+  .opt .why{color:#6b625b;margin:0 0 12px;font-size:14px}
+  /* moldura do mockup: tudo em cqw para escalar junto */
+  .mock{container-type:inline-size;width:100%;aspect-ratio:16/9;position:relative;overflow:hidden;background:var(--marfim);color:var(--espresso);box-shadow:0 10px 40px rgba(0,0,0,.18)}
+  .mock *{font-family:var(--sans)}
+  .nav{position:absolute;left:0;right:0;top:0;height:5.4cqw;display:flex;align-items:center;justify-content:space-between;padding:0 3cqw;z-index:5;font-size:.95cqw;letter-spacing:.2em;text-transform:uppercase}
+  .nav .lg{font:400 2cqw var(--serif);letter-spacing:0;text-transform:none}
+  .nav .lg small{display:block;font:400 .6cqw var(--sans);letter-spacing:.3em;color:var(--taupe);text-transform:uppercase;margin-top:.2cqw}
+  .nav .btn-s{border:1px solid currentColor;padding:.7cqw 1.4cqw}
+  .lbl{font:400 .9cqw var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--taupe)}
+  .h{font:300 5.2cqw/1 var(--serif);letter-spacing:-.01em}
+  .h em{font-style:italic}
+  .sub{font-size:1.25cqw;line-height:1.7;max-width:34cqw}
+  .cta{display:inline-block;padding:1.3cqw 2.6cqw;background:var(--espresso);color:var(--marfim);font:400 .95cqw var(--sans);letter-spacing:.22em;text-transform:uppercase;border:1px solid var(--espresso)}
+  .cta.line{background:none;color:var(--espresso)}
+  .ph,.vd{position:absolute;overflow:hidden;background:linear-gradient(160deg,var(--nude),var(--linho))}
+  .ph img,.vd video{width:100%;height:100%;object-fit:cover;display:block}
+  .star{display:inline-block;width:1cqw;height:1cqw;stroke:var(--champagne);fill:none;stroke-width:1}
+  /* A: dividido */
+  .A .txt{position:absolute;left:0;top:0;bottom:0;width:50%;padding:11cqw 5cqw 4cqw 5cqw;display:flex;flex-direction:column;justify-content:center}
+  .A .txt .h{margin:2cqw 0 2cqw;font-size:5cqw}
+  .A .txt .cta{align-self:flex-start;margin-top:2.6cqw}
+  .A .vd{right:0;top:0;bottom:0;width:50%}
+  .A .foot{position:absolute;left:5cqw;bottom:3cqw;font-size:.9cqw;letter-spacing:.2em;text-transform:uppercase;color:var(--taupe);display:flex;gap:1.2cqw;align-items:center}
+  .A .nav > span:nth-of-type(1){display:none}
+  .A .nav .btn-s{color:#fff;background:rgba(43,37,34,.35)}
+  /* B: arco */
+  .B{background:var(--linho)}
+  .B .arch{position:absolute;left:50%;top:7cqw;bottom:0;width:30cqw;transform:translateX(-50%);border-radius:15cqw 15cqw 0 0}
+  .B .l{position:absolute;left:4.5cqw;top:50%;transform:translateY(-50%);width:26cqw}
+  .B .l .h{font-size:4.4cqw;margin-top:1.6cqw}
+  .B .r{position:absolute;right:4.5cqw;top:50%;transform:translateY(-50%);width:21cqw}
+  .B .r .sub{font-size:1.1cqw;margin:1.4cqw 0 2cqw}
+  .B .ring{position:absolute;left:50%;top:7cqw;width:30cqw;height:calc(100% - 7cqw);transform:translateX(-50%) translate(1.4cqw,1.4cqw);border:1px solid var(--champagne);border-radius:15cqw 15cqw 0 0;z-index:0}
+  .B .arch{z-index:1}
+  /* C: capa */
+  .C{background:#000;color:#fff}
+  .C .vd{inset:0}
+  .C .vd video{object-position:50% 18%}
+  .C .veil{position:absolute;inset:0;background:linear-gradient(to top,rgba(20,14,12,.72),rgba(20,14,12,.05) 55%,rgba(20,14,12,.25))}
+  .C .frame{position:absolute;inset:1.6cqw;border:1px solid rgba(255,255,255,.55);z-index:3;pointer-events:none}
+  .C .nav{color:#fff}.C .nav .lg small{color:#e5dcd2}
+  .C .tx{position:absolute;left:5cqw;bottom:5cqw;z-index:4;width:48cqw}
+  .C .tx .h{color:#fff;font-size:5.6cqw;margin:1.4cqw 0 0}
+  .C .tx .lbl{color:#eadfd3}
+  .C .cta{position:absolute;right:5cqw;bottom:5cqw;background:#fff;color:#2B2522;border-color:#fff;z-index:4}
+  .C .side{position:absolute;right:5cqw;top:50%;z-index:4;writing-mode:vertical-rl;font-size:.85cqw;letter-spacing:.3em;text-transform:uppercase;color:#eadfd3;transform:translateY(-50%)}
+  /* D: tríptico */
+  .D .p1{left:0;top:0;width:30%;height:78%}
+  .D .p2{left:30.4%;top:0;width:39.2%;height:78%}
+  .D .p3{right:0;top:0;width:30%;height:78%}
+  .D .cap{position:absolute;z-index:3;bottom:23%;margin-bottom:1cqw;color:#fff;font:italic 300 1.3cqw var(--serif);padding-left:1.2cqw}
+  .D .bar{position:absolute;left:0;right:0;bottom:0;height:22%;display:flex;align-items:center;justify-content:space-between;padding:0 5cqw;background:var(--marfim)}
+  .D .bar .h{font-size:3.3cqw;max-width:60cqw}
+  .D .nav{color:#fff;mix-blend-mode:normal}.D .nav .lg small{color:#eee}
+  .D .nav::before{content:"";position:absolute;inset:0;background:linear-gradient(rgba(0,0,0,.35),transparent);z-index:-1}
+  .pick{max-width:1100px;margin:54px auto 0;padding:0 20px;font-size:15px;color:#6b625b}
+  @media (max-width:700px){.top h1{font-size:1.5rem}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><symbol id="s" viewBox="0 0 20 20"><path d="M10 1C10.6 7 13 9.4 19 10 13 10.6 10.6 13 10 19 9.4 13 7 10.6 1 10 7 9.4 9.4 7 10 1Z"/></symbol></svg>
+
+<div class="top">
+  <h1>Seção 1 · Hero (o topo da página)</h1>
+  <p>Quatro jeitos de abrir o site, já com as fotos e o vídeo da Yara. Me diga a letra que mais gostou (ou misture: "texto do A com o vídeo do C").</p>
+  <div class="tog" role="group" aria-label="Paleta">
+    <button class="on" data-p="warm">Paleta quente (marfim e champagne)</button>
+    <button data-p="bw">Preto e branco (atual)</button>
+  </div>
+</div>
+
+<!-- A -->
+<section class="opt"><h2><b>A</b>Editorial dividido</h2><p class="why">Texto à esquerda em fundo claro, o vídeo vertical ocupando a metade direita inteira. Elegante e limpo; o vídeo vertical aparece sem cortes.</p>
+<div class="mock A">
+  <div class="nav"><div class="lg">Yara Estrela<small>Beauty Artist · Noivas</small></div><span>O método &nbsp;·&nbsp; Atendimento &nbsp;·&nbsp; Noivas &nbsp;·&nbsp; Dúvidas</span><span class="btn-s">Consultar data</span></div>
+  <div class="txt"><span class="lbl">Maquiagem e penteado para noivas · São Paulo</span>
+    <div class="h">A elegância de uma beleza que <em>não esconde</em> a noiva.</div>
+    <p class="sub">Pele fina, acabamento impecável e uma imagem pensada para você se reconhecer no espelho.</p>
+    <span class="cta">Consultar disponibilidade da minha data</span></div>
+  <div class="foot"><span>Bridal Guide Constance Zahn</span><svg class="star"><use href="#s"/></svg><span>7 anos com noivas</span></div>
+  <div class="vd"><video muted playsinline autoplay data-start="2.4" poster="fotos/hero-noiva-perfil.jpg"><source src="video/clip-01.mp4" type="video/mp4"></video></div>
+</div></section>
+
+<!-- B -->
+<section class="opt"><h2><b>B</b>Arco</h2><p class="why">Vídeo dentro de uma moldura em arco no centro, com o título de um lado e a explicação do outro. Mais delicado e "atelier de noiva".</p>
+<div class="mock B">
+  <div class="nav"><div class="lg">Yara Estrela<small>Beauty Artist · Noivas</small></div><span>O método &nbsp;·&nbsp; Atendimento &nbsp;·&nbsp; Noivas &nbsp;·&nbsp; Dúvidas</span><span class="btn-s">Consultar data</span></div>
+  <div class="l"><span class="lbl">Maquiagem e penteado · São Paulo</span><div class="h">A elegância de uma beleza</div></div>
+  <div class="ring"></div>
+  <div class="vd arch"><video muted playsinline autoplay data-start="2.4" poster="fotos/hero-noiva-perfil.jpg"><source src="video/clip-01.mp4" type="video/mp4"></video></div>
+  <div class="r"><div class="h" style="font-size:2.4cqw;font-style:italic">que não esconde a noiva.</div><p class="sub">Pele fina, acabamento impecável e uma imagem pensada para você se reconhecer no espelho.</p><span class="cta line">Consultar minha data</span></div>
+</div></section>
+
+<!-- C -->
+<section class="opt"><h2><b>C</b>Capa de revista</h2><p class="why">Vídeo em tela cheia, como o atual, mas com o título grande embaixo à esquerda, moldura fina e botão no canto. O que muda é o texto: sem nome no meio.</p>
+<div class="mock C">
+  <div class="vd"><video muted playsinline autoplay data-start="2.4" poster="fotos/hero-noiva-perfil.jpg"><source src="video/clip-01.mp4" type="video/mp4"></video></div>
+  <div class="veil"></div><div class="frame"></div>
+  <div class="nav"><div class="lg">Yara Estrela<small>Beauty Artist · Noivas</small></div><span>O método &nbsp;·&nbsp; Atendimento &nbsp;·&nbsp; Noivas &nbsp;·&nbsp; Dúvidas</span><span class="btn-s">Consultar data</span></div>
+  <div class="side">Bridal Guide Constance Zahn</div>
+  <div class="tx"><span class="lbl">Maquiagem e penteado para noivas · São Paulo</span><div class="h">A elegância de uma beleza que <em>não esconde</em> a noiva.</div></div>
+  <span class="cta">Consultar minha data</span>
+</div></section>
+
+<!-- D -->
+<section class="opt"><h2><b>D</b>Tríptico</h2><p class="why">Três faixas verticais (foto, vídeo no centro, foto) e uma barra clara embaixo com o título. Mostra variedade de noivas já na primeira tela.</p>
+<div class="mock D">
+  <div class="nav"><div class="lg" style="color:#fff">Yara Estrela<small>Beauty Artist · Noivas</small></div><span style="color:#fff">O método &nbsp;·&nbsp; Atendimento &nbsp;·&nbsp; Noivas &nbsp;·&nbsp; Dúvidas</span><span class="btn-s" style="color:#fff">Consultar data</span></div>
+  <div class="ph p1"><img src="fotos/manifesto-01.jpg" alt=""></div>
+  <div class="vd p2"><video muted playsinline autoplay data-start="2.4" poster="fotos/hero-noiva-perfil.jpg"><source src="video/clip-01.mp4" type="video/mp4"></video></div>
+  <div class="ph p3"><img src="fotos/noiva-04.jpg" alt=""></div>
+  <div class="cap" style="left:0">Luz natural, pele fina</div><div class="cap" style="right:0;left:auto;padding-right:1.2cqw">Acabamento impecável</div>
+  <div class="bar"><div class="h">A elegância de uma beleza que <em>não esconde</em> a noiva.</div><span class="cta">Consultar minha data</span></div>
+</div></section>
+
+<p class="pick">Depois que você escolher o hero, sigo para a próxima seção (faixa de autoridade, "A proposta", galeria, "O que está incluído"...) do mesmo jeito. A paleta também pode ser escolhida aqui em cima: o botão troca entre a quente e a atual.</p>
+
+<script>
+document.querySelectorAll('.tog button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('.tog button').forEach(x=>x.classList.toggle('on',x===b));
+  document.body.classList.toggle('bw',b.dataset.p==='bw');
+});
+// vídeo: só o trecho maquiado (a partir do data-start), em loop por código
+document.querySelectorAll('video[data-start]').forEach(v=>{
+  const s=+v.dataset.start;
+  const go=()=>{try{v.currentTime=s}catch(e){}v.play().catch(()=>{})};
+  v.addEventListener('loadedmetadata',go);
+  const tick=()=>{if(v.duration&&(v.currentTime>v.duration-.15||(v.currentTime<s-.05&&!v.seeking)))go();requestAnimationFrame(tick)};tick();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yara Estrela — Estilos de estrela</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#FFFFFF;--soft:#F6F6F5;--line:#DDDDDB;--gray:#6F6F6F;--ink:#111111;--star:#111111;
+        --serif:'Cormorant Garamond',Georgia,serif;--sans:'Jost',system-ui,sans-serif}
+  body.warm{--bg:#F7F3EE;--soft:#EDE5DB;--line:#D9C3B5;--gray:#7A695E;--ink:#2B2522;--star:#B89B72}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#e9e6e1;font:300 15px/1.6 var(--sans);color:#2B2522;padding:0 0 70px}
+  .top{max-width:1100px;margin:0 auto;padding:36px 20px 10px}
+  .top h1{font:400 2rem/1.1 var(--serif)}
+  .top p{margin:8px 0 14px;color:#6b625b}
+  .tog{display:inline-flex;border:1px solid #2B2522;border-radius:99px;overflow:hidden}
+  .tog button{border:0;background:none;padding:8px 16px;font:400 12px var(--sans);letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
+  .tog button.on{background:#2B2522;color:#fff}
+  .opt{max-width:1100px;margin:38px auto 0;padding:0 20px}
+  .opt h2{font:400 1.45rem var(--serif);margin-bottom:2px}
+  .opt h2 b{display:inline-block;background:#2B2522;color:#fff;min-width:30px;height:30px;line-height:30px;text-align:center;border-radius:99px;padding:0 9px;font:400 14px/30px var(--sans);margin-right:10px}
+  .opt .why{color:#6b625b;margin:0 0 12px;font-size:14px}
+  .card{background:var(--bg);color:var(--ink);box-shadow:0 10px 40px rgba(0,0,0,.16);display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.3fr);overflow:hidden}
+  @media (max-width:760px){.card{grid-template-columns:1fr}}
+  .hero{background:#15110f;color:#fff;padding:34px 24px;text-align:center;position:relative}
+  .hero .mk{min-height:44px;margin:0 auto 12px;color:#fff;display:flex;justify-content:center}
+  .hero .nm{font:300 44px/1 var(--serif)}
+  .hero .tg{margin-top:8px;font:400 10px var(--sans);letter-spacing:.3em;text-transform:uppercase;color:#e7dfd6}
+  .hero .bt{margin-top:18px;display:inline-block;border:1px solid #fff;padding:10px 20px;font:400 10px var(--sans);letter-spacing:.22em;text-transform:uppercase}
+  .side{padding:22px 24px;display:grid;gap:18px;align-content:start;min-width:0}
+  .row{display:flex;align-items:center;gap:16px}
+  .cap{font:400 9.5px var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--gray);margin-bottom:6px;display:block}
+  /* estrela */
+  .s{display:inline-block;vertical-align:middle;color:var(--star)}
+  .s svg{width:100%;height:100%;display:block;overflow:visible}
+  .ln svg{fill:none;stroke:currentColor;stroke-width:1;stroke-linejoin:round}
+  .fl svg{fill:currentColor;stroke:none}
+  /* selo */
+  .seal{width:84px;height:84px;flex:none;position:relative;color:var(--ink)}
+  .seal>svg{width:100%;height:100%;animation:sp 28s linear infinite}
+  .seal .c{position:absolute;left:50%;top:50%;width:26px;height:26px;margin:-13px 0 0 -13px;animation:none}
+  @keyframes sp{to{transform:rotate(360deg)}}
+  /* faixa */
+  .band{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:9px 0;overflow:hidden;white-space:nowrap;font:400 10px var(--sans);letter-spacing:.2em;text-transform:uppercase}
+  .band i{font-style:normal;margin:0 14px}
+  .band .s{width:10px;height:10px}
+  /* timeline */
+  .tl{display:flex;align-items:center}
+  .tl .ln1{flex:1;height:1px;background:var(--line)}
+  .tl .s{width:14px;height:14px;background:var(--bg);padding:0 1px}
+  .tl .s.big{width:22px;height:22px}
+  /* acordeão */
+  .ac{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:11px 0;font:400 18px var(--serif)}
+  .ac .s{width:16px;height:16px;transition:transform .5s}
+  .ac:hover .s{transform:rotate(45deg)}
+  /* favicon */
+  .fav{display:flex;align-items:center;gap:12px}
+  .tab{display:flex;align-items:center;gap:8px;background:#e4e1dc;border-radius:8px 8px 0 0;padding:7px 12px;font:400 11px var(--sans);color:#333}
+  .tab .f{width:16px;height:16px;background:#111;border-radius:3px;display:flex;align-items:center;justify-content:center;color:#fff}
+  .tab .f .s{width:11px;height:11px;color:#fff}
+  .big32{width:40px;height:40px;background:#111;border-radius:9px;display:flex;align-items:center;justify-content:center;color:#fff}
+  .big32 .s{width:24px;height:24px;color:#fff}
+  .pick{max-width:1100px;margin:44px auto 0;padding:0 20px;color:#6b625b}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><defs>
+ <symbol id="t1" viewBox="0 0 20 20"><path d="M10 1C10.6 7 13 9.4 19 10 13 10.6 10.6 13 10 19 9.4 13 7 10.6 1 10 7 9.4 9.4 7 10 1Z"/></symbol>
+ <symbol id="t3" viewBox="0 0 20 20"><path d="M10 0C10.3 7.6 12.4 9.7 20 10 12.4 10.3 10.3 12.4 10 20 9.7 12.4 7.6 10.3 0 10 7.6 9.7 9.7 7.6 10 0Z"/></symbol>
+ <symbol id="t4" viewBox="0 0 20 20"><path d="M10 1.2l2.6 5.6 6 .7-4.5 4.1 1.3 6L10 14.6 4.6 17.6l1.3-6L1.4 7.5l6-.7z"/></symbol>
+ <symbol id="t7" viewBox="0 0 20 20"><path d="M10 0C10.3 7.6 12.4 9.7 20 10 12.4 10.3 10.3 12.4 10 20 9.7 12.4 7.6 10.3 0 10 7.6 9.7 9.7 7.6 10 0Z"/><path d="M3.6 3.6C7 6.4 7.4 7 10 10 7 7.4 6.4 7 3.6 3.6ZM16.4 3.6C13.6 7 13 7.4 10 10 12.6 7 13 6.4 16.4 3.6ZM3.6 16.4C6.4 13 7 12.6 10 10 7.4 13 7 13.6 3.6 16.4ZM16.4 16.4C13 13.6 12.6 13 10 10 13 12.6 13.6 13 16.4 16.4Z"/></symbol>
+ <symbol id="t6" viewBox="0 0 28 28"><path d="M11 3C11.6 10 14 12.4 21 13 14 13.6 11.6 16 11 23 10.4 16 8 13.6 1 13 8 12.4 10.4 10 11 3Z"/><path d="M22 1.5C22.2 4 23 4.8 25.5 5 23 5.2 22.2 6 22 8.5 21.8 6 21 5.2 18.5 5 21 4.8 21.8 4 22 1.5Z"/><path d="M21.5 17.5C21.8 20.4 22.8 21.4 25.7 21.7 22.8 22 21.8 23 21.5 25.9 21.2 23 20.2 22 17.3 21.7 20.2 21.4 21.2 20.4 21.5 17.5Z"/></symbol>
+</defs></svg>
+
+<div class="top">
+  <h1>Estrela · 7 estilos</h1>
+  <p>Cada quadro mostra o mesmo estilo aplicado nos lugares que sugeri: logo no topo (fundo escuro, como o vídeo), selo giratório, faixa rolante, linha do tempo, acordeão (passe o mouse: gira) e favicon da aba. Me diga o número.</p>
+  <div class="tog" role="group" aria-label="Cor">
+    <button class="on" data-p="bw">Preto e branco (atual)</button>
+    <button data-p="warm">Champagne (paleta quente)</button>
+  </div>
+</div>
+<div id="root"></div>
+<p class="pick">A estrela no logo substitui o monograma "YE" do site atual. A cor aqui é só para comparar: dá para ser preta, branca ou champagne.</p>
+
+<script>
+// [titulo, descrição, símbolo, classe (ln = linha, fl = cheia), extra]
+const STYLES=[
+ ['Brilho fino (linha)','Quatro pontas com curvas para dentro, só o contorno. A mais delicada, parece joia.','t1','ln'],
+ ['Brilho cheio','O mesmo desenho, preenchido. Mais visível em tamanho pequeno (favicon, separadores).','t1','fl'],
+ ['Brilho esguio','Pontas mais longas e finas, corpo bem estreito. Mais elegante e mais "moda".','t3','ln'],
+ ['Cinco pontas (linha)','A estrela clássica, só o contorno. Mais óbvia, combina com o nome "Estrela", mas é menos sofisticada.','t4','ln'],
+ ['Estrela no oval','Brilho fino dentro de um oval de linha dupla, igual ao formato do monograma atual. Serve de logo completo.','t1','ln','oval'],
+ ['Constelação','Um brilho grande e dois pequenos, como estrelas de verdade. Mais viva; para usar só no logo e no selo.','t6','fl'],
+ ['Oito pontas','Quatro pontas longas e quatro curtas na diagonal. Parece rosa dos ventos, mais marcante e mais formal.','t7','ln']
+];
+const star=(id,cls,size,extra='')=>`<span class="s ${cls}" style="width:${size}px;height:${size}px">${extra==='oval'?'':''}<svg viewBox="${id==='t6'?'0 0 28 28':'0 0 20 20'}"><use href="#${id}"/></svg></span>`;
+const oval=(id,cls,w)=>`<span class="s ${cls}" style="width:${w}px;height:${w*1.36}px;position:relative;display:inline-block"><svg viewBox="0 0 60 80" style="position:absolute;inset:0"><ellipse cx="30" cy="40" rx="28" ry="38" fill="none" stroke="currentColor" stroke-width="1"/><ellipse cx="30" cy="40" rx="25" ry="35" fill="none" stroke="currentColor" stroke-width=".6"/></svg><span style="position:absolute;left:50%;top:50%;width:${w*.5}px;height:${w*.5}px;margin:${-w*.25}px 0 0 ${-w*.25}px"><svg viewBox="0 0 20 20" style="width:100%;height:100%"><use href="#${id}"/></svg></span></span>`;
+const root=document.getElementById('root');
+STYLES.forEach(([t,d,id,cls,ex],i)=>{
+  const isOval=ex==='oval';
+  const mark=isOval?oval(id,cls,36):star(id,cls,40);
+  const center=isOval?oval(id,cls,22):star(id,cls,24);
+  const seal=`<div class="seal"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="57" fill="none" stroke="currentColor" stroke-width=".6"/><path id="c${i}" d="M60,60 m-44,0 a44,44 0 1,1 88,0 a44,44 0 1,1 -88,0" fill="none"/><text font-family="Jost,sans-serif" font-size="7.6" fill="currentColor"><textPath href="#c${i}" textLength="274" lengthAdjust="spacing">YARA ESTRELA · NOIVAS · YARA ESTRELA · NOIVAS · </textPath></text></svg><span class="c" style="display:flex;align-items:center;justify-content:center">${isOval?oval(id,cls,18):star(id,cls,24)}</span></div>`;
+  const sp=star(id,cls,10);
+  const tl=`<div class="tl">${[0,1,2,3].map(()=>star(id,cls,14)+'<span class="ln1"></span>').join('')}${star(id,cls,22).replace('class="s ','class="s big ')}</div>`;
+  const fav=`<div class="fav"><div class="tab"><span class="f">${star(id,cls,11).replace('class="s','class="s')}</span>Yara Estrela | Maquiagem…</div><div class="big32">${star(id,cls,24)}</div></div>`;
+  root.insertAdjacentHTML('beforeend',`<section class="opt"><h2><b>${i+1}</b>${t}</h2><p class="why">${d}</p>
+  <div class="card"><div class="hero"><div class="mk">${isOval?mark:mark.replace(/style="width:[^"]*"/,'style="width:44px;height:44px;color:#fff"')}</div><div class="nm">Yara Estrela</div><div class="tg">Noivas</div><span class="bt">Consultar agenda</span></div>
+  <div class="side">
+   <div><span class="cap">Selo giratório</span><div class="row">${seal}</div></div>
+   <div><span class="cap">Faixa rolante</span><div class="band">Bridal Guide Constance Zahn <i>${sp}</i> 7 anos com noivas <i>${sp}</i> Visagista Master <i>${sp}</i></div></div>
+   <div><span class="cap">Linha do tempo (Como funciona)</span>${tl}</div>
+   <div><span class="cap">Acordeão (O método)</span><div class="ac"><span>Nada de moda</span>${star(id,cls,16)}</div></div>
+   <div><span class="cap">Favicon da aba</span>${fav}</div>
+  </div></div></section>`);
+});
+// estrelas do logo: precisam ficar brancas sobre o fundo escuro
+document.querySelectorAll('.hero .mk .s').forEach(e=>e.style.color='#fff');
+document.querySelectorAll('.tog button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('.tog button').forEach(x=>x.classList.toggle('on',x===b));
+  document.body.classList.toggle('warm',b.dataset.p==='warm');
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+# cópias de segurança do gerador
+build.backup-*.js
+
+# fotos originais (pesadas) e vídeos não usados no site
+fotos/originais/
+video/clip-0[2-5].mp4
+
+# sistema e editores
+.DS_Store
+Thumbs.db
+desktop.ini
+node_modules/
+
+# configuração local do editor
+.claude/
+
+# fotos e vídeo ficam só no computador: têm noivas e imagens sem autorização/direitos
+fotos/
+video/
+og-image.jpg

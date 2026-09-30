@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yara Estrela — Depoimento em faixa</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400&family=Ms+Madi&display=swap" rel="stylesheet">
+<style>
+  :root{--marfim:#FFFFFF;--linho:#F6F6F5;--nude:#DDDDDB;--taupe:#6F6F6F;--espresso:#111111;--champagne:#111111;
+        --serif:'Cormorant Garamond',Georgia,serif;--sans:'Jost',system-ui,sans-serif}
+  body.warm{--marfim:#F7F3EE;--linho:#EDE5DB;--nude:#D9C3B5;--taupe:#7A695E;--espresso:#2B2522;--champagne:#B89B72}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#e9e6e1;font:300 15px/1.6 var(--sans);color:#2B2522;padding:0 0 80px}
+  .top{max-width:1100px;margin:0 auto;padding:36px 20px 10px}
+  .top h1{font:400 2rem/1.1 var(--serif)}
+  .top p{margin:8px 0 14px;color:#6b625b}
+  .tog{display:inline-flex;border:1px solid #2B2522;border-radius:99px;overflow:hidden}
+  .tog button{border:0;background:none;padding:8px 16px;font:400 12px var(--sans);letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
+  .tog button.on{background:#2B2522;color:#fff}
+  .opt{max-width:1100px;margin:40px auto 0;padding:0 20px}
+  .opt h2{font:400 1.5rem var(--serif);margin-bottom:4px}
+  .opt h2 b{display:inline-block;background:#2B2522;color:#fff;min-width:32px;height:32px;line-height:32px;text-align:center;border-radius:99px;padding:0 9px;font:400 14px/32px var(--sans);margin-right:10px}
+  .opt .why{color:#6b625b;margin:0 0 12px;font-size:14px}
+  /* contexto: pedaço da página em volta, para dar noção da faixa */
+  .ctx{container-type:inline-size;box-shadow:0 10px 40px rgba(0,0,0,.18);overflow:hidden;background:#fff}
+  .ctx *{font-family:var(--sans)}
+  .above,.below{height:5cqw;background:repeating-linear-gradient(180deg,#f3f3f2 0 .8cqw,#fff .8cqw 1.6cqw);opacity:.75}
+  .band{position:relative;overflow:hidden;text-align:center;padding:6cqw 10cqw;color:var(--espresso);background:var(--marfim)}
+  .q{font:italic 300 2.3cqw/1.35 var(--serif);max-width:66cqw;margin:0 auto}
+  .who{margin-top:2cqw;font:400 .8cqw var(--sans);letter-spacing:.26em;text-transform:uppercase;color:var(--taupe)}
+  .lbl{font:400 .8cqw var(--sans);letter-spacing:.26em;text-transform:uppercase;color:var(--taupe);display:block;margin-bottom:1.6cqw}
+  .dk{background:var(--espresso);color:#F7F3EE}
+  .dk .who,.dk .lbl{color:#d8cfc6}
+  /* 1 clara com aspas */
+  .m1 .aq{font:300 7cqw/.6 var(--serif);color:var(--champagne);display:block;height:3cqw;margin-bottom:1.4cqw}
+  /* 3 linhas */
+  .m3{border-top:1px solid var(--espresso);border-bottom:1px solid var(--espresso);background:var(--linho)}
+  /* 4 aspas gigantes ao fundo */
+  .m4 .big{position:absolute;left:50%;top:-4cqw;transform:translateX(-50%);font:italic 300 30cqw/1 var(--serif);color:rgba(17,17,17,.06);pointer-events:none;user-select:none}
+  body.warm .m4 .big{color:rgba(43,37,34,.07)}
+  .m4 .q,.m4 .who{position:relative}
+  /* 5 duas colunas */
+  .m5{text-align:left;display:grid;grid-template-columns:.7fr 2fr;gap:5cqw;align-items:start}
+  .m5 .q{margin:0;max-width:none;font-size:2.4cqw}
+  .m5 .who{margin-top:2.4cqw}
+  /* 6 com amostra */
+  .m6 .sw{position:absolute;width:26cqw;right:-6cqw;top:50%;transform:translateY(-50%) rotate(20deg);mix-blend-mode:multiply;opacity:.95}
+  .m6 .q,.m6 .who{position:relative}
+  /* 7 faixa fina */
+  .m7{padding:2.6cqw 8cqw;display:flex;align-items:center;justify-content:center;gap:2cqw;background:var(--linho)}
+  .m7 .q{margin:0;font-size:1.7cqw;max-width:none}
+  .m7 .who{margin:0;white-space:nowrap}
+  .m7 .sep{width:1px;height:2.6cqw;background:var(--nude)}
+  /* 8 assinatura */
+  .m8 .sig{font:400 3cqw/1.2 'Ms Madi',cursive;margin-top:1.4cqw;color:var(--espresso)}
+  .pick{max-width:1100px;margin:54px auto 0;padding:0 20px;color:#6b625b}
+</style>
+</head>
+<body>
+<div class="top">
+  <h1>Depoimento da Jussara · em faixa</h1>
+  <p>Só o depoimento real, em uma faixa larga (sem os outros dois). Sete jeitos. As listras cinza em cima e embaixo fazem de conta que são o resto da página. Me diga o número.</p>
+  <div class="tog" role="group" aria-label="Paleta">
+    <button class="on" data-p="bw">Preto e branco (atual)</button>
+    <button data-p="warm">Paleta quente</button>
+  </div>
+</div>
+<div id="root"></div>
+<p class="pick">A frase completa usada é a mesma que está no site hoje (com o corte marcado por "[...]"). Na opção 7 uso só um trecho, porque a faixa é fina.</p>
+
+<script>
+const FULL='“Obrigada, Ya! Por cuidar tão bem de tudo (absolutamente todos os detalhes) - desde os acessórios, penteado e a make impecável [...] amei todo o cuidado que recebi, obrigada por fazer parte disso e me deixar em minha melhor versão para meu grande dia.”';
+const SHORT='“Amei todo o cuidado que recebi, obrigada por fazer parte disso e me deixar em minha melhor versão para meu grande dia.”';
+const WHO='Jussara · noiva';
+const wrap=(inner)=>`<div class="ctx"><div class="above"></div>${inner}<div class="below"></div></div>`;
+const O=[
+ ['Faixa clara com aspas','A mais simples: fundo branco, aspas grandes no topo, frase em itálico centralizada e o nome embaixo.',
+  wrap(`<div class="band m1"><span class="aq">“</span><p class="q">${FULL.replace(/^“|”$/g,'')}</p><div class="who">${WHO}</div></div>`)],
+ ['Faixa escura','Fundo bem escuro (quebra o ritmo da página) e a frase em branco. Dá peso ao depoimento.',
+  wrap(`<div class="band dk"><span class="lbl">O que dizem do meu trabalho</span><p class="q">${FULL}</p><div class="who">${WHO}</div></div>`)],
+ ['Faixa com linhas finas','Fundo cinza claro, com uma linha fina preta em cima e embaixo. Elegante e discreta, parece uma citação de revista.',
+  wrap(`<div class="band m3"><p class="q">${FULL}</p><div class="who">${WHO}</div></div>`)],
+ ['Aspas enormes ao fundo','Uma aspa gigante, bem clarinha, atrás do texto como marca d\'água. Mais editorial.',
+  wrap(`<div class="band m4"><span class="big">“</span><p class="q">${FULL.replace(/^“|”$/g,'')}</p><div class="who">${WHO}</div></div>`)],
+ ['Duas colunas','O rótulo "Depoimento" à esquerda e a frase grande à direita, alinhada à esquerda. Mais moderna, lê-se com calma.',
+  wrap(`<div class="band m5"><div><span class="lbl">Depoimento</span></div><div><p class="q">${FULL}</p><div class="who">${WHO}</div></div></div>`)],
+ ['Com amostra de maquiagem','A amostra de blush que já está no site, meio escondida atrás do canto direito. Dá um toque de "make" sem usar foto.',
+  wrap(`<div class="band m6"><img class="sw" src="fotos/amostra-blush-po.png" alt=""><p class="q">${FULL}</p><div class="who">${WHO}</div></div>`)],
+ ['Faixa fina de uma linha','Uma faixa baixinha, só com um trecho curto e o nome ao lado. Ocupa pouco espaço e serve de pausa entre seções.',
+  wrap(`<div class="band m7"><p class="q">${SHORT}</p><span class="sep"></span><div class="who">${WHO}</div></div>`)],
+ ['Com assinatura à mão','Frase centralizada e, no lugar do nome em caixa alta, o nome escrito à mão (a mesma letra do "com carinho, Yá").',
+  wrap(`<div class="band m8"><p class="q">${FULL}</p><div class="sig">Jussara</div><div class="who" style="margin-top:.6cqw">noiva</div></div>`)]
+];
+const root=document.getElementById('root');
+O.forEach(([t,w,h],i)=>root.insertAdjacentHTML('beforeend',`<section class="opt"><h2><b>${i+1}</b>${t}</h2><p class="why">${w}</p>${h}</section>`));
+document.querySelectorAll('.tog button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('.tog button').forEach(x=>x.classList.toggle('on',x===b));
+  document.body.classList.toggle('warm',b.dataset.p==='warm');
+});
+</script>
+</body>
+</html>

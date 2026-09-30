@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yara Estrela — Opções para Quem assina</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400&family=Homemade+Apple&family=Nothing+You+Could+Do&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#FFFFFF;--soft:#F6F6F5;--line:#DDDDDB;--gray:#6F6F6F;--ink:#111111;--serif:'Cormorant Garamond',Georgia,serif;--sans:'Jost',system-ui,sans-serif}
+  body.warm{--bg:#F7F3EE;--soft:#EDE5DB;--line:#D9C3B5;--gray:#7A695E;--ink:#2B2522}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#e9e6e1;font:300 15px/1.6 var(--sans);color:#2B2522;padding:0 0 70px}
+  .top{max-width:1100px;margin:0 auto;padding:36px 20px 10px}
+  .top h1{font:400 2rem/1.1 var(--serif)}
+  .top p{margin:8px 0 14px;color:#6b625b}
+  .tog{display:inline-flex;border:1px solid #2B2522;border-radius:99px;overflow:hidden}
+  .tog button{border:0;background:none;padding:8px 16px;font:400 12px var(--sans);letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
+  .tog button.on{background:#2B2522;color:#fff}
+  .opt{max-width:1100px;margin:38px auto 0;padding:0 20px}
+  .opt h2{font:400 1.5rem var(--serif);margin-bottom:3px}
+  .opt h2 b{display:inline-block;background:#2B2522;color:#fff;min-width:32px;height:32px;line-height:32px;text-align:center;border-radius:99px;padding:0 9px;font:400 14px/32px var(--sans);margin-right:10px}
+  .opt .why{color:#6b625b;margin:0 0 12px;font-size:14px}
+  .ctx{container-type:inline-size;box-shadow:0 10px 40px rgba(0,0,0,.18);overflow:hidden;background:#fff}
+  .ctx *{font-family:var(--sans)}
+  .box{position:relative;overflow:hidden;background:var(--bg);color:var(--ink);padding:6cqw 7cqw}
+  .dk{background:#15110f;color:#fff}
+  body.warm .dk{background:#2B2522}
+  .lbl{font:400 .8cqw var(--sans);letter-spacing:.26em;text-transform:uppercase;color:var(--gray);display:block;margin-bottom:1.2cqw}
+  .dk .lbl{color:#d8cfc6}
+  .hello{font:2.9cqw/1.4 'Homemade Apple',cursive;margin-bottom:2cqw;color:#2a2a2a}
+  .dk .hello{color:#fff}
+  .lead{font:400 1.75cqw/1.4 var(--serif);margin-bottom:1.4cqw}
+  .p{font-size:1.08cqw;line-height:1.75;color:#5b514b;margin-bottom:1.1cqw}
+  .dk .p{color:#d8cfc6}
+  .sig{font:1.4cqw/1.4 'Homemade Apple',cursive;margin:1.6cqw 0 1.6cqw}
+  .btn{display:inline-block;border:1px solid var(--ink);color:var(--ink);font:400 .85cqw var(--sans);letter-spacing:.22em;text-transform:uppercase;padding:1.2cqw 2.4cqw}
+  .dk .btn{border-color:#fff;color:#fff}
+  .ph{position:relative;overflow:hidden;background:linear-gradient(160deg,#ddd,#bbb)}
+  .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+  .facts{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line);margin:1.6cqw 0}
+  .facts div{padding:1.1cqw 1cqw 1.1cqw 0;border-bottom:1px solid var(--line)}
+  .facts b{display:block;font:400 1.6cqw/1.2 var(--serif)}
+  .facts small{font:400 .7cqw var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--gray)}
+  .dk .facts,.dk .facts div{border-color:rgba(255,255,255,.22)}
+  .dk .facts small{color:#d8cfc6}
+  .cite{font:italic 300 3cqw/1.25 var(--serif);margin-bottom:2.2cqw}
+  /* 1 atual */
+  .o1{display:grid;grid-template-columns:.8fr 1.2fr;gap:6cqw;align-items:center}
+  .o1 .f1{position:relative}
+  .o1 .f1 .ph{aspect-ratio:3/4}
+  .o1 .f1 .sm{position:absolute;right:-1.5cqw;bottom:-3cqw;width:40%;aspect-ratio:1;border:.6cqw solid var(--soft)}
+  /* 2 retrato + frase */
+  .o2{display:grid;grid-template-columns:1fr 1.2fr;gap:6cqw;align-items:center}
+  .o2 .ph{aspect-ratio:4/5}
+  /* 3 carta */
+  .o3{text-align:center;padding:7cqw 16cqw}
+  .o3 .p{margin-bottom:1.3cqw}
+  .o3 .row4{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);margin-top:2.4cqw}
+  .o3 .row4 div{padding:1.4cqw .6cqw;border-right:1px solid var(--line)}
+  .o3 .row4 div:last-child{border:0}
+  .o3 .row4 b{display:block;font:400 1.5cqw/1.2 var(--serif)}
+  .o3 .row4 small{font:400 .65cqw var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--gray)}
+  /* 4 certificado */
+  .o4{display:grid;grid-template-columns:1fr 1.2fr;gap:6cqw;align-items:center}
+  .o4 .ph{aspect-ratio:4/5}
+  .o4 .tag{position:absolute;left:1.2cqw;bottom:1.2cqw;background:rgba(255,255,255,.92);font:400 .8cqw var(--sans);letter-spacing:.14em;text-transform:uppercase;padding:.7cqw 1.2cqw;color:#111;z-index:2}
+  /* 5 números */
+  .o5 .nums{display:grid;grid-template-columns:repeat(4,1fr);gap:2cqw;margin:3cqw 0}
+  .o5 .nums div{border-top:1px solid var(--ink);padding-top:1.4cqw}
+  .o5 .nums b{display:block;font:300 4.6cqw/1 var(--serif)}
+  .o5 .nums small{font:400 .75cqw var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--gray);display:block;margin-top:.6cqw}
+  .o5 .cols{display:grid;grid-template-columns:1fr 1fr;gap:5cqw}
+  /* 6 duas fotos */
+  .o6 .pics{display:grid;grid-template-columns:1fr 1fr;gap:1.6cqw;max-width:62cqw;margin:0 auto 3.4cqw}
+  .o6 .pics .ph{aspect-ratio:4/3}
+  .o6 .cap{font:italic 300 1.15cqw var(--serif);color:var(--gray);text-align:center;margin-top:.6cqw}
+  .o6 .cols{display:grid;grid-template-columns:1fr 1fr;gap:5cqw}
+  /* 7 escuro arco */
+  .o7{display:grid;grid-template-columns:1.2fr 1fr;gap:6cqw;align-items:end;padding-bottom:0}
+  .o7 .arc{width:100%;aspect-ratio:4/5.2;border-radius:50cqw 50cqw 0 0;overflow:hidden;position:relative}
+  .o7 .arc img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .o7 .tx{padding-bottom:6cqw}
+  /* 8 entrevista */
+  .o8{display:grid;grid-template-columns:.7fr 1.5fr;gap:6cqw;align-items:start}
+  .o8 .ph{aspect-ratio:1;margin-bottom:1.6cqw}
+  .o8 .qa{border-top:1px solid var(--line);padding:1.6cqw 0}
+  .o8 .qa:last-of-type{border-bottom:1px solid var(--line)}
+  .o8 .q{font:italic 400 1.7cqw/1.3 var(--serif);margin-bottom:.8cqw}
+  .pick{max-width:1100px;margin:44px auto 0;padding:0 20px;color:#6b625b}
+</style>
+</head>
+<body>
+<div class="top">
+  <h1>Quem assina · apresentação da Yara</h1>
+  <p>Oito jeitos de apresentar a Yara, com o texto que está no site (alguns usam só parte dele). Algumas usam menos foto, já que a página tem muita. Me diga o número (ou misture).</p>
+  <div class="tog" role="group" aria-label="Paleta">
+    <button class="on" data-p="bw">Preto e branco (atual)</button>
+    <button data-p="warm">Paleta quente</button>
+  </div>
+</div>
+<div id="root"></div>
+<p class="pick">Fotos usadas nas opções: retrato sorrindo, foto dela sentada com as paletas e foto dela com a placa da certificação. Nenhuma delas é das noivas.</p>
+
+<script>
+const P1='Faço maquiagem e penteado de noivas há sete anos. Sou Embaixadora e Visagista Master pelo método C. Juillard (Visagismo Total Look®), com certificação concedida em Lisboa, em 2025.';
+const P2='Gosto de uma beleza equilibrada, que combine com a sua personalidade e com o seu gosto. No dia do casamento eu cuido da maquiagem e do cabelo e fico com você até a festa.';
+const P3='Antes de começar, olho o seu rosto de frente, de perfil e a parte de trás da cabeça, junto com o penteado. Assim decido a textura, a intensidade e a luz da maquiagem, valorizo o que você mais gosta em você e suavizo o que prefere não destacar.';
+const P4='Eu desisti da Odontologia para fazer o que me deixa feliz: realçar a beleza das mulheres no dia mais especial da vida delas. Estudo e treino sempre, porque quero atender cada noiva com técnica e com cuidado. Quando uma noiva realiza o sonho dela, eu realizo o meu.';
+const HI='Prazer, eu sou a Yara';
+const SIG='<div class="sig">com carinho, Yá</div>';
+const BTN='<span class="btn">Falar com a Yara</span>';
+const FACTS='<div class="facts"><div><b>7 anos</b><small>dedicados a noivas</small></div><div><b>Visagismo</b><small>método C. Juillard</small></div><div><b>Make + cabelo</b><small>uma pessoa só</small></div><div><b>Constance Zahn</b><small>Bridal Guide</small></div></div>';
+const img=(f,pos='50% 30%')=>`<img src="fotos/${f}.webp" alt="" style="object-position:${pos}" loading="lazy">`;
+const w=(cls,inner)=>`<div class="ctx"><div class="box ${cls}">${inner}</div></div>`;
+const O=[
+ ['Atual (referência)','Retrato à esquerda com uma foto pequena sobreposta; à direita o título escrito à mão, a frase de abertura, os textos, os quatro fatos e a assinatura.',
+  w('o1',`<div class="f1"><div class="ph">${img('yara-retrato')}</div><div class="ph sm">${img('yara-making-of','50% 32%')}</div></div><div><span class="lbl">Quem assina</span><div class="hello">${HI}</div><p class="lead">${P1}</p><p class="p">${P2}</p><p class="p">${P4}</p>${FACTS}${SIG}${BTN}</div>`)],
+ ['Retrato grande com frase em destaque','Uma foto só, maior. A frase "Quando uma noiva realiza o sonho dela, eu realizo o meu" vira citação grande, e o resto fica em texto menor.',
+  w('o2',`<div class="ph">${img('yara-retrato')}</div><div><span class="lbl">Quem assina</span><div class="hello">${HI}</div><div class="cite">“Quando uma noiva realiza o sonho dela, eu realizo o meu.”</div><p class="p">${P1}</p><p class="p">${P2}</p>${SIG}${BTN}</div>`)],
+ ['Carta (sem foto)','Sem foto nenhuma: o texto centralizado, como uma carta, e os quatro fatos em uma linha embaixo. Alivia a página.',
+  w('o3',`<span class="lbl">Quem assina</span><div class="hello">${HI}</div><p class="p">${P1}</p><p class="p">${P2}</p><p class="p">${P4}</p>${SIG}<div class="row4"><div><b>7 anos</b><small>com noivas</small></div><div><b>Visagismo</b><small>método C. Juillard</small></div><div><b>Make + cabelo</b><small>uma pessoa só</small></div><div><b>Constance Zahn</b><small>Bridal Guide</small></div></div>`)],
+ ['Com a placa da certificação','Em vez do retrato comum, a foto da Yara sorrindo com a placa da certificação. Mostra a conquista e dá prova de autoridade.',
+  w('o4',`<div class="ph">${img('yara-certificado','50% 38%')}<span class="tag">Certificação · Lisboa, 2025</span></div><div><span class="lbl">Quem assina</span><div class="hello">${HI}</div><p class="lead">${P1}</p><p class="p">${P3}</p>${FACTS}${SIG}${BTN}</div>`)],
+ ['Números grandes','Quatro números enormes em cima (7 anos, 2025, 1 pessoa, Constance Zahn) e o texto em duas colunas embaixo. Direta e sem foto.',
+  w('o5',`<span class="lbl">Quem assina</span><div class="hello">${HI}</div><div class="nums"><div><b>7</b><small>anos com noivas</small></div><div><b>2025</b><small>visagista master, Lisboa</small></div><div><b>1</b><small>pessoa: make e cabelo</small></div><div><b>CZ</b><small>Bridal Guide Constance Zahn</small></div></div><div class="cols"><div><p class="p">${P1}</p><p class="p">${P2}</p></div><div><p class="p">${P3}</p>${SIG}${BTN}</div></div>`)],
+ ['Duas fotos dela','As duas fotos da Yara (retrato e sentada com as paletas) lado a lado em cima, com legenda, e o texto em duas colunas embaixo. Editorial.',
+  w('o6',`<div style="text-align:center"><span class="lbl">Quem assina</span><div class="hello">${HI}</div></div><div class="pics"><div><div class="ph">${img('yara-retrato','50% 25%')}</div><div class="cap">Yara Estrela</div></div><div><div class="ph">${img('yara-making-of','50% 40%')}</div><div class="cap">No trabalho, com as paletas</div></div></div><div class="cols"><div><p class="p">${P1}</p><p class="p">${P2}</p></div><div><p class="p">${P4}</p>${SIG}${BTN}</div></div>`)],
+ ['Escura, com foto em arco','Fundo escuro e o retrato dentro de um arco, como nos cartões de convite. Texto em branco, mais solene.',
+  w('dk o7',`<div class="arc">${img('yara-retrato','50% 25%')}</div><div class="tx"><span class="lbl">Quem assina</span><div class="hello">${HI}</div><p class="p">${P1}</p><p class="p">${P2}</p>${FACTS}${SIG}${BTN}</div>`)],
+ ['Em perguntas e respostas','Três perguntas em itálico, respondidas com as palavras dela, e uma foto pequena. Humaniza e fica fácil de ler.',
+  w('o8',`<div><div class="ph">${img('yara-retrato')}</div>${FACTS.replace('class="facts"','class="facts" style="grid-template-columns:1fr"')}</div><div><span class="lbl">Quem assina</span><div class="hello">${HI}</div>
+   <div class="qa"><div class="q">Quem é a Yara?</div><p class="p">${P1}</p></div>
+   <div class="qa"><div class="q">Como é o trabalho no dia do casamento?</div><p class="p">${P2}</p></div>
+   <div class="qa"><div class="q">Por que as noivas?</div><p class="p">${P4}</p></div>${SIG}${BTN}</div>`)]
+];
+const root=document.getElementById('root');
+O.forEach(([t,d,h],i)=>root.insertAdjacentHTML('beforeend',`<section class="opt"><h2><b>${i+1}</b>${t}</h2><p class="why">${d}</p>${h}</section>`));
+document.querySelectorAll('.tog button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('.tog button').forEach(x=>x.classList.toggle('on',x===b));
+  document.body.classList.toggle('warm',b.dataset.p==='warm');
+});
+</script>
+</body>
+</html>

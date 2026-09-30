@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yara Estrela — 15 opções para O método</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root{--marfim:#F7F3EE;--linho:#EDE5DB;--nude:#D9C3B5;--taupe:#7A695E;--espresso:#2B2522;--champagne:#B89B72;
+        --serif:'Cormorant Garamond',Georgia,serif;--sans:'Jost',system-ui,sans-serif}
+  body.bw{--marfim:#FFFFFF;--linho:#F6F6F5;--nude:#DDDDDB;--taupe:#6F6F6F;--espresso:#111111;--champagne:#111111}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#e9e6e1;font:300 15px/1.6 var(--sans);color:#2B2522;padding:0 0 80px}
+  .top{max-width:1100px;margin:0 auto;padding:36px 20px 10px}
+  .top h1{font:400 2rem/1.1 var(--serif)}
+  .top p{margin:8px 0 14px;color:#6b625b}
+  .tog{display:inline-flex;border:1px solid #2B2522;border-radius:99px;overflow:hidden}
+  .tog button{border:0;background:none;padding:8px 16px;font:400 12px var(--sans);letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
+  .tog button.on{background:#2B2522;color:#fff}
+  .opt{max-width:1100px;margin:44px auto 0;padding:0 20px}
+  .opt h2{font:400 1.5rem var(--serif);margin-bottom:4px}
+  .opt h2 b{display:inline-block;background:#2B2522;color:#fff;min-width:32px;height:32px;line-height:32px;text-align:center;border-radius:99px;padding:0 9px;font:400 14px/32px var(--sans);margin-right:10px}
+  .opt h2 u{text-decoration:none;font:400 11px var(--sans);letter-spacing:.14em;text-transform:uppercase;color:#6b625b;border:1px solid #b9b0a7;border-radius:99px;padding:3px 9px;margin-left:10px;vertical-align:middle}
+  .opt .why{color:#6b625b;margin:0 0 12px;font-size:14px}
+  .mock{container-type:inline-size;width:100%;position:relative;overflow:hidden;background:var(--marfim);color:var(--espresso);box-shadow:0 10px 40px rgba(0,0,0,.18);padding:5cqw 6cqw}
+  .mock *{font-family:var(--sans)}
+  .dk{background:var(--espresso);color:var(--marfim)}
+  .lbl{font:400 .8cqw var(--sans);letter-spacing:.26em;text-transform:uppercase;color:var(--taupe);display:block;margin-bottom:1cqw}
+  .dk .lbl{color:var(--nude)}
+  .h2{font:300 3.3cqw/1.1 var(--serif);max-width:52cqw}
+  .h2 em{font-style:italic}
+  .ctr{text-align:center}.ctr .h2{margin:0 auto}
+  .n{font:italic 300 1.5cqw var(--serif);color:var(--champagne);letter-spacing:.08em}
+  .h3{font:400 2.1cqw/1.15 var(--serif);margin:.8cqw 0 .8cqw}
+  .p{font-size:1.1cqw;line-height:1.75;color:#5b514b}
+  .dk .p{color:#d8cfc6}
+  .ph{position:relative;overflow:hidden;background:linear-gradient(160deg,var(--nude),var(--linho));flex:none}
+  .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+  .bdg{display:flex;align-items:center;gap:1.2cqw;font-size:.9cqw;line-height:1.5;letter-spacing:.06em;color:var(--taupe)}
+  .bdg .ph{width:6.5cqw;aspect-ratio:3/2;border:1px solid var(--nude)}
+  .dk .bdg{color:var(--nude)}
+  .cols3{display:grid;grid-template-columns:repeat(3,1fr);gap:4cqw;margin-top:4cqw}
+  /* 1 e 2 */
+  .c1 .col{border-top:1px solid var(--champagne);padding-top:1.8cqw}
+  /* 3 lista */
+  .r3{display:grid;grid-template-columns:12cqw 1fr;gap:2cqw;align-items:start;border-top:1px solid var(--nude);padding:2.2cqw 0}
+  .r3 .big{font:italic 300 7cqw/.9 var(--serif);color:var(--champagne)}
+  .r3 .p{max-width:48cqw}
+  /* 4 acordeão */
+  .ac{display:grid;grid-template-columns:1.1fr 1fr;gap:5cqw;align-items:center;margin-top:3cqw}
+  .ac .it{border-top:1px solid var(--nude);padding:1.6cqw 0;cursor:pointer}
+  .ac .it .h3{margin:0;display:flex;justify-content:space-between}
+  .ac .it .bd{max-height:0;overflow:hidden;transition:max-height .5s}
+  .ac .it.on .bd{max-height:20cqw}
+  .ac .it .p{margin-top:1cqw}
+  .ac .img{position:relative;aspect-ratio:4/5;width:100%}
+  .ac .img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .7s}
+  .ac .img img.on{opacity:1}
+  /* 5 cards */
+  .cd{display:flex;flex-direction:column;gap:1.4cqw}
+  .cd .ph{aspect-ratio:4/5}
+  .cd .tg{font:400 .75cqw var(--sans);letter-spacing:.26em;text-transform:uppercase;color:var(--taupe)}
+  /* 6 arco */
+  .a6{display:grid;grid-template-columns:1fr 26cqw 1fr;gap:4cqw;align-items:center;margin-top:3cqw}
+  .a6 .ph{aspect-ratio:3/4.4;border-radius:13cqw 13cqw 0 0}
+  .a6 .cl{display:flex;flex-direction:column;gap:3.4cqw}
+  .a6 .cl:first-child{text-align:right}
+  /* 7 timeline */
+  .tl{position:relative;margin-top:4cqw}
+  .tl::before{content:"";position:absolute;left:0;right:0;top:.55cqw;height:1px;background:var(--champagne)}
+  .tl .g{display:grid;grid-template-columns:repeat(3,1fr);gap:4cqw}
+  .tl .g>div{padding-top:2.6cqw;position:relative}
+  .tl .g>div::before{content:"";position:absolute;left:0;top:0;width:1.1cqw;height:1.1cqw;border-radius:50%;background:var(--marfim);border:1px solid var(--champagne)}
+  /* 8 ângulos */
+  .an{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6cqw;margin:3cqw auto 0;max-width:62cqw}
+  .an .ph{aspect-ratio:3/4}
+  .an .cap{font:italic 300 1.3cqw var(--serif);color:var(--taupe);text-align:center;margin-top:.7cqw}
+  /* 9 sticky */
+  .s9{display:grid;grid-template-columns:.8fr 1.4fr;gap:5cqw}
+  .s9 .lf{align-self:start}
+  .s9 .it{display:grid;grid-template-columns:11cqw 1fr;gap:2cqw;border-top:1px solid var(--nude);padding:2cqw 0;align-items:center}
+  .s9 .it .ph{aspect-ratio:3/4}
+  /* 10 abas */
+  .tb{display:flex;gap:1cqw;margin:3cqw 0 2.4cqw}
+  .tb button{border:1px solid var(--espresso);background:none;color:inherit;font:400 .85cqw var(--sans);letter-spacing:.2em;text-transform:uppercase;padding:1cqw 2cqw;cursor:pointer}
+  .tb button.on{background:var(--espresso);color:var(--marfim)}
+  .tc{display:grid;grid-template-columns:1.2fr 1fr;gap:5cqw;align-items:center;min-height:22cqw}
+  .tc .ph{aspect-ratio:4/5;width:20cqw;justify-self:end}
+  /* 11 vidro */
+  .g11{position:relative;padding:0;color:#fff}
+  .g11 .bgi{position:absolute;inset:0}
+  .g11 .bgi img{width:100%;height:100%;object-fit:cover;object-position:50% 30%;filter:brightness(.6)}
+  .g11 .in{position:relative;padding:5cqw 6cqw}
+  .g11 .lbl{color:#eadfd3}
+  .g11 .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:2cqw;margin-top:5cqw}
+  .g11 .gl{background:rgba(247,243,238,.14);backdrop-filter:blur(1.2cqw);-webkit-backdrop-filter:blur(1.2cqw);border:1px solid rgba(255,255,255,.3);padding:2.4cqw}
+  .g11 .p{color:#f1ebe4}
+  /* 12 contorno */
+  .o12 .big{font:300 11cqw/.9 var(--serif);color:transparent;-webkit-text-stroke:1px var(--champagne)}
+  .bw .o12 .big{-webkit-text-stroke:1px #111}
+  /* 13 zigue-zague */
+  .z13 .rw{display:grid;grid-template-columns:16cqw 1fr;gap:4cqw;align-items:center;margin-top:3cqw}
+  .z13 .rw:nth-child(even){grid-template-columns:1fr 16cqw}.z13 .rw:nth-child(even) .ph{order:2}
+  .z13 .ph{aspect-ratio:4/5}
+  /* 14 carrossel */
+  .cr{display:grid;grid-template-columns:1.2fr 1fr;gap:5cqw;align-items:center;margin-top:3cqw;min-height:24cqw}
+  .cr .slide{display:none}.cr .slide.on{display:block;animation:fi .8s}
+  @keyframes fi{from{opacity:0;transform:translateY(1cqw)}to{opacity:1;transform:none}}
+  .cr .big{font:italic 300 6cqw/1 var(--serif);color:var(--champagne)}
+  .cr .imgs{position:relative;aspect-ratio:4/5;width:21cqw;justify-self:end}
+  .cr .imgs img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1s}
+  .cr .imgs img.on{opacity:1}
+  .bars{display:flex;gap:.6cqw;margin-top:2.4cqw;max-width:30cqw}
+  .bars i{flex:1;height:2px;background:var(--nude);position:relative;overflow:hidden}
+  .bars i.on::after{content:"";position:absolute;inset:0;background:var(--espresso);transform-origin:left;animation:fl 5s linear forwards}
+  .bars i.dn::after{content:"";position:absolute;inset:0;background:var(--espresso)}
+  @keyframes fl{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+  /* 15 sequência */
+  .q15 .ln{height:1px;background:var(--champagne);transform-origin:left;animation:ln 9s ease-in-out infinite;margin-top:3.6cqw}
+  @keyframes ln{0%{transform:scaleX(0)}25%,85%{transform:scaleX(1)}100%{transform:scaleX(1);opacity:0}}
+  .q15 .col{opacity:0;animation:up 9s ease infinite}
+  @keyframes up{0%{opacity:0;transform:translateY(2.4cqw)}14%,84%{opacity:1;transform:none}100%{opacity:0}}
+  @media (prefers-reduced-motion:reduce){.q15 .col{animation:none;opacity:1}.q15 .ln{animation:none}.bars i.on::after{animation:none}.cr .slide.on{animation:none}}
+  .pick{max-width:1100px;margin:54px auto 0;padding:0 20px;color:#6b625b}
+</style>
+</head>
+<body>
+<div class="top">
+  <h1>O método · 15 opções</h1>
+  <p>Três pilares (construção da imagem, leitura tridimensional e acompanhamento próximo), com o texto real. Algumas usam as fotos de frente, perfil e nuca para ilustrar a "leitura tridimensional", e a placa da certificação como selo. Me diga o número (ou misture). Não é preciso escolher estático ou movimento: tem dos dois.</p>
+  <div class="tog" role="group" aria-label="Paleta">
+    <button class="on" data-p="warm">Paleta quente</button>
+    <button data-p="bw">Preto e branco (atual)</button>
+  </div>
+</div>
+<div id="root"></div>
+<p class="pick">As fotos aqui são provisórias (as mesmas da galeria), só para mostrar o efeito. Na versão final usaríamos fotos que não se repetem em outras seções.</p>
+
+<script>
+const PL=[
+ ['01','Construção da imagem','Eu não aplico uma maquiagem da moda. Construo a sua imagem, pensando em como ela vai envelhecer bem nas fotos, no vídeo e na memória.'],
+ ['02','Leitura tridimensional','Analiso seu rosto de frente, de perfil e a parte de trás da cabeça, junto com o penteado. Isso orienta textura, intensidade, luz e equilíbrio dos traços: realço o que você mais ama em si e suavizo, com naturalidade, o que prefere não evidenciar.'],
+ ['03','Acompanhamento próximo','Antes do casamento, alinho maquiagem e penteado ao vestido, ao horário da cerimônia e à proposta do evento. Depois do sim, fico na sala dos noivos para retoques, troca de penteado e retirada do véu. Você entra na festa tranquila, segura e impecável.']];
+const IM={F:['novas-03','50% 28%'],P:['noiva-02','50% 28%'],N:['novas-06','50% 40%'],B:['certificado-placa','50% 50%']};
+const im=(k,c='')=>`<img ${c?`class="${c}" `:''}src="fotos/${IM[k][0]}.jpg" alt="" style="object-position:${IM[k][1]}" loading="lazy">`;
+const ph=(k,st='',cls='')=>`<div class="ph ${cls}" style="${st}">${im(k)}</div>`;
+const hd=(al='')=>`<span class="lbl">03 — O método</span><div class="h2">Três pilares para uma noiva que continua sendo <em>ela</em>.</div>`;
+const bdg=`<div class="bdg">${ph('B')}<span>Certificação internacional<br>Método C. Juillard · Lisboa, 2025</span></div>`;
+const col=(i,cls='')=>`<div class="${cls}"><span class="n">${PL[i][0]}</span><div class="h3">${PL[i][1]}</div><p class="p">${PL[i][2]}</p></div>`;
+const O=[];const add=(t,mv,w,h)=>O.push([t,mv,w,h]);
+
+add('Escuro, três colunas','estática','Fundo marrom escuro (um respiro de contraste na página), três colunas com linha champagne em cima e o selo da certificação embaixo.',
+ `<div class="mock dk c1">${hd()}<div class="cols3">${[0,1,2].map(i=>col(i,'col')).join('')}</div><div style="margin-top:4cqw">${bdg}</div></div>`);
+add('Claro, três colunas','estática','A versão clara do mesmo desenho: três colunas numeradas, sem fotos. A mais limpa e leve.',
+ `<div class="mock c1">${hd()}<div class="cols3">${[0,1,2].map(i=>col(i,'col')).join('')}</div></div>`);
+add('Lista com números grandes','estática','Três linhas, cada uma com um número gigante em itálico champagne à esquerda e o texto à direita. Bem editorial.',
+ `<div class="mock" style="background:var(--linho)">${hd()}<div style="margin-top:3cqw">${[0,1,2].map(i=>`<div class="r3"><div class="big">${PL[i][0]}</div><div><div class="h3" style="margin-top:0">${PL[i][1]}</div><p class="p">${PL[i][2]}</p></div></div>`).join('')}</div></div>`);
+add('Acordeão com foto','interativa','Os três pilares em lista: ao clicar, o texto abre e a foto ao lado muda (frente, perfil e nuca).',
+ `<div class="mock">${hd()}<div class="ac"><div id="acc">${[0,1,2].map(i=>`<div class="it ${i==1?'on':''}" data-i="${i}"><div class="h3"><span>${PL[i][1]}</span><span class="n">${PL[i][0]}</span></div><div class="bd"><p class="p">${PL[i][2]}</p></div></div>`).join('')}</div>
+   <div class="img" id="acci">${im('F')}${im('P','on')}${im('N')}</div></div></div>`);
+add('Três cartões com foto','estática','Cada pilar com uma foto em cima: frente, perfil e nuca. Mostra a "leitura tridimensional" na prática.',
+ `<div class="mock">${hd()}<div class="cols3">${[['F','Frente'],['P','Perfil'],['N','Nuca']].map(([k,t],i)=>`<div class="cd">${ph(k)}<span class="tg">${t}</span>${col(i)}</div>`).join('')}</div></div>`);
+add('Arco central','estática','Uma foto em arco no centro e os pilares dos dois lados (dois à esquerda, um à direita). Simétrica e delicada.',
+ `<div class="mock ctr">${hd()}<div class="a6"><div class="cl">${col(0)}${col(2)}</div>${ph('F')}<div class="cl" style="text-align:left">${col(1)}</div></div>${'' }</div>`);
+add('Linha do tempo','estática','Uma linha fina champagne com três pontos e um pilar embaixo de cada um. Sugere um caminho, do primeiro encontro ao "sim".',
+ `<div class="mock">${hd()}<div class="tl" style="margin-top:4cqw"><div class="g">${[0,1,2].map(i=>col(i)).join('')}</div></div><div style="margin-top:3.6cqw">${bdg}</div></div>`);
+add('Frente, perfil e nuca','estática','Três fotos em fileira com as legendas "Frente · Perfil · Nuca" (a ideia da leitura tridimensional) e, embaixo, os pilares em texto compacto.',
+ `<div class="mock ctr">${hd()}<div class="an">${[['F','Frente'],['P','Perfil'],['N','Nuca']].map(([k,t])=>`<div>${ph(k)}<div class="cap">${t}</div></div>`).join('')}</div>
+  <div class="cols3" style="text-align:left;margin-top:4cqw">${[0,1,2].map(i=>col(i)).join('')}</div></div>`);
+add('Título fixo + pilares com foto','estática','O título e o selo de certificação ficam à esquerda; à direita, os pilares empilhados, cada um com uma foto pequena.',
+ `<div class="mock"><div class="s9"><div class="lf">${hd()}<div style="margin-top:3cqw">${bdg}</div></div><div>${[['F',0],['P',1],['N',2]].map(([k,i])=>`<div class="it">${ph(k)}<div><span class="n">${PL[i][0]}</span><div class="h3" style="margin-top:.3cqw">${PL[i][1]}</div><p class="p">${PL[i][2]}</p></div></div>`).join('')}</div></div></div>`);
+add('Abas','interativa','Três botões (um por pilar). Ao clicar, o texto e a foto mudam. Mostra um pilar de cada vez, com mais espaço.',
+ `<div class="mock">${hd()}<div class="tb" id="tb">${[0,1,2].map(i=>`<button class="${i==0?'on':''}" data-i="${i}">${PL[i][0]} · ${PL[i][1]}</button>`).join('')}</div>
+  <div class="tc"><div id="tcx"></div><div class="ph" id="tci" style="aspect-ratio:4/5">${im('F')}</div></div></div>`);
+add('Vidro sobre a foto','estática','Uma foto grande escurecida de fundo e os três pilares em cartões de vidro fosco por cima. Mais dramático.',
+ `<div class="mock g11"><div class="bgi"><img src="fotos/novas-03.jpg" alt=""></div><div class="in">${hd()}<div class="cards">${[0,1,2].map(i=>`<div class="gl">${col(i)}</div>`).join('')}</div></div></div>`);
+add('Números em contorno','estática','Números enormes só com o contorno (vazados) em champagne, três colunas sem linhas. Tipográfica e moderna.',
+ `<div class="mock o12">${hd()}<div class="cols3">${[0,1,2].map(i=>`<div><div class="big">${PL[i][0]}</div><div class="h3">${PL[i][1]}</div><p class="p">${PL[i][2]}</p></div>`).join('')}</div></div>`);
+add('Zigue-zague','estática','Cada pilar numa linha, alternando foto à esquerda e à direita. Dá ritmo e mostra bastante foto.',
+ `<div class="mock z13">${hd()}${[['F',0],['P',1],['N',2]].map(([k,i])=>`<div class="rw">${ph(k)}${col(i)}</div>`).join('')}</div>`);
+add('Um pilar por vez (automático)','movimento','Um pilar ocupa o espaço por vez, com número grande, foto que troca suave e barrinhas mostrando o progresso. Passa sozinho a cada 5 segundos.',
+ `<div class="mock">${hd()}<div class="cr"><div id="crt">${[0,1,2].map(i=>`<div class="slide ${i==0?'on':''}"><div class="big">${PL[i][0]}</div><div class="h3" style="font-size:2.6cqw">${PL[i][1]}</div><p class="p" style="max-width:40cqw">${PL[i][2]}</p></div>`).join('')}<div class="bars" id="crb"><i></i><i></i><i></i></div></div><div class="imgs" id="cri">${im('F','on')}${im('P')}${im('N')}</div></div></div>`);
+add('Aparecem em sequência','movimento','Uma linha fina se desenha e os três pilares surgem um depois do outro, subindo suavemente, e recomeçam. Sutil.',
+ `<div class="mock q15">${hd()}<div class="ln"></div><div class="cols3" style="margin-top:2.6cqw">${[0,1,2].map(i=>col(i,'col" style="animation-delay:'+(0.8+i*0.9)+'s')).join('')}</div><div style="margin-top:3.4cqw">${bdg}</div></div>`);
+
+const root=document.getElementById('root');
+O.forEach(([t,mv,w,h],i)=>root.insertAdjacentHTML('beforeend',`<section class="opt"><h2><b>${i+1}</b>${t}<u>${mv}</u></h2><p class="why">${w}</p>${h}</section>`));
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+// acordeão
+(function(){const a=document.getElementById('acc'),ims=[...document.querySelectorAll('#acci img')];
+ a.addEventListener('click',e=>{const it=e.target.closest('.it');if(!it)return;[...a.children].forEach(x=>x.classList.toggle('on',x===it));ims.forEach((x,j)=>x.classList.toggle('on',j==it.dataset.i))})})();
+// abas
+(function(){const tb=document.getElementById('tb'),tx=document.getElementById('tcx'),ti=document.getElementById('tci'),K=['F','P','N'];
+ const show=i=>{[...tb.children].forEach((b,j)=>b.classList.toggle('on',j==i));tx.innerHTML=`<span class="n">${PL[i][0]}</span><div class="h3" style="font-size:2.8cqw">${PL[i][1]}</div><p class="p" style="max-width:40cqw">${PL[i][2]}</p>`;ti.innerHTML=im(K[i])};
+ show(0);tb.addEventListener('click',e=>{const b=e.target.closest('button');if(b)show(+b.dataset.i)})})();
+// carrossel automático
+(function(){const sl=[...document.querySelectorAll('#crt .slide')],bars=[...document.querySelectorAll('#crb i')],ims=[...document.querySelectorAll('#cri img')];let k=0;
+ const show=n=>{k=n;sl.forEach((s,j)=>s.classList.toggle('on',j===k));ims.forEach((s,j)=>s.classList.toggle('on',j===k));bars.forEach((b,j)=>{b.className=j<k?'dn':(j===k?'on':'')})};
+ show(0);if(reduce)return;setInterval(()=>show((k+1)%3),5000)})();
+document.querySelectorAll('.tog button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('.tog button').forEach(x=>x.classList.toggle('on',x===b));
+  document.body.classList.toggle('bw',b.dataset.p==='bw');
+});
+</script>
+</body>
+</html>

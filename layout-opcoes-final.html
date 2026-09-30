@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yara Estrela — Opções para o chamado final</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400&family=Homemade+Apple&family=Nothing+You+Could+Do&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#FFFFFF;--soft:#F6F6F5;--line:#DDDDDB;--gray:#6F6F6F;--ink:#111111;--serif:'Cormorant Garamond',Georgia,serif;--sans:'Jost',system-ui,sans-serif}
+  body.warm{--bg:#F7F3EE;--soft:#EDE5DB;--line:#D9C3B5;--gray:#7A695E;--ink:#2B2522}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#e9e6e1;font:300 15px/1.6 var(--sans);color:#2B2522;padding:0 0 70px}
+  .top{max-width:1100px;margin:0 auto;padding:36px 20px 10px}
+  .top h1{font:400 2rem/1.1 var(--serif)}
+  .top p{margin:8px 0 14px;color:#6b625b}
+  .tog{display:inline-flex;border:1px solid #2B2522;border-radius:99px;overflow:hidden}
+  .tog button{border:0;background:none;padding:8px 16px;font:400 12px var(--sans);letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
+  .tog button.on{background:#2B2522;color:#fff}
+  .opt{max-width:1100px;margin:38px auto 0;padding:0 20px}
+  .opt h2{font:400 1.5rem var(--serif);margin-bottom:3px}
+  .opt h2 b{display:inline-block;background:#2B2522;color:#fff;min-width:32px;height:32px;line-height:32px;text-align:center;border-radius:99px;padding:0 9px;font:400 14px/32px var(--sans);margin-right:10px}
+  .opt .why{color:#6b625b;margin:0 0 12px;font-size:14px}
+  .ctx{container-type:inline-size;box-shadow:0 10px 40px rgba(0,0,0,.18);overflow:hidden;background:#fff}
+  .ctx *{font-family:var(--sans)}
+  .above{height:4cqw;background:repeating-linear-gradient(180deg,#f3f3f2 0 .8cqw,#fff .8cqw 1.6cqw);opacity:.75}
+  .box{position:relative;overflow:hidden;background:var(--bg);color:var(--ink);text-align:center;padding:7cqw 8cqw}
+  .dk{background:#111;color:#fff}
+  body.warm .dk{background:#2B2522}
+  .h{font:300 4.4cqw/1.1 var(--serif);letter-spacing:-.01em}
+  .h em{font-style:italic}
+  .p{font-size:1.25cqw;line-height:1.7;max-width:40cqw;margin:1.6cqw auto 0;color:#5b514b}
+  .dk .p{color:#d8cfc6}
+  .sig{font:1.6cqw/1.4 'Homemade Apple',cursive;margin:2.2cqw 0 0}
+  .btn{display:inline-block;background:var(--ink);color:var(--bg);font:400 .95cqw var(--sans);letter-spacing:.22em;text-transform:uppercase;padding:1.5cqw 3cqw;margin-top:2.6cqw;border:1px solid var(--ink)}
+  .dk .btn{background:#fff;color:#111;border-color:#fff}
+  .btn.line{background:none;color:var(--ink)}
+  .st{display:block;margin:0 auto 1.8cqw;width:5cqw;height:6.6cqw;color:var(--ink)}
+  .dk .st{color:#fff}
+  .st svg{width:100%;height:100%;fill:currentColor}
+  .lbl{font:400 .8cqw var(--sans);letter-spacing:.26em;text-transform:uppercase;color:var(--gray);display:block;margin-bottom:1.4cqw}
+  .dk .lbl{color:#d8cfc6}
+  /* 1 atual */
+  .o1 .sw{position:absolute;width:30cqw;left:-9cqw;bottom:-14cqw;transform:rotate(68deg);mix-blend-mode:multiply;opacity:.92}
+  .o1 *{position:relative}
+  .o1 .sw{position:absolute}
+  /* 3 duas colunas */
+  .o3{text-align:left;display:grid;grid-template-columns:1.25fr 1fr;gap:6cqw;align-items:center}
+  .o3 .h{font-size:5cqw}
+  .o3 .p{margin-left:0}
+  /* 4 gigante */
+  .o4 .h{font-size:8.4cqw;line-height:1}
+  .o4 .btn{margin-top:3.4cqw}
+  /* 5 foto */
+  .o5{color:#fff;padding:0}
+  .o5 .bg{position:absolute;inset:0}
+  .o5 .bg img{width:100%;height:100%;object-fit:cover;object-position:50% 25%;filter:brightness(.42)}
+  .o5 .in{position:relative;padding:8cqw}
+  .o5 .p{color:#eee6dd}
+  .o5 .btn{background:#fff;color:#111;border-color:#fff}
+  .o5 .st{color:#fff}
+  /* 6 convite */
+  .o6{background:var(--soft);padding:6cqw}
+  .o6 .card{position:relative;max-width:52cqw;margin:0 auto;background:var(--bg);border:1px solid var(--line);padding:5cqw 6cqw}
+  .o6 .card::before{content:"";position:absolute;inset:.9cqw;border:1px solid var(--line);pointer-events:none}
+  .o6 .card .st{margin-top:-7.6cqw;background:var(--bg);width:7cqw;padding:.8cqw 1cqw;height:auto;margin-bottom:1.4cqw}
+  .o6 .h{font-size:3.6cqw}
+  /* 7 barra larga */
+  .o7{padding:6cqw 0 0}
+  .o7 .bar{display:flex;align-items:center;justify-content:center;gap:2cqw;background:var(--ink);color:var(--bg);padding:3.6cqw 4cqw;margin-top:5cqw;font:400 1.3cqw var(--sans);letter-spacing:.24em;text-transform:uppercase}
+  .o7 .bar b{font:300 2.2cqw var(--serif);letter-spacing:0;text-transform:none}
+  /* 8 mensagem pronta */
+  .o8{display:grid;grid-template-columns:1fr 1fr;gap:6cqw;align-items:center;text-align:left}
+  .o8 .h{font-size:4.4cqw}
+  .o8 .p{margin-left:0}
+  .chat{background:#efeae2;border:1px solid var(--line);padding:2.6cqw;max-width:34cqw;justify-self:center;width:100%}
+  .chat .top2{display:flex;align-items:center;gap:1cqw;margin-bottom:1.6cqw;font:400 1cqw var(--sans);color:#333}
+  .chat .av{width:2.6cqw;height:2.6cqw;border-radius:50%;background:#111;color:#fff;display:flex;align-items:center;justify-content:center}
+  .chat .av svg{width:1.8cqw;height:1.8cqw;fill:#fff}
+  .chat .bub{background:#d9fdd3;padding:1.4cqw 1.6cqw;font-size:1.15cqw;line-height:1.5;border-radius:1cqw 1cqw 0 1cqw;color:#222;margin-left:auto;max-width:92%}
+  .chat .bub small{display:block;text-align:right;font-size:.8cqw;color:#7a8;margin-top:.4cqw}
+  .chat .send{margin-top:1.6cqw;text-align:center;background:var(--ink);color:var(--bg);font:400 .9cqw var(--sans);letter-spacing:.2em;text-transform:uppercase;padding:1.3cqw}
+  .pick{max-width:1100px;margin:44px auto 0;padding:0 20px;color:#6b625b}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><symbol id="cn" viewBox="0 0 60 80"><g transform="translate(6 16) scale(1.7)"><path d="M11 3C11.6 10 14 12.4 21 13 14 13.6 11.6 16 11 23 10.4 16 8 13.6 1 13 8 12.4 10.4 10 11 3Z"/><path d="M22 1.5C22.2 4 23 4.8 25.5 5 23 5.2 22.2 6 22 8.5 21.8 6 21 5.2 18.5 5 21 4.8 21.8 4 22 1.5Z"/><path d="M21.5 17.5C21.8 20.4 22.8 21.4 25.7 21.7 22.8 22 21.8 23 21.5 25.9 21.2 23 20.2 22 17.3 21.7 20.2 21.4 21.2 20.4 21.5 17.5Z"/></g></symbol></svg>
+<div class="top">
+  <h1>Chamado final · "Sua data ainda está disponível?"</h1>
+  <p>Oito jeitos de fechar a página, com o texto atual. A 1 é como está hoje. Me diga o número (ou misture).</p>
+  <div class="tog" role="group" aria-label="Paleta">
+    <button class="on" data-p="bw">Preto e branco (atual)</button>
+    <button data-p="warm">Paleta quente</button>
+  </div>
+</div>
+<div id="root"></div>
+<p class="pick">Em todas o botão abre o WhatsApp da Yara (+55 11 97080-3436) com a mensagem já escrita.</p>
+
+<script>
+const ST=`<span class="st"><svg viewBox="0 0 60 80"><use href="#cn"/></svg></span>`;
+const H=`Sua data ainda está <em>disponível?</em>`;
+const P=`As datas fecham com bastante antecedência. Me conte sobre o seu casamento que eu respondo pessoalmente.`;
+const SIG=`<div class="sig">com carinho, Yá</div>`;
+const BT=`<span class="btn">Consultar minha data no WhatsApp</span>`;
+const w=(cls,inner,extra='')=>`<div class="ctx"><div class="above"></div><div class="box ${cls}" ${extra}>${inner}</div></div>`;
+const O=[
+ ['Atual (referência)','Tudo centralizado: constelação em cima, título, texto, assinatura e botão preto. A amostra de gloss rosa fica no canto.',
+  w('o1',`<img class="sw" src="fotos/amostra-gloss-rosa.webp" alt="">${ST}<div class="h">${H}</div><p class="p">${P}</p>${SIG}${BT}`)],
+ ['Faixa escura','Fundo bem escuro e o botão branco. Fecha a página com peso e contraste.',
+  w('dk',`${ST}<div class="h">${H}</div><p class="p">${P}</p>${SIG}${BT}`)],
+ ['Duas colunas','Título grande à esquerda; texto, assinatura e botão à direita. Mais moderna, menos "cartaz".',
+  w('o3',`<div><div class="h">${H}</div></div><div><p class="p">${P}</p>${SIG.replace('class="sig"','class="sig" style="text-align:left"')}${BT}</div>`)],
+ ['Frase gigante','O título ocupa a largura toda, enorme, com o botão pequeno embaixo. Muito tipográfica, parece capa de revista.',
+  w('o4',`<span class="lbl">Agenda</span><div class="h">${H}</div><p class="p">${P}</p>${BT}`)],
+ ['Foto ao fundo (uma só)','Uma foto escurecida atrás do texto. Só se você quiser uma imagem forte no final; mostra o rosto de uma noiva.',
+  `<div class="ctx"><div class="above"></div><div class="box o5"><div class="bg"><img src="fotos/novas-03.webp" alt=""></div><div class="in">${ST}<div class="h">${H}</div><p class="p">${P}</p>${SIG}${BT}</div></div></div>`],
+ ['Convite','Um cartão branco com moldura fina dupla, como um convite de casamento, sobre fundo cinza claro. A constelação fica na borda de cima.',
+  w('o6',`<div class="card">${ST}<div class="h">${H}</div><p class="p">${P}</p>${SIG}${BT}</div>`)],
+ ['Botão grande na largura toda','Texto curto em cima e uma barra preta enorme, de ponta a ponta, que é o botão. Impossível de não ver, e no celular vira um botão grande.',
+  w('o7',`<div class="h">${H}</div><p class="p">${P}</p><div class="bar"><b>Consultar minha data</b>no WhatsApp →</div>`,'style="padding-left:0;padding-right:0;padding-bottom:0"')],
+ ['Com a mensagem pronta','À direita, um balão de WhatsApp mostra a mensagem que já vai escrita. A cliente vê o que vai acontecer ao clicar, e o medo de "o que eu escrevo?" some.',
+  w('o8',`<div><div class="h">${H}</div><p class="p">${P}</p>${SIG.replace('class="sig"','class="sig" style="text-align:left"')}</div>
+   <div class="chat"><div class="top2"><span class="av"><svg viewBox="0 0 60 80"><use href="#cn"/></svg></span>Yara Estrela</div><div class="bub">Oi Yara! Vi seu site e quero consultar a disponibilidade da minha data de casamento.<small>agora</small></div><div class="send">Enviar pelo WhatsApp</div></div>`)]
+];
+const root=document.getElementById('root');
+O.forEach(([t,d,h],i)=>root.insertAdjacentHTML('beforeend',`<section class="opt"><h2><b>${i+1}</b>${t}</h2><p class="why">${d}</p>${h}</section>`));
+document.querySelectorAll('.tog button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('.tog button').forEach(x=>x.classList.toggle('on',x===b));
+  document.body.classList.toggle('warm',b.dataset.p==='warm');
+});
+</script>
+</body>
+</html>

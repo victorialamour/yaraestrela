@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yara Estrela — Opções de fontes</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400&family=Playfair+Display:ital,wght@0,400;1,400&family=Montserrat:wght@300;400&family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,300&family=DM+Sans:wght@300;400&family=Libre+Caslon+Text:ital,wght@0,400;1,400&family=Lato:wght@300;400&family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400&family=EB+Garamond:ital,wght@0,400;1,400&family=Work+Sans:wght@300;400&family=Pinyon+Script&family=Great+Vibes&family=Allura&family=Parisienne&family=Italianno&display=swap" rel="stylesheet">
+<style>
+  :root{--marfim:#F7F3EE;--linho:#EDE5DB;--nude:#D9C3B5;--taupe:#7A695E;--espresso:#2B2522;--champagne:#B89B72}
+  body.bw{--marfim:#FFFFFF;--linho:#F6F6F5;--nude:#DDDDDB;--taupe:#6F6F6F;--espresso:#111111;--champagne:#111111}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#e9e6e1;font:300 15px/1.6 'Jost',system-ui,sans-serif;color:#2B2522;padding:0 0 80px}
+  .top{max-width:1180px;margin:0 auto;padding:36px 20px 10px}
+  .top h1{font:400 2rem/1.1 'Cormorant Garamond',serif}
+  .top p{margin:8px 0 14px;color:#6b625b}
+  .tog{display:inline-flex;border:1px solid #2B2522;border-radius:99px;overflow:hidden}
+  .tog button{border:0;background:none;padding:8px 16px;font:400 12px 'Jost',sans-serif;letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
+  .tog button.on{background:#2B2522;color:#fff}
+  .grid{max-width:1180px;margin:30px auto 0;padding:0 20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(480px,1fr));gap:26px}
+  @media (max-width:560px){.grid{grid-template-columns:1fr}}
+  .card{background:var(--marfim);color:var(--espresso);box-shadow:0 8px 30px rgba(0,0,0,.14);padding:26px 28px 30px;position:relative}
+  .card .tag{position:absolute;top:0;left:0;background:#2B2522;color:#fff;font:400 13px/1 'Jost',sans-serif;padding:9px 13px}
+  .nm{margin:30px 0 18px;display:flex;justify-content:space-between;align-items:flex-start;border-bottom:1px solid var(--nude);padding-bottom:14px}
+  .logo{font-family:var(--hd);font-size:26px;line-height:1}
+  .logo small{display:block;font:400 9px var(--bd);letter-spacing:.3em;text-transform:uppercase;color:var(--taupe);margin-top:6px}
+  .ttl{font:400 11px var(--bd);letter-spacing:.2em;text-transform:uppercase;color:var(--taupe)}
+  .lbl{font:400 11px var(--bd);letter-spacing:.24em;text-transform:uppercase;color:var(--taupe);display:block;margin-bottom:12px}
+  .h{font-family:var(--hd);font-weight:var(--hw,300);font-size:var(--hs,42px);line-height:1.08;letter-spacing:-.01em}
+  .h em{font-style:italic}
+  .bd{font-family:var(--bd);font-weight:300;font-size:15px;line-height:1.75;margin:14px 0 18px;color:#4d443e}
+  .btn{display:inline-block;background:var(--espresso);color:var(--marfim);font:400 11px var(--bd);letter-spacing:.24em;text-transform:uppercase;padding:14px 26px}
+  .faq{margin-top:20px;border-top:1px solid var(--espresso);padding-top:14px;font-family:var(--hd);font-size:var(--fq,21px);line-height:1.3;display:flex;justify-content:space-between}
+  .nums{display:flex;gap:26px;margin-top:16px;align-items:baseline}
+  .nums b{font-family:var(--hd);font-weight:300;font-size:34px;color:var(--taupe)}
+  .nums span{font:400 10px var(--bd);letter-spacing:.2em;text-transform:uppercase;color:var(--taupe)}
+  .f1{--hd:'Cormorant Garamond',serif;--bd:'Jost',sans-serif}
+  .f2{--hd:'Bodoni Moda',serif;--bd:'Jost',sans-serif;--hw:400;--hs:36px;--fq:19px}
+  .f3{--hd:'Playfair Display',serif;--bd:'Montserrat',sans-serif;--hw:400;--hs:36px;--fq:19px}
+  .f4{--hd:'Fraunces',serif;--bd:'DM Sans',sans-serif;--hw:300;--hs:38px;--fq:20px}
+  .f5{--hd:'Libre Caslon Text',serif;--bd:'Lato',sans-serif;--hw:400;--hs:34px;--fq:18px}
+  .f6{--hd:'Instrument Serif',serif;--bd:'Inter',sans-serif;--hw:400;--hs:46px;--fq:23px}
+  .f7{--hd:'EB Garamond',serif;--bd:'Work Sans',sans-serif;--hw:400;--hs:40px;--fq:21px}
+  .sc{max-width:1180px;margin:50px auto 0;padding:0 20px}
+  .sc h2{font:400 1.5rem 'Cormorant Garamond',serif;margin-bottom:4px}
+  .sc p{color:#6b625b;margin-bottom:14px}
+  .sg{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:20px}
+  .sbox{background:var(--marfim);color:var(--espresso);padding:28px 26px 24px;box-shadow:0 8px 30px rgba(0,0,0,.14);position:relative;text-align:center}
+  .sbox .tag{position:absolute;top:0;left:0;background:#2B2522;color:#fff;font:400 12px/1 'Jost',sans-serif;padding:8px 12px}
+  .hero{font-family:var(--sc);font-size:68px;line-height:1.1;white-space:nowrap;margin:16px 0 4px;font-weight:400}
+  .hero .w{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:.9em}
+  .hero .w i{font-family:var(--sc);font-style:normal;font-size:1.3em;line-height:0}
+  .sig{font-family:var(--sc);font-size:34px;color:var(--espresso);margin-top:10px}
+  .sig small{font:400 11px 'Jost',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--taupe);margin-right:10px}
+  .s1{--sc:'Pinyon Script',cursive}.s2{--sc:'Great Vibes',cursive}.s3{--sc:'Allura',cursive}.s4{--sc:'Parisienne',cursive}.s5{--sc:'Italianno',cursive}
+  .pick{max-width:1180px;margin:44px auto 0;padding:0 20px;color:#6b625b}
+</style>
+</head>
+<body>
+<div class="top">
+  <h1>Fontes · título e texto</h1>
+  <p>Sete combinações já aplicadas ao conteúdo real da Yara (logo, título, parágrafo, botão e FAQ). Me diga o número, ou misture "título do 2 com texto do 5". A 1 é a atual.</p>
+  <div class="tog" role="group" aria-label="Paleta">
+    <button class="on" data-p="warm">Paleta quente</button>
+    <button data-p="bw">Preto e branco (atual)</button>
+  </div>
+</div>
+
+<div class="grid" id="grid"></div>
+
+<div class="sc">
+  <h2>Letra caligráfica · nome no topo e assinatura "com carinho, Yá"</h2>
+  <p>Hoje o site usa a Pinyon Script nas iniciais do nome. Cinco opções, cada uma com o nome e a assinatura:</p>
+  <div class="sg" id="sg"></div>
+</div>
+
+<p class="pick">Dá para combinar as duas partes: uma das 7 combinações de título/texto + uma das 5 letras caligráficas.</p>
+
+<script>
+const combos=[
+ ['1 · Atual','f1','Cormorant Garamond','Jost','Clássica e leve; é a que está no site.'],
+ ['2','f2','Bodoni Moda','Jost','Contraste alto, cara de revista de moda.'],
+ ['3','f3','Playfair Display','Montserrat','Tradicional de casamento, mais marcada.'],
+ ['4','f4','Fraunces','DM Sans','Serifa macia e moderna, mais acolhedora.'],
+ ['5','f5','Libre Caslon Text','Lato','Editorial clássica, leitura confortável.'],
+ ['6','f6','Instrument Serif','Inter','Fina e atual; o itálico é muito bonito.'],
+ ['7','f7','EB Garamond','Work Sans','Livro antigo, discreta e elegante.']
+];
+const g=document.getElementById('grid');
+combos.forEach(([n,c,hd,bd,ds])=>{
+ g.insertAdjacentHTML('beforeend',`<div class="card ${c}"><span class="tag">${n}</span>
+ <div class="nm"><div class="logo">Yara Estrela<small>Beauty Artist · Noivas</small></div><span class="ttl">${hd} + ${bd}</span></div>
+ <span class="lbl">01 — A proposta</span>
+ <div class="h">“Quero me reconhecer <em>no espelho.</em>”</div>
+ <p class="bd">É o que as noivas me dizem antes de tudo. E é por isso que eu não sigo tendência: construo a imagem de cada mulher. A maquiagem do casamento vai ser vista por muitos anos, então cada escolha é feita com critério, coerência e visão de longo prazo.</p>
+ <span class="btn">Consultar disponibilidade da minha data</span>
+ <div class="nums"><div><b>7 anos</b><br><span>dedicados a noivas</span></div><div><b>Visagismo</b><br><span>formada na França</span></div></div>
+ <div class="faq"><span>Com quanta antecedência devo reservar?</span><span>+</span></div>
+ <p style="margin-top:14px;font:italic 13px var(--hd);color:var(--taupe)">${ds}</p></div>`);
+});
+const sg=document.getElementById('sg');
+[['Pinyon Script (atual)','s1'],['Great Vibes','s2'],['Allura','s3'],['Parisienne','s4'],['Italianno','s5']].forEach(([n,c])=>{
+ sg.insertAdjacentHTML('beforeend',`<div class="sbox ${c}"><span class="tag">${n}</span>
+ <div class="hero"><span class="w"><i>Y</i>ara <i>E</i>strela</span></div>
+ <div class="sig"><small>com carinho,</small>Yá</div></div>`);
+});
+document.querySelectorAll('.tog button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('.tog button').forEach(x=>x.classList.toggle('on',x===b));
+  document.body.classList.toggle('bw',b.dataset.p==='bw');
+});
+</script>
+</body>
+</html>

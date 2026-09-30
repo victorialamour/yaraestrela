@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yara Estrela — 15 opções de portfólio</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root{--marfim:#F7F3EE;--linho:#EDE5DB;--nude:#D9C3B5;--taupe:#7A695E;--espresso:#2B2522;--champagne:#B89B72;
+        --serif:'Cormorant Garamond',Georgia,serif;--sans:'Jost',system-ui,sans-serif}
+  body.bw{--marfim:#FFFFFF;--linho:#F6F6F5;--nude:#DDDDDB;--taupe:#6F6F6F;--espresso:#111111;--champagne:#111111}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#e9e6e1;font:300 15px/1.6 var(--sans);color:#2B2522;padding:0 0 80px}
+  .top{max-width:1100px;margin:0 auto;padding:36px 20px 10px}
+  .top h1{font:400 2rem/1.1 var(--serif)}
+  .top p{margin:8px 0 14px;color:#6b625b}
+  .tog{display:inline-flex;border:1px solid #2B2522;border-radius:99px;overflow:hidden}
+  .tog button{border:0;background:none;padding:8px 16px;font:400 12px var(--sans);letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
+  .tog button.on{background:#2B2522;color:#fff}
+  .opt{max-width:1100px;margin:44px auto 0;padding:0 20px}
+  .opt h2{font:400 1.5rem var(--serif);margin-bottom:4px}
+  .opt h2 b{display:inline-block;background:#2B2522;color:#fff;min-width:32px;height:32px;line-height:32px;text-align:center;border-radius:99px;padding:0 9px;font:400 14px/32px var(--sans);margin-right:10px}
+  .opt h2 u{text-decoration:none;font:400 11px var(--sans);letter-spacing:.14em;text-transform:uppercase;color:#6b625b;border:1px solid #b9b0a7;border-radius:99px;padding:3px 9px;margin-left:10px;vertical-align:middle}
+  .opt .why{color:#6b625b;margin:0 0 12px;font-size:14px}
+  .mock{container-type:inline-size;width:100%;position:relative;overflow:hidden;background:var(--marfim);color:var(--espresso);box-shadow:0 10px 40px rgba(0,0,0,.18);padding:4.5cqw 0 4cqw}
+  .mock *{font-family:var(--sans)}
+  .hd{text-align:center;margin-bottom:2.8cqw;padding:0 5cqw}
+  .lbl{font:400 .8cqw var(--sans);letter-spacing:.26em;text-transform:uppercase;color:var(--taupe);display:block;margin-bottom:.9cqw}
+  .ttl{font:italic 300 3.2cqw/1.1 var(--serif)}
+  .ph{position:relative;overflow:hidden;background:linear-gradient(160deg,var(--nude),var(--linho));flex:none}
+  .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+  .cp{font:italic 300 1.2cqw var(--serif);color:var(--taupe);text-align:center;margin-top:.7cqw}
+  .nn{font:400 .75cqw var(--sans);letter-spacing:.22em;color:var(--taupe);text-align:center;margin-top:.7cqw}
+  .more{text-align:center;margin-top:2.8cqw}
+  .lk{display:inline-block;font:400 .8cqw var(--sans);letter-spacing:.22em;text-transform:uppercase;border-bottom:1px solid var(--espresso);padding-bottom:.3cqw}
+  .row{display:flex;justify-content:center;gap:2cqw}
+  .ar{aspect-ratio:4/5}
+  /* 7 leque */
+  .fan{position:relative;height:30cqw;margin:0 auto;width:60cqw}
+  .fan .ph{position:absolute;left:50%;bottom:0;width:15cqw;aspect-ratio:4/5;margin-left:-7.5cqw;transform-origin:50% 140%;box-shadow:0 .8cqw 2cqw rgba(0,0,0,.2)}
+  /* marquee */
+  .tk{display:flex;gap:1.6cqw;width:max-content;animation:mq 60s linear infinite}
+  .tk .ph{width:19cqw;aspect-ratio:3/4}
+  @keyframes mq{to{transform:translateX(calc(-50% - .8cqw))}}
+  /* 10 vitrine */
+  .vit{position:relative;padding:0}
+  .vit .bg{position:absolute;inset:-6cqw;background-size:cover;background-position:center;filter:blur(3cqw) brightness(.95);transform:scale(1.1);transition:background-image .9s}
+  .vit .veil{position:absolute;inset:0;background:rgba(247,243,238,.55)}
+  .vit .in{position:relative;padding:4.5cqw 0 3.5cqw;text-align:center}
+  .vit .fr{position:relative;width:25cqw;aspect-ratio:4/5;margin:0 auto;box-shadow:0 1.4cqw 4cqw rgba(0,0,0,.25);background:var(--linho)}
+  .vit .fr img,.kbf img,.swc img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.1s}
+  .vit .fr img.on,.kbf img.on,.swc img.on{opacity:1}
+  .dots{display:flex;gap:.7cqw;justify-content:center;margin-top:1.8cqw}
+  .dots i{width:.6cqw;height:.6cqw;border-radius:50%;background:var(--taupe);opacity:.35;transition:.3s}
+  .dots i.on{opacity:1}
+  /* 11 pilha */
+  .stk{position:relative;width:24cqw;aspect-ratio:4/5;margin:0 auto 1.6cqw}
+  .stk .ph{position:absolute;inset:0;transition:transform .8s cubic-bezier(.22,.61,.36,1),opacity .8s;box-shadow:0 1.2cqw 3cqw rgba(0,0,0,.2)}
+  /* 12 leque 3d */
+  .cf{position:relative;height:34cqw;perspective:90cqw}
+  .cf .ph{position:absolute;left:50%;top:0;width:18cqw;aspect-ratio:4/5;margin-left:-9cqw;transition:transform .9s cubic-bezier(.22,.61,.36,1),opacity .9s,filter .9s}
+  /* 13 cortina */
+  .wp{position:relative;width:20cqw;aspect-ratio:4/5;overflow:hidden;background:var(--linho)}
+  .wp img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .wp img.new{animation:wipe 1.3s cubic-bezier(.65,0,.35,1) forwards}
+  @keyframes wipe{from{clip-path:inset(100% 0 0 0)}to{clip-path:inset(0)}}
+  /* 14 respira */
+  .kbf{position:relative;width:21cqw;overflow:hidden;background:var(--linho)}
+  .kbf img{opacity:1}
+  .kbf img{animation:kb 9s ease-in-out infinite alternate}
+  @keyframes kb{from{transform:scale(1)}to{transform:scale(1.13) translateY(-1.5%)}}
+  /* 15 trocas */
+  .swg{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4cqw;width:66cqw;margin:0 auto}
+  .swc{position:relative;aspect-ratio:4/5;overflow:hidden;background:var(--linho)}
+  @media (prefers-reduced-motion:reduce){.tk,.kbf img{animation:none!important}}
+  .pick{max-width:1100px;margin:54px auto 0;padding:0 20px;color:#6b625b}
+</style>
+</head>
+<body>
+<div class="top">
+  <h1>Portfólio · 15 opções</h1>
+  <p>Estáticas e em movimento, todas com as 15 fotos que já temos. Mais curadas que a grade de colunas: menos fotos por vez, mais espaço em branco. Me diga o número (ou misture). Quem tem "reduzir movimento" ligado vê as de movimento paradas.</p>
+  <div class="tog" role="group" aria-label="Paleta">
+    <button class="on" data-p="warm">Paleta quente</button>
+    <button data-p="bw">Preto e branco (atual)</button>
+  </div>
+</div>
+<div id="root"></div>
+<p class="pick">Em todas: clicar numa foto abre ela grande e o link do Instagram @yaraestrelamakeup fica embaixo.</p>
+
+<script>
+// nome, posição vertical do rosto
+const S={A:['noiva-01','50% 40%'],B:['noiva-02','50% 28%'],C:['noiva-03','50% 30%'],D:['noiva-04','50% 25%'],E:['noiva-05','50% 30%'],
+ F:['noiva-06','50% 45%'],G:['noiva-07','50% 30%'],H:['noiva-08','50% 45%'],I:['servico-teste','50% 30%'],J:['servico-orientacao','50% 45%'],
+ K:['servico-dia','50% 30%'],L:['servico-cilios','50% 40%'],M:['servico-blindagem','50% 30%'],N:['servico-sala-noivos','50% 30%'],O:['hero-noiva-perfil','50% 30%']};
+const im=(k,c='')=>`<img ${c?`class="${c}" `:''}src="fotos/${S[k][0]}.jpg" alt="" style="object-position:${S[k][1]}" loading="lazy">`;
+const ph=(k,cls='',st='')=>`<div class="ph ${cls}" style="${st}">${im(k)}</div>`;
+const hd=`<div class="hd"><span class="lbl">06 — Noivas</span><div class="ttl">Cada uma, do seu jeito</div></div>`;
+const more=`<div class="more"><span class="lk">Ver mais no Instagram @yaraestrelamakeup</span></div>`;
+const O=[];
+const add=(t,mv,w,h)=>O.push([t,mv,w,h]);
+
+/* ---------- ESTÁTICAS ---------- */
+add('Díptico','estática','Duas fotos grandes lado a lado, com legenda em itálico. Calmo e muito elegante.',
+ `<div class="mock">${hd}<div class="row"><div>${ph('D','ar','width:30cqw')}<div class="cp">Véu de renda</div></div><div>${ph('I','ar','width:30cqw')}<div class="cp">No making of</div></div></div>${more}</div>`);
+add('Grade limpa 3×2','estática','Seis fotos do mesmo tamanho, alinhadas, com numeração discreta. Organizada e clássica.',
+ `<div class="mock">${hd}<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.4cqw;width:62cqw;margin:0 auto">${['B','D','G','E','K','O'].map((k,i)=>`<div>${ph(k,'ar')}<div class="nn">${String(i+1).padStart(2,'0')}</div></div>`).join('')}</div>${more}</div>`);
+add('Palco central','estática','Uma foto grande no centro e quatro menores flutuando em volta, em alturas diferentes (o mesmo jeito da proposta).',
+ `<div class="mock" style="padding-bottom:0">${hd}<div style="position:relative;height:40cqw">
+  ${ph('E','ar','position:absolute;left:7cqw;top:0;width:11cqw')}${ph('K','ar','position:absolute;right:7cqw;top:0;width:11cqw')}
+  ${ph('B','ar','position:absolute;left:20cqw;top:9cqw;width:15cqw')}${ph('G','ar','position:absolute;right:20cqw;top:9cqw;width:15cqw')}
+  ${ph('D','ar','position:absolute;left:50%;margin-left:-12.5cqw;top:0;width:25cqw;box-shadow:0 1cqw 3cqw rgba(0,0,0,.15)')}</div>${more}</div>`);
+add('Arco de retratos','estática','Cinco retratos em linha, o do meio mais alto e os das pontas mais baixos, formando um arco suave.',
+ `<div class="mock">${hd}<div class="row" style="align-items:flex-end;gap:1.6cqw">${[['E',19],['B',25],['D',31],['G',25],['K',19]].map(([k,h])=>ph(k,'',`width:15cqw;height:${h}cqw`)).join('')}</div>${more}</div>`);
+add('Página de revista','estática','Uma foto alta à esquerda e quatro menores encaixadas, como uma página de revista, com numeração sobre as fotos.',
+ `<div class="mock">${hd}<div style="display:grid;grid-template-columns:1.5fr 1fr 1fr;grid-template-rows:17cqw 17cqw;gap:1.2cqw;width:66cqw;margin:0 auto">
+  <div class="ph" style="grid-row:span 2">${im('D')}</div><div class="ph">${im('B')}</div><div class="ph">${im('G')}</div><div class="ph">${im('E')}</div><div class="ph">${im('K')}</div></div>${more}</div>`);
+add('Arcos','estática','Quatro molduras em arco, como janelas de igreja. Delicado e com ar de casamento.',
+ `<div class="mock">${hd}<div class="row" style="gap:1.8cqw">${['B','D','G','K'].map(k=>`<div>${ph(k,'','width:17cqw;aspect-ratio:3/4.2;border-radius:8.5cqw 8.5cqw 0 0')}</div>`).join('')}</div>${more}</div>`);
+add('Leque de fotos','estática','Cinco fotos abertas como um leque de cartas, sobrepostas e levemente inclinadas.',
+ `<div class="mock">${hd}<div class="fan">${[['E',-18],['B',-9],['D',0],['G',9],['K',18]].map(([k,r],i)=>ph(k,'',`transform:rotate(${r}deg);z-index:${i==2?5:3-Math.abs(i-2)}`)).join('')}</div>${more}</div>`);
+add('Texto + quatro fotos','estática','Título e uma frase à esquerda; quatro fotos em grade 2×2 à direita (a segunda coluna um pouco mais baixa).',
+ `<div class="mock" style="padding:5cqw 6cqw"><div style="display:grid;grid-template-columns:.9fr 1.1fr;gap:5cqw;align-items:center">
+  <div><span class="lbl">06 — Noivas</span><div class="ttl" style="font-size:4cqw;margin:1cqw 0 1.8cqw">Cada uma, do seu jeito</div><p style="font-size:1.05cqw;line-height:1.8;color:#5b514b;max-width:26cqw">Maquiagem e penteado pensados para cada mulher: luminosos, elegantes e fiéis a quem você é.</p><span class="lk" style="margin-top:2cqw">Ver mais no Instagram</span></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.2cqw"><div style="display:flex;flex-direction:column;gap:1.2cqw">${ph('B','ar')}${ph('E','ar')}</div><div style="display:flex;flex-direction:column;gap:1.2cqw;margin-top:4cqw">${ph('D','ar')}${ph('G','ar')}</div></div></div></div>`);
+
+/* ---------- EM MOVIMENTO ---------- */
+add('Faixa única deslizando','movimento','Uma só fileira de fotos grandes, bem lenta, sem parar. Mais calma que duas fileiras, cada foto aparece por inteiro.',
+ `<div class="mock">${hd}<div style="overflow:hidden"><div class="tk">${['D','B','K','G','E','I','O','L','M','N','C','J'].concat(['D','B','K','G','E','I','O','L','M','N','C','J']).map(k=>ph(k)).join('')}</div></div>${more}</div>`);
+add('Vitrine com fundo desfocado','movimento','Uma moldura com a foto da vez, sobre o fundo da própria foto desfocado. Troca suavemente; pontinhos mostram a posição.',
+ `<div class="mock vit" id="vit"><div class="bg"></div><div class="veil"></div><div class="in">${hd}<div class="fr">${['D','B','G','E','K','O','I','N'].map((k,i)=>im(k,i?'':'on')).join('')}</div><div class="dots">${[0,1,2,3,4,5,6,7].map((_,i)=>`<i class="${i?'':'on'}"></i>`).join('')}</div>${more}</div></div>`);
+add('Pilha em movimento','movimento','Uma pilha de fotos levemente tortas: a de cima desliza para o lado e vai para o fundo. Como folhear um álbum.',
+ `<div class="mock">${hd}<div class="stk" id="stk">${['D','B','G','E','K','I'].map(k=>ph(k)).join('')}</div>${more}</div>`);
+add('Leque 3D girando','movimento','A foto do centro em destaque e as laterais inclinadas, girando sozinho. Bonito com poucas fotos bem escolhidas.',
+ `<div class="mock">${hd}<div class="cf" id="cf">${['D','B','G','E','K','O','I','N'].map(k=>ph(k)).join('')}</div>${more}</div>`);
+add('Cortina (revelação)','movimento','Três molduras em que a foto seguinte "sobe como uma cortina" por cima da anterior, uma moldura de cada vez.',
+ `<div class="mock">${hd}<div class="row" style="gap:1.8cqw" id="wp">${[['D','B','G'],['E','K','O'],['I','N','L']].map(set=>`<div class="wp" data-set='${JSON.stringify(set)}'>${im(set[0])}</div>`).join('')}</div>${more}</div>`);
+add('Zoom que respira','movimento','Três fotos fixas, cada uma com um zoom bem lento que vai e volta. O movimento é sutil, parece que a imagem respira.',
+ `<div class="mock">${hd}<div class="row" style="gap:1.8cqw">${[['D','4/5.4'],['B','4/5'],['G','4/5.4']].map(([k,a])=>`<div class="kbf" style="aspect-ratio:${a}">${im(k)}</div>`).join('')}</div>${more}</div>`);
+add('Fotos que trocam no lugar','movimento','Seis quadros fixos em que, de vez em quando, uma foto se dissolve e vira outra. Muito discreto.',
+ `<div class="mock">${hd}<div class="swg" id="sw">${[0,1,2,3,4,5].map(i=>`<div class="swc">${['D','B','G','E','K','O','I','N','L','M','C','J'].map((k,j)=>im(k,j===i?'on':'')).join('')}</div>`).join('')}</div>${more}</div>`);
+
+const root=document.getElementById('root');
+O.forEach(([t,mv,w,h],i)=>root.insertAdjacentHTML('beforeend',`<section class="opt"><h2><b>${i+1}</b>${t}<u>${mv}</u></h2><p class="why">${w}</p>${h}</section>`));
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// vitrine
+(function(){const box=document.getElementById('vit'),imgs=[...box.querySelectorAll('.fr img')],dots=[...box.querySelectorAll('.dots i')],bg=box.querySelector('.bg');let k=0;
+ const set=n=>{k=n;imgs.forEach((x,j)=>x.classList.toggle('on',j===k));dots.forEach((x,j)=>x.classList.toggle('on',j===k));bg.style.backgroundImage=`url(${imgs[k].src})`};
+ set(0);if(!reduce)setInterval(()=>set((k+1)%imgs.length),3400)})();
+// pilha
+(function(){const st=document.getElementById('stk');let cs=[...st.children];const tilt=[0,-3,2.5,-2,3,-1.5];
+ const lay=()=>cs.forEach((c,i)=>{c.style.zIndex=cs.length-i;c.style.opacity=i>3?0:1;c.style.transform=`translateY(${i*1.2}cqw) rotate(${tilt[i]}deg) scale(${1-i*.04})`});
+ lay();if(reduce)return;
+ setInterval(()=>{const t=cs[0];t.style.transform='translateX(-125%) rotate(-12deg)';t.style.opacity=0;
+  setTimeout(()=>{t.style.transition='none';cs.push(cs.shift());t.style.opacity=0;lay();t.style.opacity=0;requestAnimationFrame(()=>requestAnimationFrame(()=>{t.style.transition='';lay()}))},800)},2900)})();
+// leque 3d
+(function(){const cs=[...document.querySelectorAll('#cf .ph')],n=cs.length;let cur=0;
+ const lay=()=>cs.forEach((c,i)=>{let d=((i-cur)%n+n)%n;if(d>n/2)d-=n;const a=Math.abs(d);
+  c.style.transform=`translateX(${d*11}cqw) translateZ(${-a*8}cqw) rotateY(${d*-28}deg) scale(${1-a*.06})`;c.style.zIndex=10-a;c.style.opacity=a<=2?1:0;c.style.filter=a?'brightness(.85)':'none'});
+ lay();if(reduce)return;setInterval(()=>{cur=(cur+1)%n;lay()},2600)})();
+// cortina
+(function(){if(reduce)return;document.querySelectorAll('#wp .wp').forEach((f,fi)=>{const set=JSON.parse(f.dataset.set);let k=0;
+ setTimeout(()=>setInterval(()=>{k=(k+1)%set.length;const m=document.createElement('div');m.innerHTML=im(set[k],'new');const n=m.firstChild;f.appendChild(n);
+  n.addEventListener('animationend',()=>{[...f.querySelectorAll('img')].slice(0,-1).forEach(x=>x.remove());n.classList.remove('new')})},3800),fi*1250)})})();
+// trocas
+(function(){const cells=[...document.querySelectorAll('#sw .swc')];if(reduce)return;
+ setInterval(()=>{const c=cells[Math.floor(Math.random()*cells.length)],ims=[...c.children];const cur=ims.findIndex(i=>i.classList.contains('on'));
+  const used=new Set(cells.map(x=>[...x.children].findIndex(i=>i.classList.contains('on'))));const free=ims.map((_,i)=>i).filter(i=>!used.has(i));
+  const nx=free[Math.floor(Math.random()*free.length)];ims[cur].classList.remove('on');ims[nx].classList.add('on')},1800)})();
+document.querySelectorAll('.tog button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('.tog button').forEach(x=>x.classList.toggle('on',x===b));
+  document.body.classList.toggle('bw',b.dataset.p==='bw');
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yara Estrela — A proposta: fotos flutuantes e selo</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root{--marfim:#F7F3EE;--linho:#EDE5DB;--nude:#D9C3B5;--taupe:#7A695E;--espresso:#2B2522;--champagne:#B89B72;
+        --serif:'Cormorant Garamond',Georgia,serif;--sans:'Jost',system-ui,sans-serif}
+  body.bw{--marfim:#FFFFFF;--linho:#F6F6F5;--nude:#DDDDDB;--taupe:#6F6F6F;--espresso:#111111;--champagne:#111111}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#e9e6e1;font:300 15px/1.6 var(--sans);color:#2B2522;padding:0 0 80px}
+  .top{max-width:1100px;margin:0 auto;padding:36px 20px 10px}
+  .top h1{font:400 2rem/1.1 var(--serif)}
+  .top p{margin:8px 0 14px;color:#6b625b}
+  .tog{display:inline-flex;border:1px solid #2B2522;border-radius:99px;overflow:hidden}
+  .tog button{border:0;background:none;padding:8px 16px;font:400 12px var(--sans);letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
+  .tog button.on{background:#2B2522;color:#fff}
+  .opt{max-width:1100px;margin:44px auto 0;padding:0 20px}
+  .opt h2{font:400 1.5rem var(--serif);margin-bottom:4px}
+  .opt h2 b{display:inline-block;background:#2B2522;color:#fff;width:32px;height:32px;line-height:32px;text-align:center;border-radius:50%;font:400 14px/32px var(--sans);margin-right:10px}
+  .opt .why{color:#6b625b;margin:0 0 12px;font-size:14px}
+  .mock{container-type:inline-size;width:100%;position:relative;overflow:hidden;background:var(--marfim);color:var(--espresso);box-shadow:0 10px 40px rgba(0,0,0,.18);height:0;padding-bottom:var(--h,50%)}
+  .mock>*{position:absolute}
+  .mock *{font-family:var(--sans)}
+  .ph{overflow:hidden;background:linear-gradient(160deg,var(--nude),var(--linho))}
+  .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+  .ph{position:absolute}
+  .p1 img{object-position:50% 30%}.p2 img{object-position:50% 53%}.p3 img{object-position:50% 30%}.p4 img{object-position:50% 25%}.p5 img{object-position:50% 30%}
+  .ar{aspect-ratio:4/5}.tr{aspect-ratio:3/4}
+  .lbl{font:400 .85cqw var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--taupe);display:block}
+  .q{font:italic 300 4.3cqw/1.04 var(--serif);letter-spacing:-.01em;margin:1.2cqw 0 1.4cqw}
+  .q em{font-style:normal}
+  .tx{font-size:1.05cqw;line-height:1.75}
+  .cta{display:inline-block;padding:1.1cqw 2.2cqw;background:var(--espresso);color:var(--marfim);font:400 .8cqw var(--sans);letter-spacing:.22em;text-transform:uppercase;border:1px solid var(--espresso);margin-top:1.6cqw}
+  .lk{display:inline-block;margin-left:1.6cqw;font:400 .8cqw var(--sans);letter-spacing:.22em;text-transform:uppercase;border-bottom:1px solid var(--champagne);padding-bottom:.25cqw}
+  .t{text-align:center}
+  /* selo giratório */
+  .seal{width:var(--sz,8.5cqw);height:var(--sz,8.5cqw);z-index:6}
+  .seal svg{width:100%;height:100%;display:block;border-radius:50%;background:var(--marfim);animation:sp 30s linear infinite;color:var(--espresso)}
+  @keyframes sp{to{transform:rotate(360deg)}}
+  @media (prefers-reduced-motion:reduce){.seal svg{animation:none}}
+  .pick{max-width:1100px;margin:54px auto 0;padding:0 20px;font-size:15px;color:#6b625b}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><defs>
+<symbol id="mono" viewBox="0 0 60 80"><ellipse cx="30" cy="40" rx="28" ry="38" fill="none" stroke="currentColor" stroke-width="1"/><ellipse cx="30" cy="40" rx="25" ry="35" fill="none" stroke="currentColor" stroke-width=".6"/><text x="24" y="42" font-family="Cormorant Garamond,Georgia,serif" font-size="26" fill="currentColor" text-anchor="middle">Y</text><text x="35" y="54" font-family="Cormorant Garamond,Georgia,serif" font-size="28" fill="currentColor" text-anchor="middle">E</text></symbol>
+<symbol id="sealsvg" viewBox="0 0 120 120"><circle cx="60" cy="60" r="57" fill="none" stroke="currentColor" stroke-width=".6"/><path id="sc" d="M60,60 m-44,0 a44,44 0 1,1 88,0 a44,44 0 1,1 -88,0" fill="none"/><text font-family="Jost,sans-serif" font-size="7.6" fill="currentColor"><textPath href="#sc" textLength="274" lengthAdjust="spacing">YARA ESTRELA · NOIVAS · YARA ESTRELA · NOIVAS · </textPath></text><use href="#mono" x="41" y="34" width="38" height="52"/></symbol>
+</defs></svg>
+
+<div class="top">
+  <h1>Seção 2 · A proposta — fotos flutuantes + selo</h1>
+  <p>Sete jeitos de manter as fotos flutuando e o selo giratório, mudando a posição e o formato. A opção 1 é a atual, para comparar. Me diga o número (ou misture).</p>
+  <div class="tog" role="group" aria-label="Paleta">
+    <button class="on" data-p="warm">Paleta quente (marfim e champagne)</button>
+    <button data-p="bw">Preto e branco (atual)</button>
+  </div>
+</div>
+
+<!-- 1 atual -->
+<section class="opt"><h2><b>1</b>Atual (referência)</h2><p class="why">Foto grande à esquerda com o selo no canto, duas fotos menores escalonadas à direita e o texto no meio.</p>
+<div class="mock" style="--h:50%">
+  <div class="ph tr p1" style="left:6cqw;top:6cqw;width:21cqw"><img src="fotos/manifesto-01.jpg" alt=""></div>
+  <div class="seal" style="left:23cqw;top:26cqw"><svg viewBox="0 0 120 120"><use href="#sealsvg"/></svg></div>
+  <div class="t" style="left:32cqw;width:36cqw;top:10cqw"><span class="lbl">01 — A proposta</span><div class="q">“Quero me reconhecer <em>no espelho.</em>”</div><p class="tx">É o que as noivas me dizem antes de tudo. E é por isso que eu não sigo tendência: construo a imagem de cada mulher. A intensidade pode ser leve ou marcante. A elegância e a harmonia ficam sempre.</p><span class="cta">Consultar disponibilidade</span></div>
+  <div class="ph ar p2" style="right:7cqw;top:4cqw;width:17cqw"><img src="fotos/manifesto-02.jpg" alt=""></div>
+  <div class="ph ar p3" style="right:13cqw;top:28cqw;width:12cqw"><img src="fotos/manifesto-03.jpg" alt=""></div>
+</div></section>
+
+<!-- 2 espelhado -->
+<section class="opt"><h2><b>2</b>Invertido</h2><p class="why">Uma foto grande à direita com o selo encostado nela; duas menores escalonadas à esquerda. Mesma ideia, lado trocado.</p>
+<div class="mock" style="--h:50%">
+  <div class="ph ar p2" style="left:7cqw;top:4cqw;width:16cqw"><img src="fotos/manifesto-02.jpg" alt=""></div>
+  <div class="ph ar p3" style="left:13cqw;top:28cqw;width:12cqw"><img src="fotos/manifesto-03.jpg" alt=""></div>
+  <div class="t" style="left:32cqw;width:36cqw;top:10cqw"><span class="lbl">01 — A proposta</span><div class="q">“Quero me reconhecer <em>no espelho.</em>”</div><p class="tx">É o que as noivas me dizem antes de tudo. E é por isso que eu não sigo tendência: construo a imagem de cada mulher. A intensidade pode ser leve ou marcante. A elegância e a harmonia ficam sempre.</p><span class="cta">Consultar disponibilidade</span></div>
+  <div class="ph tr p1" style="right:6cqw;top:6cqw;width:22cqw"><img src="fotos/manifesto-01.jpg" alt=""></div>
+  <div class="seal" style="right:24cqw;top:28cqw"><svg viewBox="0 0 120 120"><use href="#sealsvg"/></svg></div>
+</div></section>
+
+<!-- 3 quatro cantos -->
+<section class="opt"><h2><b>3</b>Quatro cantos</h2><p class="why">Quatro fotos pequenas, uma em cada canto, em alturas diferentes, e o selo no topo, sobre o texto centralizado.</p>
+<div class="mock" style="--h:52%">
+  <div class="ph ar p2" style="left:5cqw;top:4cqw;width:14cqw"><img src="fotos/manifesto-02.jpg" alt=""></div>
+  <div class="ph ar p3" style="right:6cqw;top:9cqw;width:15cqw"><img src="fotos/manifesto-03.jpg" alt=""></div>
+  <div class="ph ar p4" style="left:10cqw;bottom:4cqw;width:15cqw"><img src="fotos/noiva-04.jpg" alt=""></div>
+  <div class="ph tr p1" style="right:4cqw;bottom:5cqw;width:13cqw"><img src="fotos/manifesto-01.jpg" alt=""></div>
+  <div class="seal" style="left:50%;top:3cqw;margin-left:-4.25cqw"><svg viewBox="0 0 120 120"><use href="#sealsvg"/></svg></div>
+  <div class="t" style="left:30cqw;width:40cqw;top:14cqw"><span class="lbl">01 — A proposta</span><div class="q">“Quero me reconhecer <em>no espelho.</em>”</div><p class="tx">É o que as noivas me dizem antes de tudo. E é por isso que eu não sigo tendência: construo a imagem de cada mulher. A intensidade pode ser leve ou marcante. A elegância e a harmonia ficam sempre.</p><span class="cta">Consultar disponibilidade</span></div>
+</div></section>
+
+<!-- 4 collage diagonal -->
+<section class="opt"><h2><b>4</b>Colagem à esquerda</h2><p class="why">Três fotos sobrepostas em diagonal formando uma colagem, o selo no encontro delas e o texto alinhado à esquerda, do outro lado.</p>
+<div class="mock" style="--h:52%">
+  <div class="ph tr p1" style="left:6cqw;top:5cqw;width:19cqw"><img src="fotos/manifesto-01.jpg" alt=""></div>
+  <div class="ph ar p2" style="left:20cqw;top:16cqw;width:16cqw;border:.6cqw solid var(--marfim)"><img src="fotos/manifesto-02.jpg" alt=""></div>
+  <div class="ph ar p3" style="left:9cqw;top:28cqw;width:12cqw;border:.6cqw solid var(--marfim)"><img src="fotos/manifesto-03.jpg" alt=""></div>
+  <div class="seal" style="left:17cqw;top:13cqw;--sz:7.4cqw"><svg viewBox="0 0 120 120"><use href="#sealsvg"/></svg></div>
+  <div style="left:46cqw;width:40cqw;top:11cqw"><span class="lbl">01 — A proposta</span><div class="q" style="font-size:4.6cqw">“Quero me reconhecer <em>no espelho.</em>”</div><p class="tx">É o que as noivas me dizem antes de tudo. E é por isso que eu não sigo tendência: construo a imagem de cada mulher. A maquiagem do casamento vai ser vista por muitos anos, então cada escolha é feita com critério, coerência e visão de longo prazo. A intensidade pode ser leve ou marcante.</p><span class="cta">Consultar disponibilidade</span><span class="lk">Conhecer o método</span></div>
+</div></section>
+
+<!-- 5 duas grandes + selo no encontro -->
+<section class="opt"><h2><b>5</b>Duas fotos e o selo no meio</h2><p class="why">Duas fotos lado a lado, em alturas diferentes, com o selo girando exatamente entre elas; o texto vem centralizado embaixo.</p>
+<div class="mock" style="--h:60%">
+  <div class="ph tr p1" style="left:26cqw;top:4cqw;width:22cqw"><img src="fotos/manifesto-01.jpg" alt=""></div>
+  <div class="ph tr p2" style="left:52cqw;top:9cqw;width:22cqw"><img src="fotos/manifesto-02.jpg" alt=""></div>
+  <div class="seal" style="left:50%;top:20cqw;margin-left:-5cqw;--sz:10cqw"><svg viewBox="0 0 120 120"><use href="#sealsvg"/></svg></div>
+  <div class="t" style="left:25cqw;width:50cqw;top:39cqw"><span class="lbl">01 — A proposta</span><div class="q" style="font-size:3.8cqw">“Quero me reconhecer <em>no espelho.</em>”</div><p class="tx">É o que as noivas me dizem antes de tudo. Por isso não sigo tendência: construo a imagem de cada mulher, com critério e visão de longo prazo.</p><span class="cta">Consultar disponibilidade</span></div>
+</div></section>
+
+<!-- 6 molduras diferentes -->
+<section class="opt"><h2><b>6</b>Molduras diferentes</h2><p class="why">As fotos flutuam em formatos diferentes (arco, oval e círculo) em volta do texto, com o selo no topo. Mais delicado e mais "autoral".</p>
+<div class="mock" style="--h:52%">
+  <div class="ph p2" style="left:7cqw;top:6cqw;width:17cqw;aspect-ratio:3/4.3;border-radius:9cqw 9cqw 0 0"><img src="fotos/manifesto-02.jpg" alt=""></div>
+  <div class="ph p1" style="right:7cqw;top:5cqw;width:17cqw;aspect-ratio:3/4;border-radius:50%"><img src="fotos/manifesto-01.jpg" alt=""></div>
+  <div class="ph p3" style="right:24cqw;bottom:4cqw;width:10cqw;aspect-ratio:1;border-radius:50%"><img src="fotos/manifesto-03.jpg" alt=""></div>
+  <div class="ph p4" style="left:24cqw;bottom:5cqw;width:9cqw;aspect-ratio:1;border-radius:50%"><img src="fotos/noiva-04.jpg" alt=""></div>
+  <div class="seal" style="left:50%;top:3cqw;margin-left:-4.25cqw"><svg viewBox="0 0 120 120"><use href="#sealsvg"/></svg></div>
+  <div class="t" style="left:30cqw;width:40cqw;top:14cqw"><span class="lbl">01 — A proposta</span><div class="q">“Quero me reconhecer <em>no espelho.</em>”</div><p class="tx">É o que as noivas me dizem antes de tudo. E é por isso que eu não sigo tendência: construo a imagem de cada mulher. A intensidade pode ser leve ou marcante. A elegância e a harmonia ficam sempre.</p><span class="cta">Consultar disponibilidade</span></div>
+</div></section>
+
+<!-- 7 polaroids -->
+<section class="opt"><h2><b>7</b>Polaroids</h2><p class="why">As fotos com moldura branca e levemente inclinadas, como retratos soltos sobre a mesa, e o selo como um carimbo numa delas.</p>
+<div class="mock" style="--h:54%;background:var(--linho)">
+  <div class="ph tr p1" style="left:7cqw;top:6cqw;width:18cqw;border:.9cqw solid #fff;border-bottom-width:2.8cqw;transform:rotate(-4deg);box-shadow:0 .6cqw 1.6cqw rgba(0,0,0,.18)"><img src="fotos/manifesto-01.jpg" alt=""></div>
+  <div class="ph ar p2" style="left:17cqw;top:27cqw;width:13cqw;border:.8cqw solid #fff;border-bottom-width:2.4cqw;transform:rotate(3deg);box-shadow:0 .6cqw 1.6cqw rgba(0,0,0,.18)"><img src="fotos/manifesto-02.jpg" alt=""></div>
+  <div class="seal" style="left:21cqw;top:3cqw;--sz:7.6cqw"><svg viewBox="0 0 120 120"><use href="#sealsvg"/></svg></div>
+  <div class="t" style="left:33cqw;width:34cqw;top:10cqw"><span class="lbl">01 — A proposta</span><div class="q">“Quero me reconhecer <em>no espelho.</em>”</div><p class="tx">É o que as noivas me dizem antes de tudo. E é por isso que eu não sigo tendência: construo a imagem de cada mulher. A intensidade pode ser leve ou marcante. A elegância e a harmonia ficam sempre.</p><span class="cta">Consultar disponibilidade</span></div>
+  <div class="ph ar p3" style="right:8cqw;top:5cqw;width:16cqw;border:.9cqw solid #fff;border-bottom-width:2.8cqw;transform:rotate(3deg);box-shadow:0 .6cqw 1.6cqw rgba(0,0,0,.18)"><img src="fotos/manifesto-03.jpg" alt=""></div>
+  <div class="ph ar p4" style="right:14cqw;top:28cqw;width:12cqw;border:.8cqw solid #fff;border-bottom-width:2.4cqw;transform:rotate(-3deg);box-shadow:0 .6cqw 1.6cqw rgba(0,0,0,.18)"><img src="fotos/noiva-04.jpg" alt=""></div>
+</div></section>
+
+<p class="pick">Em todas o selo continua girando devagar (e para se a pessoa tiver "reduzir movimento" ligado). Quando você escolher, eu aplico no site e sigo para a próxima seção.</p>
+
+<script>
+document.querySelectorAll('.tog button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('.tog button').forEach(x=>x.classList.toggle('on',x===b));
+  document.body.classList.toggle('bw',b.dataset.p==='bw');
+});
+</script>
+</body>
+</html>

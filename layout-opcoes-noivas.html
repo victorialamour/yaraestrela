@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yara Estrela — Opções de layout: Noivas</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root{--marfim:#F7F3EE;--linho:#EDE5DB;--nude:#D9C3B5;--taupe:#7A695E;--espresso:#2B2522;--champagne:#B89B72;
+        --serif:'Cormorant Garamond',Georgia,serif;--sans:'Jost',system-ui,sans-serif}
+  body.bw{--marfim:#FFFFFF;--linho:#F6F6F5;--nude:#DDDDDB;--taupe:#6F6F6F;--espresso:#111111;--champagne:#111111}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#e9e6e1;font:300 15px/1.6 var(--sans);color:#2B2522;padding:0 0 80px}
+  .top{max-width:1100px;margin:0 auto;padding:36px 20px 10px}
+  .top h1{font:400 2rem/1.1 var(--serif)}
+  .top p{margin:8px 0 14px;color:#6b625b}
+  .tog{display:inline-flex;border:1px solid #2B2522;border-radius:99px;overflow:hidden}
+  .tog button{border:0;background:none;padding:8px 16px;font:400 12px var(--sans);letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
+  .tog button.on{background:#2B2522;color:#fff}
+  .opt{max-width:1100px;margin:44px auto 0;padding:0 20px}
+  .opt h2{font:400 1.5rem var(--serif);margin-bottom:4px}
+  .opt h2 b{display:inline-block;background:#2B2522;color:#fff;width:32px;height:32px;line-height:32px;text-align:center;border-radius:50%;font:400 14px/32px var(--sans);margin-right:10px}
+  .opt .why{color:#6b625b;margin:0 0 12px;font-size:14px}
+  .mock{container-type:inline-size;width:100%;position:relative;overflow:hidden;background:var(--marfim);color:var(--espresso);box-shadow:0 10px 40px rgba(0,0,0,.18);padding:5cqw 5cqw 4.5cqw}
+  .mock *{font-family:var(--sans)}
+  .hd{text-align:center;margin-bottom:3cqw}
+  .lbl{font:400 .85cqw var(--sans);letter-spacing:.26em;text-transform:uppercase;color:var(--taupe);display:block;margin-bottom:1cqw}
+  .ttl{font:italic 300 3.6cqw/1.1 var(--serif)}
+  .ph{position:relative;overflow:hidden;background:linear-gradient(160deg,var(--nude),var(--linho))}
+  .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+  .cap{font:400 .75cqw var(--sans);letter-spacing:.26em;text-transform:uppercase;color:var(--taupe);text-align:center;margin-top:.8cqw}
+  .more{text-align:center;margin-top:3cqw}
+  .lk{display:inline-block;font:400 .85cqw var(--sans);letter-spacing:.22em;text-transform:uppercase;border-bottom:1px solid var(--espresso);padding-bottom:.3cqw}
+  .r45{aspect-ratio:4/5}.r34{aspect-ratio:3/4}.r23{aspect-ratio:2/3}.r916{aspect-ratio:9/16}
+  /* 1 atual */
+  .O1 .g{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:1.6cqw;max-width:88cqw;margin:0 auto}
+  .O1 .big{grid-row:span 2;display:flex;flex-direction:column}.O1 .big .ph{flex:1}
+  /* 2 masonry */
+  .O2 .g{columns:4;column-gap:1.4cqw}
+  .O2 .g .ph{margin-bottom:1.4cqw;break-inside:avoid}
+  /* 3 carrossel */
+  .O3{padding-left:0;padding-right:0}
+  .O3 .hd{padding:0 5cqw}
+  .O3 .rail{display:flex;gap:1.6cqw;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 5cqw 1.4cqw;scrollbar-width:none}
+  .O3 .rail::-webkit-scrollbar{display:none}
+  .O3 .rail .ph{flex:0 0 24cqw;scroll-snap-align:start}
+  .O3 .bar{display:flex;align-items:center;gap:1.4cqw;padding:1.2cqw 5cqw 0}
+  .O3 .bar i{flex:1;height:1px;background:var(--nude);position:relative}
+  .O3 .bar i::after{content:"";position:absolute;left:0;top:-1px;height:3px;width:32%;background:var(--espresso)}
+  .O3 .bar span{font:400 .8cqw var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--taupe)}
+  /* 4 destaque + miniaturas */
+  .O4 .wrap4{display:grid;grid-template-columns:1.05fr 1fr;gap:4cqw;align-items:center;max-width:84cqw;margin:0 auto}
+  .O4 .main{position:relative;aspect-ratio:4/5}
+  .O4 .main .ph{position:absolute;inset:0}
+  .O4 .side .ttl{font-size:3.2cqw;margin:1cqw 0 2cqw}
+  .O4 .thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:1cqw;margin-top:2.4cqw}
+  .O4 .thumbs .ph{aspect-ratio:1;cursor:pointer;opacity:.55;transition:.25s}
+  .O4 .thumbs .ph.on,.O4 .thumbs .ph:hover{opacity:1;outline:1px solid var(--espresso);outline-offset:2px}
+  .O4 .count{font:italic 300 1.6cqw var(--serif);color:var(--taupe);margin-top:1.4cqw}
+  /* 5 escada */
+  .O5{background:var(--linho)}
+  .O5 .g{display:grid;grid-template-columns:repeat(4,1fr);gap:1.6cqw;align-items:start}
+  .O5 .g .ph:nth-child(even){margin-top:4cqw}
+  .O5 .g .ph{aspect-ratio:3/4.3}
+  /* 6 mosaico numerado */
+  .O6 .g{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:5.5cqw;gap:1.2cqw}
+  .O6 .g>div{position:relative}
+  .O6 .g .ph{position:absolute;inset:0}
+  .O6 .n{position:absolute;left:.9cqw;bottom:.6cqw;z-index:2;font:italic 300 1.7cqw var(--serif);color:#fff;text-shadow:0 0 .8cqw rgba(0,0,0,.4)}
+  .O6 .a{grid-column:1/3;grid-row:1/6}.O6 .b{grid-column:3/5;grid-row:1/4}.O6 .c{grid-column:5/7;grid-row:1/5}
+  .O6 .d{grid-column:3/4;grid-row:4/7}.O6 .e{grid-column:4/5;grid-row:4/7}.O6 .f{grid-column:1/3;grid-row:6/9}
+  .O6 .h{grid-column:3/5;grid-row:7/9}.O6 .i{grid-column:5/7;grid-row:5/9}
+  /* 7 texto fixo + duas colunas */
+  .O7{display:grid;grid-template-columns:.8fr 1.5fr;gap:5cqw;padding:5cqw}
+  .O7 .tx{align-self:start;position:sticky;top:2cqw}
+  .O7 .tx .ttl{font-size:4.4cqw;margin:1.2cqw 0 2cqw}
+  .O7 .tx p{font-size:1.05cqw;line-height:1.8;color:#5b514b;max-width:26cqw}
+  .O7 .tx .lk{margin-top:2.4cqw}
+  .O7 .cols{display:grid;grid-template-columns:1fr 1fr;gap:1.6cqw;align-items:start}
+  .O7 .cols>div{display:flex;flex-direction:column;gap:1.6cqw}
+  .O7 .cols>div:last-child{margin-top:6cqw}
+  .O7 .ph{aspect-ratio:3/4}
+  .ph img{object-position:50% 30%}
+  .pick{max-width:1100px;margin:54px auto 0;padding:0 20px;color:#6b625b}
+</style>
+</head>
+<body>
+<div class="top">
+  <h1>Seção · Noivas ("Cada uma, do seu jeito")</h1>
+  <p>Sete formatos para a galeria, com as 8 fotos que já estão no site. A 1 é a atual. Me diga o número (ou misture).</p>
+  <div class="tog" role="group" aria-label="Paleta">
+    <button class="on" data-p="warm">Paleta quente</button>
+    <button data-p="bw">Preto e branco (atual)</button>
+  </div>
+</div>
+<div id="root"></div>
+<p class="pick">As opções 3 e 4 são interativas aqui (dá para rolar o carrossel e clicar nas miniaturas). No site, qualquer uma delas abre a foto em tamanho grande ao clicar. O link para o Instagram @yaraestrelamakeup fica em todas.</p>
+
+<script>
+const P=[ // [arquivo, posição]
+ ['noiva-01','50% 40%'],['noiva-02','50% 30%'],['noiva-03','50% 30%'],['noiva-04','50% 25%'],
+ ['noiva-05','50% 30%'],['noiva-06','50% 40%'],['noiva-07','50% 30%'],['noiva-08','50% 40%']];
+const im=(i,extra='')=>`<img src="fotos/${P[i][0]}.jpg" alt="" style="object-position:${P[i][1]}" ${extra}>`;
+const ph=(i,cls='')=>`<div class="ph ${cls}">${im(i)}</div>`;
+const hd=`<div class="hd"><span class="lbl">06 — Noivas</span><div class="ttl">Cada uma, do seu jeito</div></div>`;
+const more=`<div class="more"><span class="lk">Ver mais no Instagram @yaraestrelamakeup</span></div>`;
+const O=[
+ ['1','Atual (referência)','Uma foto grande à esquerda e quatro menores em grade, com legendas.',
+  `<div class="mock O1">${hd}<div class="g">
+    <div class="big"><div class="ph r45" style="flex:1;aspect-ratio:auto">${im(0)}</div><div class="cap">Making of</div></div>
+    <div><div class="ph r45">${im(1)}</div><div class="cap">Noiva</div></div>
+    <div><div class="ph r45">${im(2)}</div><div class="cap">Penteado</div></div>
+    <div><div class="ph r45">${im(3)}</div><div class="cap">Noiva</div></div>
+    <div><div class="ph r45">${im(4)}</div><div class="cap">Noiva</div></div></div>${more}</div>`],
+ ['2','Mosaico livre (estilo Pinterest)','Quatro colunas com fotos de alturas diferentes, sem cortar as proporções originais. Mostra as 8 fotos de uma vez.',
+  `<div class="mock O2">${hd}<div class="g">
+    ${[0,1,2,3,4,5,6,7].map((i,k)=>`<div class="ph ${['r916','r34','r45','r916','r45','r916','r34','r916'][k]}">${im(i)}</div>`).join('')}</div>${more}</div>`],
+ ['3','Carrossel horizontal','Fotos grandes em fila, que se arrastam para o lado (com o dedo no celular). Dá sensação de álbum e cabe qualquer número de fotos.',
+  `<div class="mock O3">${hd}<div class="rail">${[0,1,2,3,4,5,6,7].map(i=>`<div class="ph r45" style="flex:0 0 24cqw">${im(i)}</div>`).join('')}</div>
+    <div class="bar"><span>01 / 08</span><i></i><span>Arraste</span></div>${more}</div>`],
+ ['4','Foto em destaque + miniaturas','Uma foto grande e, ao lado, o título com miniaturas clicáveis que trocam a foto principal. Mais interativa e elegante.',
+  `<div class="mock O4"><div class="wrap4"><div class="main"><div class="ph" id="mainph">${im(0)}</div></div>
+    <div class="side"><span class="lbl">06 — Noivas</span><div class="ttl">Cada uma, do seu jeito</div>
+     <p style="font-size:1.05cqw;line-height:1.8;color:#5b514b;max-width:30cqw">Escolha uma foto para ver maior. Cada noiva tem uma imagem pensada para ela.</p>
+     <div class="thumbs" id="thumbs">${[0,1,2,3,4,5,6,7].map(i=>`<div class="ph ${i==0?'on':''}" data-i="${i}">${im(i)}</div>`).join('')}</div>
+     <div class="count" id="count">1 de 8</div>${more.replace('text-align','text-align')}</div></div></div>`],
+ ['5','Escada','Quatro colunas com as fotos em alturas alternadas (uma sobe, uma desce), em fundo linho. Ritmo e movimento, sem sobreposição.',
+  `<div class="mock O5">${hd}<div class="g">${[0,1,2,3,4,5,6,7].map(i=>ph(i)).join('')}</div>${more}</div>`],
+ ['6','Mosaico editorial numerado','Fotos de tamanhos diferentes encaixadas como uma página de revista, com numeração em itálico sobre cada foto.',
+  `<div class="mock O6">${hd}<div class="g">${'abcdefhi'.split('').map((c,k)=>`<div class="${c}">${ph(k)}<span class="n">${String(k+1).padStart(2,'0')}</span></div>`).join('')}</div>${more}</div>`],
+ ['7','Título fixo + duas colunas','O título e o link ficam parados à esquerda enquanto as fotos rolam em duas colunas à direita (a da direita começa mais baixa). Bem diferente da grade clássica.',
+  `<div class="mock O7"><div class="tx"><span class="lbl">06 — Noivas</span><div class="ttl">Cada uma, do seu jeito</div><p>Maquiagem e penteado pensados para cada mulher: luminosos, elegantes e fiéis a quem você é.</p><span class="lk">Ver mais no Instagram</span></div>
+    <div class="cols"><div>${[0,2,4,6].map(i=>ph(i)).join('')}</div><div>${[1,3,5,7].map(i=>ph(i)).join('')}</div></div></div>`]
+];
+const root=document.getElementById('root');
+O.forEach(([n,t,w,h])=>root.insertAdjacentHTML('beforeend',`<section class="opt"><h2><b>${n}</b>${t}</h2><p class="why">${w}</p>${h}</section>`));
+// opção 4: miniaturas trocam a foto principal
+document.getElementById('thumbs').addEventListener('click',e=>{
+  const t=e.target.closest('.ph');if(!t)return;
+  document.querySelectorAll('#thumbs .ph').forEach(x=>x.classList.toggle('on',x===t));
+  const i=+t.dataset.i;document.getElementById('mainph').innerHTML=im(i);
+  document.getElementById('count').textContent=(i+1)+' de 8';
+});
+document.querySelectorAll('.tog button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('.tog button').forEach(x=>x.classList.toggle('on',x===b));
+  document.body.classList.toggle('bw',b.dataset.p==='bw');
+});
+</script>
+</body>
+</html>

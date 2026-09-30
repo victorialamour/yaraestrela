@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yara Estrela — O método sem fotos</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root{--marfim:#F7F3EE;--linho:#EDE5DB;--nude:#D9C3B5;--taupe:#7A695E;--espresso:#2B2522;--champagne:#B89B72;
+        --serif:'Cormorant Garamond',Georgia,serif;--sans:'Jost',system-ui,sans-serif}
+  body.bw{--marfim:#FFFFFF;--linho:#F6F6F5;--nude:#DDDDDB;--taupe:#6F6F6F;--espresso:#111111;--champagne:#111111}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#e9e6e1;font:300 15px/1.6 var(--sans);color:#2B2522;padding:0 0 80px}
+  .top{max-width:1100px;margin:0 auto;padding:36px 20px 10px}
+  .top h1{font:400 2rem/1.1 var(--serif)}
+  .top p{margin:8px 0 14px;color:#6b625b}
+  .tog{display:inline-flex;border:1px solid #2B2522;border-radius:99px;overflow:hidden}
+  .tog button{border:0;background:none;padding:8px 16px;font:400 12px var(--sans);letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
+  .tog button.on{background:#2B2522;color:#fff}
+  .opt{max-width:1100px;margin:44px auto 0;padding:0 20px}
+  .opt h2{font:400 1.5rem var(--serif);margin-bottom:4px}
+  .opt h2 b{display:inline-block;background:#2B2522;color:#fff;min-width:32px;height:32px;line-height:32px;text-align:center;border-radius:99px;padding:0 9px;font:400 14px/32px var(--sans);margin-right:10px}
+  .opt h2 u{text-decoration:none;font:400 11px var(--sans);letter-spacing:.14em;text-transform:uppercase;color:#6b625b;border:1px solid #b9b0a7;border-radius:99px;padding:3px 9px;margin-left:10px;vertical-align:middle}
+  .opt .why{color:#6b625b;margin:0 0 12px;font-size:14px}
+  .mock{container-type:inline-size;width:100%;position:relative;overflow:hidden;background:var(--marfim);color:var(--espresso);box-shadow:0 10px 40px rgba(0,0,0,.18);padding:5cqw 6cqw}
+  .mock *{font-family:var(--sans)}
+  .dk{background:var(--espresso);color:var(--marfim)}
+  .lbl{font:400 .8cqw var(--sans);letter-spacing:.26em;text-transform:uppercase;color:var(--taupe);display:block;margin-bottom:1cqw}
+  .dk .lbl{color:var(--nude)}
+  .h2{font:300 3.3cqw/1.1 var(--serif);max-width:52cqw}
+  .h2 em{font-style:italic}
+  .ctr{text-align:center}.ctr .h2{margin:0 auto}
+  .n{font:italic 300 1.5cqw var(--serif);color:var(--champagne);letter-spacing:.08em}
+  .h3{font:400 2.1cqw/1.15 var(--serif);margin:.8cqw 0}
+  .p{font-size:1.1cqw;line-height:1.75;color:#5b514b}
+  .dk .p{color:#d8cfc6}
+  .st{display:inline-block;width:1.1cqw;height:1.1cqw;stroke:var(--champagne);fill:none;stroke-width:1;vertical-align:middle}
+  .bdg{display:inline-flex;align-items:center;gap:.9cqw;border:1px solid var(--nude);padding:.8cqw 1.4cqw;font:400 .8cqw var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--taupe)}
+  .dk .bdg{color:var(--nude);border-color:rgba(255,255,255,.25)}
+  .cols3{display:grid;grid-template-columns:repeat(3,1fr);gap:4cqw;margin-top:4cqw}
+  /* 1 acordeão */
+  .a1{display:grid;grid-template-columns:.9fr 1.3fr;gap:6cqw}
+  .a1 .it{border-top:1px solid var(--nude);padding:1.8cqw 0;cursor:pointer}
+  .a1 .it:last-child{border-bottom:1px solid var(--nude)}
+  .a1 .hh{display:flex;align-items:baseline;gap:1.6cqw}
+  .a1 .hh .h3{margin:0;flex:1}
+  .a1 .pl{font:300 2cqw var(--serif);color:var(--champagne);transition:.3s}
+  .a1 .it.on .pl{transform:rotate(45deg)}
+  .a1 .bd{max-height:0;overflow:hidden;transition:max-height .6s}
+  .a1 .it.on .bd{max-height:22cqw}
+  .a1 .bd .p{padding:1.2cqw 0 0 3.2cqw;max-width:44cqw}
+  /* 2 abas */
+  .tb{display:flex;gap:0;margin:3cqw 0 3cqw;border-bottom:1px solid var(--nude)}
+  .tb button{border:0;background:none;color:var(--taupe);font:400 .85cqw var(--sans);letter-spacing:.2em;text-transform:uppercase;padding:1.2cqw 2.4cqw;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px}
+  .tb button.on{color:var(--espresso);border-bottom-color:var(--espresso)}
+  .tc{min-height:16cqw;display:grid;grid-template-columns:14cqw 1fr;gap:3cqw;align-items:start}
+  .tc .big{font:italic 300 11cqw/.85 var(--serif);color:var(--champagne)}
+  /* 3 um por vez */
+  .cr .slide{display:none}.cr .slide.on{display:block;animation:fi .8s}
+  @keyframes fi{from{opacity:0;transform:translateY(1cqw)}to{opacity:1;transform:none}}
+  .cr .big{font:italic 300 8cqw/1 var(--serif);color:var(--champagne)}
+  .cr{min-height:26cqw;margin-top:3cqw}
+  .bars{display:flex;gap:.6cqw;margin-top:2.6cqw;max-width:34cqw}
+  .bars i{flex:1;height:2px;background:var(--nude);position:relative;overflow:hidden}
+  .bars i.on::after{content:"";position:absolute;inset:0;background:var(--espresso);transform-origin:left;animation:fl 5s linear forwards}
+  .bars i.dn::after{content:"";position:absolute;inset:0;background:var(--espresso)}
+  @keyframes fl{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+  /* 4 cartões contorno */
+  .cd4{border:1px solid var(--nude);padding:2.8cqw 2.4cqw;position:relative}
+  .cd4 .st{position:absolute;top:-.55cqw;left:2.4cqw;background:var(--marfim);padding:0 .3cqw;width:1.6cqw;height:1.6cqw}
+  /* 5 linhas com hover */
+  .l5 .rw{display:grid;grid-template-columns:8cqw 28cqw 1fr;gap:2cqw;align-items:baseline;border-top:1px solid var(--nude);padding:2.2cqw 1.4cqw;transition:background .4s}
+  .l5 .rw:last-child{border-bottom:1px solid var(--nude)}
+  .l5 .rw:hover{background:var(--linho)}
+  .l5 .rw .h3{margin:0}
+  /* 6 sequência */
+  .q6 .ln{height:1px;background:var(--champagne);transform-origin:left;animation:ln 9s ease-in-out infinite;margin-top:3.6cqw}
+  @keyframes ln{0%{transform:scaleX(0)}25%,85%{transform:scaleX(1)}100%{transform:scaleX(1);opacity:0}}
+  .q6 .col{opacity:0;animation:up 9s ease infinite}
+  @keyframes up{0%{opacity:0;transform:translateY(2.4cqw)}14%,84%{opacity:1;transform:none}100%{opacity:0}}
+  /* 7 frases grandes */
+  .f7 .f{max-width:62cqw;margin:0 auto;padding:2.6cqw 0;border-top:1px solid var(--nude)}
+  .f7 .f:last-child{border-bottom:1px solid var(--nude)}
+  .f7 .tt{font:400 .85cqw var(--sans);letter-spacing:.26em;text-transform:uppercase;color:var(--champagne);margin-bottom:1cqw}
+  .f7 .q{font:italic 300 2.3cqw/1.3 var(--serif)}
+  /* 8 círculos */
+  .c8{display:grid;grid-template-columns:repeat(3,1fr);gap:4cqw;margin-top:4cqw;text-align:center}
+  .c8 .ci{width:11cqw;height:11cqw;border-radius:50%;border:1px solid var(--champagne);display:flex;align-items:center;justify-content:center;margin:0 auto 2cqw;font:italic 300 4cqw var(--serif);color:var(--champagne);position:relative;transition:.4s}
+  .c8 .ci::after{content:"";position:absolute;inset:-.9cqw;border:1px solid var(--nude);border-radius:50%}
+  .c8>div:hover .ci{background:var(--espresso);color:var(--marfim);border-color:var(--espresso)}
+  .c8 .p{max-width:28cqw;margin:0 auto}
+  @media (prefers-reduced-motion:reduce){.q6 .col{animation:none;opacity:1}.q6 .ln{animation:none}.bars i.on::after{animation:none}.cr .slide.on{animation:none}}
+  .pick{max-width:1100px;margin:54px auto 0;padding:0 20px;color:#6b625b}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><symbol id="s" viewBox="0 0 20 20"><path d="M10 1C10.6 7 13 9.4 19 10 13 10.6 10.6 13 10 19 9.4 13 7 10.6 1 10 7 9.4 9.4 7 10 1Z"/></symbol></svg>
+<div class="top">
+  <h1>O método · 8 opções sem fotos</h1>
+  <p>Só texto, linhas, números e a estrela da marca, para aliviar a página que já tem muita foto. Algumas são interativas (clique) ou se mexem sozinhas. Me diga o número (ou misture).</p>
+  <div class="tog" role="group" aria-label="Paleta">
+    <button class="on" data-p="warm">Paleta quente</button>
+    <button data-p="bw">Preto e branco (atual)</button>
+  </div>
+</div>
+<div id="root"></div>
+<p class="pick">Além dessas 8, das opções da página anterior as sem foto eram: escuro em 3 colunas, claro em 3 colunas, lista com números grandes, números em contorno e linha do tempo.</p>
+
+<script>
+const PL=[
+ ['01','Construção da imagem','Eu não aplico uma maquiagem da moda. Construo a sua imagem, pensando em como ela vai envelhecer bem nas fotos, no vídeo e na memória.'],
+ ['02','Leitura tridimensional','Analiso seu rosto de frente, de perfil e a parte de trás da cabeça, junto com o penteado. Isso orienta textura, intensidade, luz e equilíbrio dos traços: realço o que você mais ama em si e suavizo, com naturalidade, o que prefere não evidenciar.'],
+ ['03','Acompanhamento próximo','Antes do casamento, alinho maquiagem e penteado ao vestido, ao horário da cerimônia e à proposta do evento. Depois do sim, fico na sala dos noivos para retoques, troca de penteado e retirada do véu. Você entra na festa tranquila, segura e impecável.']];
+const star=`<svg class="st"><use href="#s"/></svg>`;
+const hd=`<span class="lbl">03 — O método</span><div class="h2">Três pilares para uma noiva que continua sendo <em>ela</em>.</div>`;
+const bdg=`<span class="bdg">${star} Certificação internacional · Método C. Juillard · Lisboa, 2025</span>`;
+const col=(i,cls='',st='')=>`<div class="${cls}" ${st?`style="${st}"`:''}><span class="n">${PL[i][0]}</span><div class="h3">${PL[i][1]}</div><p class="p">${PL[i][2]}</p></div>`;
+const O=[];const add=(t,mv,w,h)=>O.push([t,mv,w,h]);
+
+add('Acordeão','interativa','Título à esquerda e, à direita, os três pilares em lista: ao clicar, o texto abre com um "+" que gira. Só um aberto por vez, então a seção fica compacta.',
+ `<div class="mock a1"><div>${hd}<div style="margin-top:3cqw">${bdg}</div></div><div id="acc">${[0,1,2].map(i=>`<div class="it ${i==0?'on':''}"><div class="hh"><span class="n">${PL[i][0]}</span><div class="h3">${PL[i][1]}</div><span class="pl">+</span></div><div class="bd"><p class="p">${PL[i][2]}</p></div></div>`).join('')}</div></div>`);
+add('Abas','interativa','Três abas com sublinhado; ao clicar troca o texto, que aparece ao lado de um número grande em itálico. Mostra um pilar de cada vez, com leitura confortável.',
+ `<div class="mock">${hd}<div class="tb" id="tb">${[0,1,2].map(i=>`<button class="${i==0?'on':''}" data-i="${i}">${PL[i][1]}</button>`).join('')}</div><div class="tc" id="tc"></div></div>`);
+add('Um pilar por vez (automático)','movimento','Número gigante e texto que passam sozinhos a cada 5 segundos, com barrinhas de progresso. Ocupa pouco espaço e prende a atenção.',
+ `<div class="mock dk ctr">${hd}<div class="cr" id="cr">${[0,1,2].map(i=>`<div class="slide ${i==0?'on':''}"><div class="big">${PL[i][0]}</div><div class="h3" style="font-size:2.8cqw">${PL[i][1]}</div><p class="p" style="max-width:48cqw;margin:0 auto">${PL[i][2]}</p></div>`).join('')}<div class="bars" id="crb" style="margin:2.6cqw auto 0"><i></i><i></i><i></i></div></div></div>`);
+add('Cartões de contorno com estrela','estática','Três cartões só com uma linha fina em volta e a estrela champagne na borda de cima, como um selo. Delicado e leve.',
+ `<div class="mock">${hd}<div class="cols3">${[0,1,2].map(i=>`<div class="cd4">${star}${col(i)}</div>`).join('')}</div><div style="margin-top:4cqw">${bdg}</div></div>`);
+add('Linhas que acendem ao passar o mouse','interativa','Cada pilar numa linha larga, com número, título e texto; o fundo fica linho ao passar o mouse. Muito limpa, parece um índice de revista.',
+ `<div class="mock l5">${hd}<div style="margin-top:3cqw">${[0,1,2].map(i=>`<div class="rw"><span class="n">${PL[i][0]}</span><div class="h3">${PL[i][1]}</div><p class="p">${PL[i][2]}</p></div>`).join('')}</div></div>`);
+add('Linha que se desenha','movimento','Uma linha fina se desenha e os três pilares surgem um depois do outro, subindo suavemente, e recomeçam. Sutil e elegante.',
+ `<div class="mock q6">${hd}<div class="ln"></div><div class="cols3" style="margin-top:2.6cqw">${[0,1,2].map(i=>col(i,'col',`animation-delay:${0.8+i*0.9}s`)).join('')}</div><div style="margin-top:3.4cqw">${bdg}</div></div>`);
+add('Frases em itálico','estática','Cada pilar vira uma frase grande em itálico, com o título pequeno em caixa alta champagne em cima. Lembra um manifesto.',
+ `<div class="mock f7 ctr">${hd}<div style="margin-top:3.4cqw">${[['Construção da imagem','Eu não aplico uma maquiagem da moda. Construo a sua imagem, pensando em como ela vai envelhecer bem nas fotos, no vídeo e na memória.'],['Leitura tridimensional','Analiso seu rosto de frente, de perfil e a parte de trás da cabeça, junto com o penteado.'],['Acompanhamento próximo','Depois do sim, fico na sala dos noivos: você entra na festa tranquila, segura e impecável.']].map(([t,q])=>`<div class="f"><div class="tt">${t}</div><div class="q">“${q}”</div></div>`).join('')}</div></div>`);
+add('Círculos numerados','estática','Três círculos de linha fina com o número dentro (e um anel duplo, como o selo); ao passar o mouse o círculo se preenche.',
+ `<div class="mock ctr">${hd}<div class="c8">${[0,1,2].map(i=>`<div><div class="ci">${PL[i][0]}</div><div class="h3">${PL[i][1]}</div><p class="p">${PL[i][2]}</p></div>`).join('')}</div><div style="margin-top:4cqw">${bdg}</div></div>`);
+
+const root=document.getElementById('root');
+O.forEach(([t,mv,w,h],i)=>root.insertAdjacentHTML('beforeend',`<section class="opt"><h2><b>${i+1}</b>${t}<u>${mv}</u></h2><p class="why">${w}</p>${h}</section>`));
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+(function(){const a=document.getElementById('acc');a.addEventListener('click',e=>{const it=e.target.closest('.it');if(!it)return;[...a.children].forEach(x=>x.classList.toggle('on',x===it))})})();
+(function(){const tb=document.getElementById('tb'),tc=document.getElementById('tc');
+ const show=i=>{[...tb.children].forEach((b,j)=>b.classList.toggle('on',j==i));tc.innerHTML=`<div class="big">${PL[i][0]}</div><div><div class="h3" style="font-size:2.8cqw;margin-top:0">${PL[i][1]}</div><p class="p" style="max-width:44cqw;margin-top:1cqw">${PL[i][2]}</p></div>`};
+ show(0);tb.addEventListener('click',e=>{const b=e.target.closest('button');if(b)show(+b.dataset.i)})})();
+(function(){const sl=[...document.querySelectorAll('#cr .slide')],bars=[...document.querySelectorAll('#crb i')];let k=0;
+ const show=n=>{k=n;sl.forEach((s,j)=>s.classList.toggle('on',j===k));bars.forEach((b,j)=>{b.className=j<k?'dn':(j===k?'on':'')})};
+ show(0);if(reduce)return;setInterval(()=>show((k+1)%3),5000)})();
+document.querySelectorAll('.tog button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('.tog button').forEach(x=>x.classList.toggle('on',x===b));
+  document.body.classList.toggle('bw',b.dataset.p==='bw');
+});
+</script>
+</body>
+</html>
