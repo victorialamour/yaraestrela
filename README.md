@@ -22,7 +22,7 @@ Página única (HTML + CSS + JS, sem build pesado) para Yara Estrela, maquiagem 
 - [ ] Testar em celular de verdade.
 - WhatsApp já configurado: +55 11 97080-3436 (`WHATSAPP_NUMERO`, no fim do `build.js`).
 
-> **Fotos e vídeo não estão neste repositório** (têm noivas e imagens sem autorização/direitos). As pastas `fotos/` e `video/` e o `og-image.jpg` precisam estar ao lado do `index.html` para o site funcionar.
+> **Prévia pública.** As fotos e o vídeo usados no site estão neste repositório só para a cliente ver o site funcionando; a página está marcada como `noindex` (buscadores não indexam). As fotos das noivas ainda dependem de autorização. Ao publicar no domínio definitivo: trocar a URL no `build.js` e remover a linha `noindex`.
 
 ## O que sobe para o ar
 `index.html`, `og-image.jpg`, `fotos/*.webp` usadas e `video/clip-01.mp4`.
