@@ -406,7 +406,7 @@ ${css}
       <span class="label reveal">O que está incluído</span>
       <h2 class="title reveal d1">Do teste à <em>entrada na festa</em></h2>
       <p class="muted reveal d2">Atendo em casa ou no hotel. Sua mãe, suas madrinhas e outras convidadas também podem ser atendidas pela minha equipe.</p>
-      <p class="muted reveal d2" style="margin-top:-6px"><span class="todo">[CONFIRMAR com a Yara se há equipe com ela. Fonte da informação: perfil dela no casamentos.com.br, que diz "No dia do evento atende a noiva e somente mais duas ou três pessoas, a equipe atenderá as demais". A parte "mãe e madrinhas" veio do modelo de dúvidas da brief, não dessa página.]</span></p>
+      <p class="muted reveal d2" style="margin-top:-6px"><span class="todo">Yara, me confirma uma coisa: você tem equipe que te ajuda no dia? Peguei isso do seu perfil no casamentos.com.br, que diz “No dia do evento atende a noiva e somente mais duas ou três pessoas, a equipe atenderá as demais”. A parte de mãe e madrinhas veio do modelo de dúvidas que eu usei, não do seu perfil, então se não for assim me avisa que eu tiro.</span></p>
     </div>
     <div class="svc-cards svc-cards--6">
 ${cards}
@@ -479,12 +479,12 @@ ${cards}
       <h2 class="title reveal d1">Perguntas que <em>eu mais recebo</em></h2>
     </div>
     <div class="faq__list reveal">
-${faq('Com quanta antecedência devo reservar?', 'O ideal é reservar até um ano antes, principalmente para as datas de mais procura. Atendo uma noiva por data. <span class="todo">[CONFIRMAR "uma noiva por data" com a Yara]</span>')}
+${faq('Com quanta antecedência devo reservar?', 'O ideal é reservar até um ano antes, principalmente para as datas de mais procura. Atendo uma noiva por data. <span class="todo">Yara, você atende só uma noiva por data? Me confirma.</span>')}
 ${faq('Você faz maquiagem e penteado?', 'Faço os dois. Como o penteado muda o jeito de ver o rosto, eu penso nos dois juntos.')}
 ${faq('O teste está incluído?', 'Está. É no teste que escolhemos juntas a maquiagem e o penteado, combinando com o vestido e o horário da cerimônia.')}
 ${faq('A maquiagem vai durar a festa inteira?', 'Vai. Aplico uma blindagem e fico com você depois da cerimônia para retocar.')}
 ${faq('Minha maquiagem vai ficar pesada?', 'Não precisa. Você escolhe a intensidade, do bem leve ao mais marcante. A ideia é sempre realçar você, sem esconder quem você é.')}
-${faq('Você atende mãe e madrinhas?', 'Sim, a minha equipe atende. Quando entrar em contato, me diga quantas pessoas serão. <span class="todo">[CONFIRMAR com a Yara se há equipe com ela. Fonte: casamentos.com.br ("a equipe atenderá as demais"); "mãe e madrinhas" veio da brief.]</span>')}
+${faq('Você atende mãe e madrinhas?', 'Sim, a minha equipe atende. Quando entrar em contato, me diga quantas pessoas serão. <span class="todo">Yara, confirma pra mim se você tem equipe pra atender as outras pessoas? Vi isso no seu perfil do casamentos.com.br.</span>')}
 ${faq('Atende fora de São Paulo?', 'Sim, em todo o Brasil. Minha base é em São Paulo; se o casamento for em outra cidade ou for destination wedding, combinamos a agenda e o deslocamento de acordo com o local.')}
 ${faq('Qual o valor?', 'Depende da data, do local e de quantas pessoas vou atender. Me chame no WhatsApp que eu envio a proposta.')}
     </div>
