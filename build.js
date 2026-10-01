@@ -406,6 +406,7 @@ ${css}
       <span class="label reveal">O que está incluído</span>
       <h2 class="title reveal d1">Do teste à <em>entrada na festa</em></h2>
       <p class="muted reveal d2">Atendo em casa ou no hotel. Sua mãe, suas madrinhas e outras convidadas também podem ser atendidas pela minha equipe.</p>
+      <p class="muted reveal d2" style="margin-top:-6px"><span class="todo">[CONFIRMAR com a Yara se há equipe com ela. Fonte da informação: perfil dela no casamentos.com.br, que diz "No dia do evento atende a noiva e somente mais duas ou três pessoas, a equipe atenderá as demais". A parte "mãe e madrinhas" veio do modelo de dúvidas da brief, não dessa página.]</span></p>
     </div>
     <div class="svc-cards svc-cards--6">
 ${cards}
@@ -483,7 +484,7 @@ ${faq('Você faz maquiagem e penteado?', 'Faço os dois. Como o penteado muda o 
 ${faq('O teste está incluído?', 'Está. É no teste que escolhemos juntas a maquiagem e o penteado, combinando com o vestido e o horário da cerimônia.')}
 ${faq('A maquiagem vai durar a festa inteira?', 'Vai. Aplico uma blindagem e fico com você depois da cerimônia para retocar.')}
 ${faq('Minha maquiagem vai ficar pesada?', 'Não precisa. Você escolhe a intensidade, do bem leve ao mais marcante. A ideia é sempre realçar você, sem esconder quem você é.')}
-${faq('Você atende mãe e madrinhas?', 'Sim, a minha equipe atende. Quando entrar em contato, me diga quantas pessoas serão.')}
+${faq('Você atende mãe e madrinhas?', 'Sim, a minha equipe atende. Quando entrar em contato, me diga quantas pessoas serão. <span class="todo">[CONFIRMAR com a Yara se há equipe com ela. Fonte: casamentos.com.br ("a equipe atenderá as demais"); "mãe e madrinhas" veio da brief.]</span>')}
 ${faq('Atende fora de São Paulo?', 'Sim, em todo o Brasil. Minha base é em São Paulo; se o casamento for em outra cidade ou for destination wedding, combinamos a agenda e o deslocamento de acordo com o local.')}
 ${faq('Qual o valor?', 'Depende da data, do local e de quantas pessoas vou atender. Me chame no WhatsApp que eu envio a proposta.')}
     </div>
